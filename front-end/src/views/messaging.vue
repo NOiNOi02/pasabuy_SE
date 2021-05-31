@@ -900,9 +900,22 @@
                         <p
                           v-if="
                             msgStatus.sender ==
-                            this.userPersonal.firstName +
-                              ' ' +
-                              this.userPersonal.lastName
+                              this.userPersonal.firstName +
+                                ' ' +
+                                this.userPersonal.lastName &&
+                            msgStatus.status === 'Cancelled'
+                          "
+                        >
+                          You {{ msgStatus.status }} your
+                          {{ msgStatus.postIdentity }}
+                        </p>
+                        <p
+                          v-else-if="
+                            msgStatus.sender ==
+                              this.userPersonal.firstName +
+                                ' ' +
+                                this.userPersonal.lastName &&
+                            msgStatus.status === 'Declined'
                           "
                         >
                           You {{ msgStatus.status }} {{ msgStatus.receiver }}'s
@@ -1091,9 +1104,22 @@
                         <p
                           v-if="
                             msgStatus.sender ==
-                            this.userPersonal.firstName +
-                              ' ' +
-                              this.userPersonal.lastName
+                              this.userPersonal.firstName +
+                                ' ' +
+                                this.userPersonal.lastName &&
+                            msgStatus.status === 'Cancelled'
+                          "
+                        >
+                          You {{ msgStatus.status }} your
+                          {{ msgStatus.postIdentity }}
+                        </p>
+                        <p
+                          v-else-if="
+                            msgStatus.sender ==
+                              this.userPersonal.firstName +
+                                ' ' +
+                                this.userPersonal.lastName &&
+                            msgStatus.status === 'Declined'
                           "
                         >
                           You {{ msgStatus.status }} {{ msgStatus.receiver }}'s
@@ -2695,9 +2721,9 @@
           >
           <span class="text-base ssm:text-sm leading-none text-gray-500"
             >{{
-               computedShopItemList(
-              currentPostViewDetails.transactionShoppingList
-            ).length
+              computedShopItemList(
+                currentPostViewDetails.transactionShoppingList
+              ).length
             }}
             items</span
           >
@@ -2718,7 +2744,7 @@
         </div>
         <button
           @click="showMoreshowLess"
-          v-if="isFew( currentPostViewDetails.transactionShoppingList)"
+          v-if="isFew(currentPostViewDetails.transactionShoppingList)"
           class="focus:outline-none items-start justify-start text-sm text-gray-500"
         >
           {{ showListStatus }}

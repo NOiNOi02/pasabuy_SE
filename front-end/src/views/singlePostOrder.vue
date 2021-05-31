@@ -132,7 +132,7 @@
         <span class="flex space-x-2"
           ><p class="text-gray-400">Would you like to review the shopper?</p>
           <button
-            @click="setDispatches(itemx.transaction_sender.email)"
+            @click="setDispatches(currentTransaction.transaction_sender.email)"
             class="cursor-pointer"
           >
             Write a review.

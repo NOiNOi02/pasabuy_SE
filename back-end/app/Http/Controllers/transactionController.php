@@ -160,11 +160,11 @@ class transactionController extends Controller
             //find the right user to notify, in this case the owner of the post
 			$userToNotif = User::where('email',$request->userNotif)->get();
 			$userToNotif = User::find($userToNotif[0]->indexUserAuthentication);
-			$userToNotif->notify(new UpdateRequestNotification($request->status,$request->postNumber));
+			$userToNotif->notify(new UpdateRequestNotification($request->status,$transaction->transactionNumber));
             return response()->json(["message"=>"Transaction succesfully updated."],201);
         }
         else 
-            return response()->json(["error"=>"Error updating transaction."],201);
+            return response()->json(["error"=>"Error updating transaction."],401);
 
     }
 }

@@ -28,6 +28,9 @@ import VerifyPhone from '../views/verifyPhone.vue'
 import cookies from '../views/cookiesPolicy.vue'
 import singlePostOrder from '../views/singlePostOrder.vue'
 import singlePostDelivery from '../views/singlePostDelivery.vue'
+import OrderRequestSinglePage from '../views/OrderRequestSinglePage.vue'
+import ShoppingOfferSinglePage from '../views/ShoppingOfferSinglePage.vue'
+
 
 const routes = [
   {
@@ -213,12 +216,26 @@ const routes = [
   {
     path: '/singlePostOrder',
     name: 'singlePostOrder',
-    component: singlePostOrder
+    component: singlePostOrder,
+    meta: {requiresAuth:true}
   },
   {
     path: '/singlePostDelivery',
     name: 'singlePostDelivery',
-    component: singlePostDelivery
+    component: singlePostDelivery,
+    meta: {requiresAuth:true}
+  },
+  {
+    path: '/OrderRequestSinglePage',
+    name: 'OrderRequestSinglePage',
+    component: OrderRequestSinglePage,
+    meta: {requiresAuth:true}
+  },
+  {
+    path: '/ShoppingOfferSinglePage',
+    name: 'ShoppingOfferSinglePage',
+    component: ShoppingOfferSinglePage,
+    meta: {requiresAuth:true}
   },
 
 ]

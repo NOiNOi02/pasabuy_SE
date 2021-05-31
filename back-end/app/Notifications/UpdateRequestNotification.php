@@ -19,12 +19,12 @@ class UpdateRequestNotification extends Notification
      *
      * @return void
      */
-    public $postNumber;
+    public $transactionNumber;
     public $status;
-    public function __construct($status,$postNumber)
+    public function __construct($status,$transactionNumber)
     {
         //
-        $this->postNumber = $postNumber;
+        $this->transactionNumber = $transactionNumber;
         $this->status = $status;
 
     }
@@ -52,7 +52,7 @@ class UpdateRequestNotification extends Notification
         $user = userInformation::where('email',Auth::user()->email)->get();
         return [
             'updater' => $user[0]->firstName.' '.$user[0]->lastName,
-            'postNumber' => $this->postNumber,
+            'transactionNumber' => $this->transactionNumber,
             'updaterPic' => $user[0]->profilePicture,
             'status' => $this->status
 
@@ -64,7 +64,7 @@ class UpdateRequestNotification extends Notification
         $user = userInformation::where('email',Auth::user()->email)->get();
         return new BroadcastMessage([
             'updater' => $user[0]->firstName.' '.$user[0]->lastName,
-            'postNumber' => $this->postNumber,
+            'transactionNumber' => $this->transactionNumber,
             'updaterPic' => $user[0]->profilePicture,
             'status' => $this->status
             
