@@ -151,7 +151,7 @@ export default {
      var getCityCode = document.getElementById("City").value;
       console.log(getCityCode)
        axios
-          .get(http://localhost:8000/api/refBrgy', {params:{cityCode: getCityCode}},{withCredentials: true}).then((res)=>{
+          .get('http://localhost:8000/api/refBrgy', {params:{cityCode: getCityCode}},{withCredentials: true}).then((res)=>{
         console.log('brgy', res.data)
         this.barangays = res.data
       }).catch((errors)=>{
@@ -178,6 +178,20 @@ export default {
     this.refProvince();
     //this.refcityMunicipality();
     //this.refBrgy();
+ if (
+      localStorage.getItem("address") != null 
+    ) {
+      console.log("has value");
+      var dataAddress = JSON.parse(localStorage.getItem("address"));
+      this.addressInfo.province = dataAddress.province;
+      console.log("province ", this.addressInfo.province)
+      this.addressInfo.cityMunicipality = dataAddress.cityMunicipality;
+       console.log("city ", this.addressInfo.cityMunicipality)
+      this.addressInfo.barangay = dataAddress.barangay;
+       console.log("barangay ", this.addressInfo.barangay)
+      this.addressInfo.houseNumber = dataAddress.houseNumber;
+    }
+
   },
 
 };

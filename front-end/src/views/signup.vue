@@ -667,6 +667,8 @@ export default {
     },
     nextPage() {
       this.next = true;
+       
+
       axios
         .get("http://localhost:8000/sanctum/csrf-cookie", {
           withCredentials: true,
@@ -727,6 +729,12 @@ export default {
               this.error_email = errors.response.data.email;
               this.error_password = errors.response.data.password;
               this.error_phonenumber = errors.response.data.phoneNumber;
+              this.displayReqFname = true;
+              this.displayReqLname = true;
+              this.displayReqPNumber = true;
+              this.displayReqEmail = true;
+              this.displayPass = true;
+              this.displayPassConfirm = true;
             }); //end catch
         });
     },
@@ -742,12 +750,15 @@ export default {
       // if (!this.PersonalInfo.firstName) return ''
       // this.PersonalInfo.firstName.toLowerCase().split(' ');
       // var hi= this.PersonalInfo.firstName.charAt(0).toUpperCase() + this.PersonalInfo.firstName.slice(1);
+      this.PersonalInfo.firstName = this.capitalizeTheFirstLetterOfEachWord(this.PersonalInfo.firstName);
       console.log(
         this.capitalizeTheFirstLetterOfEachWord(this.PersonalInfo.firstName)
       );
     },
 
     capitalizeLName: function () {
+
+      this.PersonalInfo.lastName = this.capitalizeTheFirstLetterOfEachWord(this.PersonalInfo.lastName);
       console.log(
         this.capitalizeTheFirstLetterOfEachWord(this.PersonalInfo.lastName)
       );
