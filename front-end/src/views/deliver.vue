@@ -153,12 +153,12 @@
               /><!--Profile Pic-->
               <span class="flex flex-col">
                 <p class="font-bold">
-                  {{ itemx.firstName }} {{ itemx.lastName }}
+                  {{ itemx.post.user.firstName }} {{ itemx.post.user.lastName }}
                 </p>
                 <!--name-->
                 <span class="flex gap-x-1">
                   <p class="font-bold text-gray-500 text-sm">
-                    {{ itemx.rate }}
+                    {{ starRate(userReviews(itemx.post.email)) }}
                   </p>
                   <p class="material-icons text-sm text-red-700">star</p>
                 </span>
@@ -186,7 +186,7 @@
                 <!--name-->
                 <span class="flex gap-x-1">
                   <p class="font-bold text-gray-500 text-sm">
-                    {{ itemx.rate }}
+                    {{ starRate(userReviews(itemx.transaction_sender.email)) }}
                   </p>
                   <p class="material-icons text-sm text-red-700">star</p>
                 </span>
@@ -323,29 +323,29 @@
         <hr />
         <div class=" ">
           <div class="flex flex-col p-3 space-y-4">
-            <span class="flex items-center space-x-2"
+            <label class="flex items-center space-x-2"
               ><input
                 type="radio"
                 name="status"
                 value="Completed"
                 id="completedDeliver"
-              /><span>Completed</span></span
+              /><span>Completed</span></label
             >
-            <span class="flex items-center space-x-2"
+            <label class="flex items-center space-x-2"
               ><input
                 type="radio"
                 name="status"
                 value="In Transit"
                 id="inTransitDeliver"
-              /><span>In Transit</span></span
+              /><span>In Transit</span></label
             >
-            <span class="flex items-center space-x-2"
+            <label class="flex items-center space-x-2"
               ><input
                 type="radio"
                 name="status"
                 value="Cancelled"
                 id="cancelledDeliver"
-              /><span>Cancelled</span></span
+              /><span>Cancelled</span></label
             >
           </div>
         </div>
@@ -371,6 +371,28 @@
       </p>
     </div>
   </div>
+  <div class="bg-transparent fixed bottom-3 w-full flex flex-col items-end">
+    <div
+      v-if="popUp3"
+      class="sm:w-z md:w-z lg:w-z llg:w-z xl:w-z xll:w-z 2xl:w-z 2xxl:w-z md:right-7 lg:right-7 llg:right-7 xl:right-7 xll:right-7 2xl:right-7 2xxl:right-7 mx-2 rounded-xl flex justify-between flex-row shadow-lg bg-black text-white border px-4 pb-4 pt-4 xsm:h-auto ssm:h-auto vsv:h-auto vsvs:h-auto lvs:h-auto sm:h-auto md:h-auto"
+    >
+      <div class="flex items-center">
+        <span class="icons material-icons" style="color: #9ca3af"
+          >check_circle</span
+        >
+        <span class="ml-2 text-sm"> Successfully updated transaction.</span>
+      </div>
+      <div class="flex items-center">
+        <button
+          @click="popUp3 = false"
+          class="focus:outline-none hover:text-red-700 hover:bg-white rounded-full h-6"
+          type="button"
+        >
+          <span class="material-icons"> cancel</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import Nav from "../views/Navbar.vue";
@@ -386,7 +408,7 @@ export default {
   },
   data() {
     return {
-      togglef: false,
+      popUp3: false,
       toggle_status: false,
       activeBtn: 0,
       name: "Yamete",
@@ -507,6 +529,7 @@ export default {
               this.updatingTransaction = null;
               this.updatingPost = null;
               this.allDeliveries = this.deliveries;
+              this.popUp3 = true;
             });
           })
           .catch((error) => {
@@ -526,6 +549,7 @@ export default {
               this.updatingTransaction = null;
               this.updatingPost = null;
               this.allDeliveries = this.deliveries;
+              this.popUp3 = true;
             });
           })
           .catch((error) => {
@@ -545,6 +569,7 @@ export default {
               this.updatingTransaction = null;
               this.updatingPost = null;
               this.allDeliveries = this.deliveries;
+              this.popUp3 = true;
             });
           })
           .catch((error) => {
@@ -557,6 +582,21 @@ export default {
       this.updatingTransaction = indexTransactionPost;
       this.updatingPost = postNumber;
     },
+    starRate(reviews) {
+      var temp = reviews;
+      var ctr = 0;
+      for (var i = 0; i < temp.length; i++) {
+        ctr = ctr + temp[i].rate;
+        // console.log(temp[i])
+      }
+      var rate = ctr / i.toFixed(1);
+      return rate == null || isNaN(rate) ? 0 : rate;
+    },
+    userReviews(userEmail) {
+      return this.reviews.filter((x) => {
+        return x.revieweeEmail == userEmail;
+      });
+    },
   },
   mounted() {
     this.allDeliveries = this.deliveries;
@@ -565,6 +605,9 @@ export default {
   computed: {
     user() {
       return store.getters.getUser;
+    },
+    reviews() {
+      return store.getters.getAllReviews;
     },
     deliveries() {
       return store.getters.getUserTransactions.filter((x) => {

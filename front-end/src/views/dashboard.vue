@@ -394,9 +394,20 @@
                             v-if="edit1 && edit2 == post_info.postNumber"
                             class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
                           >
-                          <span v-if="post_info.request_post.shoppingListContent !=null" hidden>{{ctrProp=post_info.request_post.shoppingListContent[
-                                  post_info.request_post.shoppingListContent.length - 1
-                                ].id + 1}}</span><span hidden>{{ctrProp=1}}</span>
+                            <span
+                              v-if="
+                                post_info.request_post.shoppingListContent !=
+                                null
+                              "
+                              hidden
+                              >{{
+                                (ctrProp =
+                                  post_info.request_post.shoppingListContent[
+                                    post_info.request_post.shoppingListContent
+                                      .length - 1
+                                  ].id + 1)
+                              }}</span
+                            ><span hidden>{{ (ctrProp = 1) }}</span>
                             <EditOrderRequest
                               v-if="postModalVisible1"
                               @closeModal1="listener1"
@@ -1141,7 +1152,8 @@
                         class="flex flex-col ssm:mt-2 vs:mt-2 mt-3 w-full items-start justify-start h-auto vs:pr-0 vs:min-w-0 vs:px-2 ssm:pr-0 ssm:min-w-0 ssm:px-2 p-4 bg-gray-100 rounded-xl"
                         v-if="
                           post_info.post.request_post != null &&
-                          post_info.post.request_post.shoppingListContent != null
+                          post_info.post.request_post.shoppingListContent !=
+                            null
                         "
                       >
                         <div class="flex-col items-start w-full">
@@ -1359,7 +1371,7 @@
 
             <div class="text-base bg-white rounded-b-xl">
               <label for="" class="pl-6 font-normal text-gray-500">
-                8 items
+                {{confirmedOrders[0].transactionShoppingList.length}} items
               </label>
 
               <label
@@ -1479,7 +1491,14 @@
             <div
               class="pt-2 pb-8 pr-3 text-sm tracking-wide bg-white rounded-b-xl"
             >
-              <router-link :to="'/singlePostOrder/?transactionNumber='+toEncrypt(confirmedOrders[0].transactionNumber)" class="float-right font-bold">View Full Details</router-link>
+              <button
+                @click="
+                  dispatchSinglePage(confirmedOrders[0].transactionNumber)
+                "
+                class="float-right font-bold"
+              >
+                View Full Details
+              </button>
             </div>
           </div>
           <div v-else>
@@ -1537,7 +1556,7 @@
 
             <div class="text-base bg-white rounded-b-xl">
               <label for="" class="pl-6 font-normal text-gray-500">
-                8 items
+                {{confirmedDeliveries[0].transactionShoppingList.length}} items
               </label>
 
               <label
@@ -1670,7 +1689,14 @@
               </label>
             </div>
             <div class="pb-8 pr-3 text-sm tracking-wide bg-white rounded-b-xl">
-             <router-link :to="'/singlePostDelivery/?transactionNumber='+toEncrypt(confirmedDeliveries[0].transactionNumber)" class="float-right font-bold">View Full Details</router-link>
+              <button
+                @click="
+                  dispatchSinglePage(confirmedDeliveries[0].transactionNumber)
+                "
+                class="float-right font-bold"
+              >
+                View Full Details
+              </button>
             </div>
           </div>
           <div v-else>
@@ -2486,7 +2512,7 @@ export default {
   },
   data() {
     return {
-      ctrProp:0,
+      ctrProp: 0,
       brandSearchTag: false,
       popUp3: false,
       popUpPost: false,
@@ -2861,7 +2887,6 @@ export default {
         this.list_number++;
         console.log(this.new_items);
       } else {
-   
         alert("Empty Field");
         return false;
       }
@@ -3077,7 +3102,32 @@ export default {
     toEncrypt(val) {
       return btoa(val);
     },
+    dispatchSinglePage(transactNum) {
+      var temp = JSON.parse(JSON.stringify(this.confirmedOrders));
+      var temp2 = temp.filter((x) => {
+        return x.transactionNumber === transactNum;
+      });
+      console.log('yrmp2',temp2)
+      if (temp2.length <= 0) {
+        temp = JSON.parse(JSON.stringify(this.confirmedDeliveries));
+        temp2 = temp.filter((x) => {
+          return x.transactionNumber === transactNum;
+        });
+        console.log('in deliveries', temp2)
+        this.$router.push({
+          name: "singlePostDelivery",
+          query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
+        });
+        return;
+      }
+        console.log('in orders', temp2)
 
+      this.$router.push({
+        name: "singlePostOrder",
+        query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
+      });
+      return;
+    },
     changeFilter() {
       var i;
       if (this.filter1Value === "All Posts") {
@@ -3243,8 +3293,10 @@ export default {
       const today = moment().endOf("day");
       const yesterday = moment().add(-1, "day").endOf("day");
 
-      if (postedDate < today) return moment(datetime).format("[Today at] h:mm a");
-      if (postedDate > yesterday)   return moment(datetime).format("[Yesterday at] h:mm a");
+      if (postedDate < today)
+        return moment(datetime).format("[Today at] h:mm a");
+      if (postedDate > yesterday)
+        return moment(datetime).format("[Yesterday at] h:mm a");
       else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
     },
     timestampSched(datetime) {
@@ -3293,7 +3345,7 @@ export default {
       var allPosts = this.posts.concat(this.allShares);
       this.sortedAllPosts = this.selectionSort(allPosts);
       this.filteringPosts = this.sortedAllPosts;
-      console.log("mark: ", this.posts)
+      console.log("mark: ", this.posts);
     },
     deletePost(postNum) {
       api.delete("api/post/" + postNum + "/delete").then(() => {
@@ -3387,9 +3439,10 @@ export default {
       var ctr = 0;
       for (var i = 0; i < temp.length; i++) {
         ctr = ctr + temp[i].rate;
+        // console.log(temp[i])
       }
-      var rate = ctr / (i + 1).toFixed(1);
-      return rate == null ? 0 : rate;
+      var rate = ctr / (i).toFixed(1);
+      return (rate == null) || isNaN(rate) ? 0 : rate;
     },
     userReviews(userEmail) {
       return this.reviews.filter((x) => {
@@ -3406,7 +3459,6 @@ export default {
         return true;
       }
     },
-    
   },
   computed: {
     verifiedUsers() {
@@ -3451,7 +3503,7 @@ export default {
     confirmedOrders() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          x.transactionStatus == "Confirmed" &&
+          (x.transactionStatus == "Confirmed" || x.transactionStatus == "In Transit") &&
           ((x.post.postIdentity == "request_post" &&
             x.post.email == this.user.email) ||
             (x.post.postIdentity == "offer_post" &&
@@ -3462,7 +3514,7 @@ export default {
     confirmedDeliveries() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          x.transactionStatus == "Confirmed" &&
+          (x.transactionStatus == "Confirmed" || x.transactionStatus == "In Transit") &&
           ((x.post.postIdentity == "request_post" &&
             x.post.email != this.user.email) ||
             (x.post.postIdentity == "offer_post" &&

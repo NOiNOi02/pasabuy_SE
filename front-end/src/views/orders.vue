@@ -113,7 +113,7 @@
                 <!--name-->
                 <span class="flex gap-x-1">
                   <p class="font-bold text-gray-500 text-sm">
-                    {{ itemx.rate }}
+                     {{ starRate(userReviews(itemx.transaction_sender.email )) }}
                   </p>
                   <p class="material-icons text-sm text-red-700">star</p>
                 </span>
@@ -137,7 +137,7 @@
                 <!--name-->
                 <span class="flex gap-x-1">
                   <p class="font-bold text-gray-500 text-sm">
-                    {{ itemx.rate }}
+                    {{ starRate(userReviews(itemx.transaction_sender.email )) }}
                   </p>
                   <p class="material-icons text-sm text-red-700">star</p>
                 </span>
@@ -578,6 +578,21 @@ export default {
       this.updatingTransaction = indexTransactionPost;
       this.updatingPost = postNumber;
     },
+     starRate(reviews) {
+        var temp = reviews;
+        var ctr = 0;
+        for (var i = 0; i < temp.length; i++) {
+          ctr = ctr + temp[i].rate;
+          // console.log(temp[i])
+        }
+        var rate = ctr / i.toFixed(1);
+        return rate == null || isNaN(rate) ? 0 : rate;
+      },
+      userReviews(userEmail) {
+        return this.reviews.filter((x) => {
+          return x.revieweeEmail == userEmail;
+        });
+      },
   },
   mounted() {
     this.allOrders = this.orders;
@@ -586,6 +601,10 @@ export default {
   computed: {
     user() {
       return store.getters.getUser;
+    },
+    reviews(){
+            return store.getters.getAllReviews;
+
     },
     orders() {
       return store.getters.getUserTransactions.filter((x) => {

@@ -993,7 +993,9 @@
                                 <span class="font-semibold"
                                   >Shopping List<span class="ml-3 text-gray-500"
                                     >{{
-                                      computedShopItemList(msgPost.shoppingListContent).length
+                                      computedShopItemList(
+                                        msgPost.shoppingListContent
+                                      ).length
                                     }}
                                     items</span
                                   ></span
@@ -1004,7 +1006,9 @@
                                   class="text-gray-600 list-disc list-inside pl-4"
                                 >
                                   <li
-                                    v-for="items in  computedShopItemList(msgPost.shoppingListContent)"
+                                    v-for="items in computedShopItemList(
+                                      msgPost.shoppingListContent
+                                    )"
                                     :key="items.id"
                                   >
                                     <span>
@@ -1177,7 +1181,9 @@
                                 <span class="font-semibold"
                                   >Shopping List<span class="ml-3 text-gray-500"
                                     >{{
-                                       computedShopItemList(msgPost.shoppingListContent).length
+                                      computedShopItemList(
+                                        msgPost.shoppingListContent
+                                      ).length
                                     }}
                                     items</span
                                   ></span
@@ -1188,7 +1194,9 @@
                                   class="text-gray-600 list-disc list-inside pl-4"
                                 >
                                   <li
-                                    v-for="items in  computedShopItemList(msgPost.shoppingListContent)"
+                                    v-for="items in computedShopItemList(
+                                      msgPost.shoppingListContent
+                                    )"
                                     :key="items.ShoppingList"
                                   >
                                     <span>
@@ -1913,7 +1921,9 @@
                                     >Shopping List<span
                                       class="ml-3 text-gray-500"
                                       >{{
-                                         computedShopItemList(msgPost.shoppingListContent).length
+                                        computedShopItemList(
+                                          msgPost.shoppingListContent
+                                        ).length
                                       }}
                                       items</span
                                     ></span
@@ -1924,7 +1934,9 @@
                                     class="text-gray-600 list-disc list-inside pl-4"
                                   >
                                     <li
-                                      v-for="items in  computedShopItemList(msgPost.shoppingListContent)"
+                                      v-for="items in computedShopItemList(
+                                        msgPost.shoppingListContent
+                                      )"
                                       :key="items.id"
                                     >
                                       <span>
@@ -2104,7 +2116,9 @@
                                     >Shopping List<span
                                       class="ml-3 text-gray-500"
                                       >{{
-                                        computedShopItemList(msgPost.shoppingListContent).length
+                                        computedShopItemList(
+                                          msgPost.shoppingListContent
+                                        ).length
                                       }}
                                       items</span
                                     ></span
@@ -2115,7 +2129,9 @@
                                     class="text-gray-600 list-disc list-inside pl-4"
                                   >
                                     <li
-                                      v-for="items in  computedShopItemList(msgPost.shoppingListContent)"
+                                      v-for="items in computedShopItemList(
+                                        msgPost.shoppingListContent
+                                      )"
                                       :key="items.ShoppingList"
                                     >
                                       <span>
@@ -2539,18 +2555,40 @@
         >
           Back</button
         ><!--invisible, used only for auto margin header. If design need close button just delete the invisible class-->
-        <p
-          v-if="currentPostViewDetails.post.request_post != null"
-          class="text-lg ssm:text-sm vs:text-base font-bold leading-normal text-center text-gray-900"
+
+        <div
+          v-if="
+            currentPostViewDetails.transaction_sender.email != authUser.email
+          "
         >
-          Offer from {{ recipient }}
-        </p>
-        <p
-          v-else
-          class="text-lg ssm:text-sm vs:text-base font-bold leading-normal text-center text-gray-900"
-        >
-          Request from {{ recipient }}
-        </p>
+          <p
+            v-if="currentPostViewDetails.post.request_post != null"
+            class="text-lg ssm:text-sm vs:text-base font-bold leading-normal text-center text-gray-900"
+          >
+            Offer from {{ recipient }}
+          </p>
+          <p
+            v-else
+            class="text-lg ssm:text-sm vs:text-base font-bold leading-normal text-center text-gray-900"
+          >
+            Request from {{ recipient }}
+          </p>
+        </div>
+        <div v-else>
+          <p
+            v-if="currentPostViewDetails.post.request_post != null"
+            class="text-lg ssm:text-sm vs:text-base font-bold leading-normal text-center text-gray-900"
+          >
+            Offer from you
+          </p>
+          <p
+            v-else
+            class="text-lg ssm:text-sm vs:text-base font-bold leading-normal text-center text-gray-900"
+          >
+            Request from you
+          </p>
+        </div>
+
         <button
           @click="
             toggleViewDetails = !toggleViewDetails;
@@ -2563,15 +2601,30 @@
       </div>
       <hr class="w-full" />
       <div class="flex w-full flex-row items-center space-x-4">
-        <img
-          :src="currentPostViewDetails.transaction_sender.profilePicture"
-          class="rounded-full w-10 h-10"
-        />
+        <div
+          v-if="
+            currentPostViewDetails.transaction_sender.email != authUser.email
+          "
+        >
+          <img
+            :src="currentPostViewDetails.transaction_sender.profilePicture"
+            class="rounded-full w-10 h-10"
+          />
+        </div>
+        <div v-else>
+          <img
+            :src="currentPostViewDetails.post.user.profilePicture"
+            class="rounded-full w-10 h-10"
+          />
+        </div>
+
         <div class="flex flex-col">
           <div class="flex-row flex space-x-1 items-center">
             <p class="text-base font-bold leading-none text-gray-900">
-              {{ recipient }}
+              {{ currentPostViewDetails.post.user.firstName }}
+              {{ currentPostViewDetails.post.user.lastName }}
             </p>
+
             <span
               v-show="
                 ifUserVerified(currentPostViewDetails.transaction_sender.email)
@@ -2642,7 +2695,9 @@
           >
           <span class="text-base ssm:text-sm leading-none text-gray-500"
             >{{
-              currentPostViewDetails.transactionShoppingList.length
+               computedShopItemList(
+              currentPostViewDetails.transactionShoppingList
+            ).length
             }}
             items</span
           >
@@ -2663,7 +2718,7 @@
         </div>
         <button
           @click="showMoreshowLess"
-          v-if="isFew"
+          v-if="isFew( currentPostViewDetails.transactionShoppingList)"
           class="focus:outline-none items-start justify-start text-sm text-gray-500"
         >
           {{ showListStatus }}
@@ -3490,7 +3545,7 @@ export default {
     // }, //end sendbtn
     setRoom(name, room_ID, email1, email2) {
       if (this.transactions.length > 0) {
-        console.log(this.transactions[0])
+        console.log(this.transactions[0]);
         this.activeDisplayingTransaction = this.transactions[0].transactionNumber;
       }
       this.toggleInbox = !this.toggleInbox;
@@ -4187,7 +4242,9 @@ export default {
       return store.getters.getPosts;
     },
     transactions() {
-      return store.getters.getUserTransactions.filter((x)=> {return x.transactionStatus != 'Completed'});
+      return store.getters.getUserTransactions.filter((x) => {
+        return x.transactionStatus != "Completed";
+      });
     },
     onlineUsers() {
       return store.getters.getOnlineUsers;
