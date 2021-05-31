@@ -9,17 +9,7 @@
       pasaBUY
     </h1>
   </div>
-
-  <div class="flex items-center">
-    <router-link to="/">
-      <img src="/img/pasaBUYLogoOnly.png" class="w-16 h-16 block" />
-    </router-link>
-    <h1
-      class="absolute text-xl font-black tracking-widest left-16 font-raleway text-red-buttons block"
-    >
-      pasaBUY
-    </h1>
-  </div>
+ 
 
   <div id="verifyemail" class="flex items-center justify-center w-full px-4">
     <div
@@ -100,7 +90,7 @@
 </style>
 
 <script>
-import axios from "axios";
+import api from "../api-guest"
 export default {
   data() {
     return {
@@ -114,12 +104,8 @@ export default {
       params.verificationChoice = choice;
       console.log(params);
 
-      axios
-        .post("http://localhost:8000/api/sendCode", params, {
-          withCredentials: true,
-          xsrfCookieName: "XSRF-TOKEN",
-          xsrfHeaderName: "X-XSRF-TOKEN",
-        })
+      api
+        .post("/api/sendCode", params)
         .then((res) => {
           console.log(res);
           if (res.data) {
@@ -127,7 +113,7 @@ export default {
             if (choice === "email") {
               this.$router.push({ name: "verifyemail" });
             } else {
-              this.$router.push({ name: "verifyPhone" });
+              this.$router.push({ name: "VerifyPhone" });
             }
           }
         })

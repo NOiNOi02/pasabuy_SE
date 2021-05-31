@@ -119,7 +119,7 @@
 <script>
 // import api from "../api";
 import store from "../store/index";
-import axios from "axios"
+import api from "../api-guest"
 // import loading from 'vue-full-loading'
 import loading from './loading';
 export default {
@@ -145,12 +145,10 @@ export default {
       this.show = !this.show
       this.logginIn1 = !this.logginIn1
       
-      axios.get("https://pasabuy-server.herokuapp.com/sanctum/csrf-cookie",{withCredentials: true,xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN'}).then(() => {
+      api.get("/sanctum/csrf-cookie").then(() => {
         // Login...
-        axios
-          .post("https://pasabuy-server.herokuapp.com/api/login", this.dataForm,{withCredentials: true,xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN'})
+        api
+          .post("/api/login", this.dataForm)
           .then((res) => {
             sessionStorage.setItem("isLoggedIn", true);
             sessionStorage.setItem("sessionCookieNotify", true)

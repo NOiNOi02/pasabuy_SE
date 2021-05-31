@@ -78,7 +78,7 @@
 
 <script>
 import store from "../store/index"
-import api from "../api"
+// import api from "../api"
 export default {
 
     data(){

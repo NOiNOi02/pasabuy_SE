@@ -296,6 +296,7 @@ export default {
         for (var i = 0; i < users.length; i++) {
           store.commit("setOnlineUsers", users[i].email);
         }
+        console.log('users online are',users);
       })
       .joining((user) => {
         //add the user who just logged in tpo online

@@ -84,7 +84,8 @@ img {
 </style>
 
 <script>
-import axios from "axios";
+import api from "../api-guest"
+
 export default {
   data() {
     return {
@@ -117,8 +118,8 @@ export default {
       this.addressInfo.barangay = this.selectedBrgy;
       console.log(this.addressInfo);
 
-       axios
-          .post('http://localhost:8000/api/postAddress', this.addressInfo,{withCredentials: true}).then((res) => {
+       api
+          .post('/api/postAddress', this.addressInfo,).then((res) => {
         console.log(res.data);
         localStorage.setItem("address", JSON.stringify(res.data));
         this.$router.push({ name: "uploadid" });
@@ -138,8 +139,8 @@ export default {
     getProvCode() {
       var getProvCode = document.getElementById("Province").value;
       console.log(getProvCode)
-       axios
-          .get('http://localhost:8000/api/refcityMunicipality', {params:{provCode: getProvCode}},{withCredentials: true}).then((res)=>{
+       api
+          .get('/api/refcityMunicipality', {params:{provCode: getProvCode}}).then((res)=>{
         this.cityMunicipality = res.data
       }).catch((errors)=>{
         console.log(errors)
@@ -150,8 +151,8 @@ export default {
     getCityCode() {
      var getCityCode = document.getElementById("City").value;
       console.log(getCityCode)
-       axios
-          .get('http://localhost:8000/api/refBrgy', {params:{cityCode: getCityCode}},{withCredentials: true}).then((res)=>{
+       api
+          .get("/api/refBrgy", {params:{cityCode: getCityCode}}).then((res)=>{
         console.log('brgy', res.data)
         this.barangays = res.data
       }).catch((errors)=>{
@@ -161,8 +162,8 @@ export default {
        console.log(getCityCode);
     },
     refProvince() {
-       axios
-          .get("http://localhost:8000/api/refProvince",{withCredentials: true}).then((res) => {
+       api
+          .get("/api/refProvince").then((res) => {
         this.provinces = res.data;
         // for (var i=0;i < this.provinces.length;i++){
         //  // this.provinces[i] = JSON.stringify(this.provinces[i].provDesc); 

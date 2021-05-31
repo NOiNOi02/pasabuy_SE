@@ -26,6 +26,9 @@ import AboutUs from '../views/aboutUs.vue'
 import Verification from '../views/verification.vue'
 import VerifyPhone from '../views/verifyPhone.vue'
 import cookies from '../views/cookiesPolicy.vue'
+import singlePostOrder from '../views/singlePostOrder.vue'
+import singlePostDelivery from '../views/singlePostDelivery.vue'
+
 const routes = [
   {
     path: '/',
@@ -206,6 +209,16 @@ const routes = [
     path: '/verifyPhone',
     name: 'VerifyPhone',
     component: VerifyPhone
+  },
+  {
+    path: '/singlePostOrder',
+    name: 'singlePostOrder',
+    component: singlePostOrder
+  },
+  {
+    path: '/singlePostDelivery',
+    name: 'singlePostDelivery',
+    component: singlePostDelivery
   },
 
 ]

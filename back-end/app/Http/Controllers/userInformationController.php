@@ -28,6 +28,7 @@ class userInformationController extends Controller
         $user = Auth::user();
         $data = DB::select('SELECT * FROM tbl_userInformation WHERE  email = \''.$user->email.'\'');
         // $data[0]->profilePicture= Storage::url($data[0]->profilePicture);
+        // $data[0]->profilePicture= Storage::disk('s3')->response($data[0]->profilePicture);
         return response()->json($data[0]);
     }
 
@@ -170,22 +171,15 @@ class userInformationController extends Controller
             return response()->json($validator->errors(),422);
         }
 
+        $user = userInformation::where('email',Auth::user()->email)->first();
+
         $image = $request->file('photo');
         $file_name = $request->file('photo')->hashName();
-        $image_resize = Image::make($image->getRealPath())->fit(500,500);              
-        $image_resize->save(public_path('storage\images\\' .$file_name));
-        
-        $user = userInformation::where('email',Auth::user()->email)->first();
-        // //accessbile in public/storage/images
-        // $request->file('photo')->store('public/images');
-        // $file_name = $request->file('photo')->hashName();
-        // $image = Image::make(public_path("storage/{$imagePath}/".$file_name))->fit(500, 500);
-        //$image->save();
-        // ensure every image has a different name
-        
-        // save new image $file_name to database
-        //$user->update(['image' => $file_name]);
-        $user->profilePicture = Storage::url('/images/'.$file_name);
+        $image_resize = Image::make($image)->fit(500,500); 
+
+        Storage::disk('s3')->put('/images/'.$user->indexUserInformation.'/avatar/'.$file_name, $image_resize->stream(),'public');
+ 
+        $user->profilePicture = Storage::disk('s3')->url('images/'.$user->indexUserInformation.'/avatar/'.$file_name);
         if($user->save()){
             return response()->json(['message'=>'Profilce Picture successfully changed.'],200);
         }else{
@@ -244,7 +238,7 @@ class userInformationController extends Controller
     {
         # code...
         $data = DB::select('SELECT * FROM tbl_userInformation WHERE  email = \''.$request->email.'\'');
-        // $data[0]->profilePicture= Storage::url($data[0]->profilePicture);
+        // $data[0]->profilePicture= Storage::disk('s3')->response($data[0]->profilePicture);
         return response()->json($data[0]);
     }
   

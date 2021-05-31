@@ -81,6 +81,8 @@
 }
 </style>
 <script>
+import api from "../api"
+import store from "../store/index"
 export default {
   methods:{
     setDispatches(email) {
@@ -109,24 +111,7 @@ export default {
       return btoa(val);
     },
   },
-  computed:{
-     unreadNotif() {
-      return store.getters.getUnreadNotif.filter((x) => {
-        return x.type != "App\\Notifications\\newTransactionNotification";
-      });
-    },
-    unreadNotifChat() {
-      return store.getters.getUnreadNotif.filter((x) => {
-        return x.type == "App\\Notifications\\newTransactionNotification";
-      });
-    },
-    user() {
-      return store.getters.getUser;
-    },
-    userPersonal() {
-      return store.getters.getPersonal;
-    },
-  },
+ 
   mounted(){
 var roomId = 123
     window.Echo.join(`public.${roomId}`)
@@ -182,7 +167,7 @@ var roomId = 123
       return store.getters.getPersonal;
     },
   },
-  }
 }
+
 
 </script>

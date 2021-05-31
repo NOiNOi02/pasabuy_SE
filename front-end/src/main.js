@@ -9,12 +9,15 @@ import feather from 'vue-icon'
 
 // import VueProgressBar from "@aacassandra/vue3-progressbar";
 
+
 window.Pusher = require('pusher-js');
 window.Echo = new Echo({
     broadcaster: "pusher",
     cluster: 'ap1',
     encrypted: true,
+    forceTLS: true,
     key: '410753cda4969a0b8071',
+    // activityTimeout:1000000,
     authorizer: (channel) => {
         return {
             authorize: (socketId, callback) => {
@@ -32,7 +35,6 @@ window.Echo = new Echo({
         };
     },
 })
-
 
 // window.Echo = new Echo({
 //     authEndpoint : 'http://localhost:8000/broadcasting/auth',

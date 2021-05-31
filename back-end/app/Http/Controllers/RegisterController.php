@@ -17,6 +17,7 @@ use Intervention\Image\Facades\Image;
 use Vonage\Client\Credentials\Basic;
 use Vonage\Client;
 use Vonage\SMS\Message\SMS;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class RegisterController extends Controller
 {
@@ -41,7 +42,7 @@ class RegisterController extends Controller
             'firstName' => ['required', 'regex:/^[a-zA-Z ]+$/'],
             'lastName' => ['required', 'regex:/^[a-zA-Z ]+$/'],
             'email' => ['required', 'email', 'unique:tbl_userAuthentication', 'regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
-            'phoneNumber' => ['required','regex:(\+?[6][3]?\s?[9]\d{2}\s?\d{3}\s?\d{4})'],
+            'phoneNumber' => ['required','regex:(\+?[6][3]?\s?[9]\d{2}\s?\d{3}\s?\d{4})','unique:tbl_userInformation'],
             'password' => [
                 'required',
                 'min:8',
@@ -88,21 +89,27 @@ class RegisterController extends Controller
                 $returnValue = ['code' => $code, 'email'=>'email'];
             
             }else{
-                $basic  = new Basic("63d7c27e", "CQWTBBpgA6eChJT6");
-                $client = new Client($basic);
+                // $basic  = new Basic("63d7c27e", "CQWTBBpgA6eChJT6");
+                // $client = new Client($basic);
                 $message = "This message is to verify your phone number.\nHere is your 6-digit code \nCode: ".$data['verification_code']."\n";
-                $response = $client->sms()->send(
-                    new SMS($request->phoneNumber, 'pasaBUY',$message)
-                );
-                $message = $response->current();
+
+                Nexmo::message()->send([
+                    'to' => $request->phoneNumber,
+                    'from' => 'pasaBUY',
+                    'text' => $message
+                ]);
+                // $response = $client->sms()->send(
+                //     new SMS($request->phoneNumber, 'pasaBUY',$message)
+                // );
+                // $message = $response->current();
                 
-                if ($message->getStatus() == 0) {
+                // if ($message->getStatus() == 0) {
                 $returnValue = ['code' => $code, 'email'=>'phone'];
 
                     return response()->json($returnValue);
-                } else {
-                    return "The message failed with status: " . $message->getStatus() . "\n";
-                }
+                // } else {
+                //     return "The message failed with status: " . $message->getStatus() . "\n";
+                // }
             }
             
             return response()->json($returnValue);
@@ -181,21 +188,37 @@ class RegisterController extends Controller
                     if (($request->file('front_image') != NULL) && ($request->file('back_image') != NULL)) {
 
                         $user->email = $request->email;
+                        // $image = $request->file('front_image');
+                        // $file_name = $request->file('front_image')->hashName();
+                        // $image_resize = Image::make($image->getRealPath());
+                        // $image_resize->save(public_path('storage\images\\' . $request->indexUserInformation . '\\' . $file_name))->fit(500, 500);
+
+
+                        // $user->IDFrontPicture = Storage::url('/images/' . $request->indexUserInformation . '/' . $file_name);
+
                         $image = $request->file('front_image');
                         $file_name = $request->file('front_image')->hashName();
-                        $image_resize = Image::make($image->getRealPath());
-                        $image_resize->save(public_path('storage\images\\' . $request->indexUserInformation . '\\' . $file_name))->fit(500, 500);
+                        $image_resize = Image::make($image);
+                
+                        Storage::disk('s3')->put('/images/'.$userInfo->indexUserInformation.'/validID/Front/'.$file_name, $image_resize->stream(),'public');
+                 
+                        $user->IDFrontPicture = Storage::disk('s3')->url('images/'.$userInfo->indexUserInformation.'/validID/Front/'.$file_name);
 
+                        // $image = $request->file('back_image');
+                        // $file_name = $request->file('back_image')->hashName();
+                        // $image_resize = Image::make($image->getRealPath());
+                        // $image_resize->save(public_path('storage\images\\' . $request->indexUserInformation . '\\' . $file_name))->fit(500, 500);
 
-                        $user->IDFrontPicture = Storage::url('/images/' . $request->indexUserInformation . '/' . $file_name);
+                        // $user->IDBackPicture = Storage::url('/images/' . $request->indexUserInformation . '/' . $file_name);
+
 
                         $image = $request->file('back_image');
                         $file_name = $request->file('back_image')->hashName();
-                        $image_resize = Image::make($image->getRealPath());
-                        $image_resize->save(public_path('storage\images\\' . $request->indexUserInformation . '\\' . $file_name))->fit(500, 500);
-
-                        $user->IDBackPicture = Storage::url('/images/' . $request->indexUserInformation . '/' . $file_name);
-
+                        $image_resize = Image::make($image);
+                
+                        Storage::disk('s3')->put('/images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name, $image_resize->stream(),'public');
+                 
+                        $user->IDFrontPicture = Storage::disk('s3')->url('images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name);
 
                         $user->save();
                     }

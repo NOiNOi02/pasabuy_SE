@@ -1141,7 +1141,7 @@
                         class="flex flex-col ssm:mt-2 vs:mt-2 mt-3 w-full items-start justify-start h-auto vs:pr-0 vs:min-w-0 vs:px-2 ssm:pr-0 ssm:min-w-0 ssm:px-2 p-4 bg-gray-100 rounded-xl"
                         v-if="
                           post_info.post.request_post != null &&
-                          post_info.request_post.shoppingListContent != null
+                          post_info.post.request_post.shoppingListContent != null
                         "
                       >
                         <div class="flex-col items-start w-full">
@@ -1479,7 +1479,7 @@
             <div
               class="pt-2 pb-8 pr-3 text-sm tracking-wide bg-white rounded-b-xl"
             >
-              <a href="" class="float-right font-bold">View Full Details</a>
+              <router-link :to="'/singlePostOrder/?transactionNumber='+toEncrypt(confirmedOrders[0].transactionNumber)" class="float-right font-bold">View Full Details</router-link>
             </div>
           </div>
           <div v-else>
@@ -1670,7 +1670,7 @@
               </label>
             </div>
             <div class="pb-8 pr-3 text-sm tracking-wide bg-white rounded-b-xl">
-              <a href="" class="float-right font-bold">View Full Details</a>
+             <router-link :to="'/singlePostDelivery/?transactionNumber='+toEncrypt(confirmedDeliveries[0].transactionNumber)" class="float-right font-bold">View Full Details</router-link>
             </div>
           </div>
           <div v-else>

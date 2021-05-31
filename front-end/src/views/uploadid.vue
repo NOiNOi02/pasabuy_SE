@@ -168,7 +168,7 @@
 // import api from "../api";
 import store from "../store/index";
 import loading from "./loading";
-import axios from "axios";
+import api from "../api-guest"
 export default {
   components: {
     loading,
@@ -262,12 +262,11 @@ export default {
         dataform.address.cityMunicipality
       );
       this.logginIn = !this.logginIn;
-      axios
-        .post("http://localhost:8000/api/register", this.registrationData, {
-          withCredentials: true,
-        })
+      api
+        .post("/api/register", this.registrationData)
         .then((res) => {
           console.log(res.data);
+          sessionStorage.setItem("Authorization", res.data.token);
           if (res) {
             this.dispatches().then(() => {
               //wait for the dispatches to finish
@@ -276,7 +275,6 @@ export default {
               localStorage.removeItem("address");
               this.show = !this.show;
               sessionStorage.setItem("isLoggedIn", true);
-              sessionStorage.setItem("Authorization", res.data.token);
               if(skip){
                 this.$router.push({ name: "accountsettings" });
               }else{

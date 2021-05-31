@@ -88,7 +88,7 @@
 </style>
 
 <script>
-import axios from "axios";
+import api from "../api-guest"
 // import simpleAlert from "vue-simple-alert"
 export default {
   data() {
@@ -102,12 +102,8 @@ export default {
   methods: {
     nextPage() {
       var params = { code: localStorage.getItem("code"), textCode: this.textCode };
-      axios
-        .post("http://localhost:8000/api/confirmVerificationCode", params, {
-          withCredentials: true,
-          xsrfCookieName: "XSRF-TOKEN",
-          xsrfHeaderName: "X-XSRF-TOKEN",
-        })
+      api
+        .post("/api/confirmVerificationCode", params)
         .then((res) => {
           if (res.data) {
             localStorage.removeItem("code");
@@ -123,12 +119,8 @@ export default {
       params.verificationChoice = choice;
       console.log(params);
 
-      axios
-        .post("http://localhost:8000/api/sendCode", params, {
-          withCredentials: true,
-          xsrfCookieName: "XSRF-TOKEN",
-          xsrfHeaderName: "X-XSRF-TOKEN",
-        })
+      api
+        .post("/api/sendCode", params)
         .then((res) => {
           console.log(res);
           if (res.data) {

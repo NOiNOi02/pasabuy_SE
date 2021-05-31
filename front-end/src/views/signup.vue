@@ -547,8 +547,7 @@ h1 {
 </style>
 
 <script>
-import axios from "axios";
-
+import api from "../api-guest"
 export default {
   data() {
     return {
@@ -667,21 +666,11 @@ export default {
     },
     nextPage() {
       this.next = true;
-       
-
-      axios
-        .get("http://localhost:8000/sanctum/csrf-cookie", {
-          withCredentials: true,
-          xsrfCookieName: "XSRF-TOKEN",
-          xsrfHeaderName: "X-XSRF-TOKEN",
-        })
+      api
+        .get("/sanctum/csrf-cookie")
         .then(() => {
-          axios
-            .post("http://localhost:8000/api/postPersonal", this.PersonalInfo, {
-              withCredentials: true,
-              xsrfCookieName: "XSRF-TOKEN",
-              xsrfHeaderName: "X-XSRF-TOKEN",
-            })
+          api
+            .post("/api/postPersonal", this.PersonalInfo)
             .then((res) => {
               if (res != null) {
                 localStorage.setItem(

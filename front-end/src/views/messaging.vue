@@ -3490,6 +3490,7 @@ export default {
     // }, //end sendbtn
     setRoom(name, room_ID, email1, email2) {
       if (this.transactions.length > 0) {
+        console.log(this.transactions[0])
         this.activeDisplayingTransaction = this.transactions[0].transactionNumber;
       }
       this.toggleInbox = !this.toggleInbox;
@@ -4186,7 +4187,7 @@ export default {
       return store.getters.getPosts;
     },
     transactions() {
-      return store.getters.getUserTransactions;
+      return store.getters.getUserTransactions.filter((x)=> {return x.transactionStatus != 'Completed'});
     },
     onlineUsers() {
       return store.getters.getOnlineUsers;
