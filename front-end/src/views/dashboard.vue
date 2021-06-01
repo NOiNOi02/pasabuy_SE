@@ -427,13 +427,13 @@
                               Edit post
                             </button>
                             <UpdateOrderStatus
-                              v-if="postModalVisible2"
-                              @closeModal3="listener2"
+                              v-if="postModalVisible3"
+                              @closeModal3="postModalVisible3=!postModalVisible3"
                               :post="post_info"
                               @getSortPosts="sortPosts"
                             />
                             <button
-                              @click="togglePostModal2"
+                              @click="postModalVisible3=!postModalVisible3; edit1!=edit1"
                               class="flex flex-row text-base font-normal vs:text-sm focus:outline-none gap-x-2"
                             >
                               <span
@@ -698,7 +698,10 @@
                     </div>
                     <div
                       class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
-                      v-if="post_info.offer_post != null"
+                      v-if="
+                        post_info.offer_post != null &&
+                        post_info.offer_post.caption != null
+                      "
                     >
                       <p
                         class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
@@ -708,7 +711,10 @@
                     </div>
                     <div
                       class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
-                      v-if="post_info.request_post != null"
+                      v-if="
+                        post_info.request_post != null &&
+                        post_info.request_post.caption != null
+                      "
                     >
                       <p
                         class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
@@ -856,7 +862,13 @@
                               </span>
                               Share on Feed
                             </button>
+                            <input
+                              hidden
+                              :value="copyThisLink(post_info.postNumber)"
+                              :id="'myInput' + post_info.postNumber"
+                            />
                             <button
+                              @click="copyLink(post_info.postNumber)"
                               class="flex flex-row py-2 text-base font-normal x-v:text-sm focus:outline-none gap-x-2"
                             >
                               <span
@@ -1207,7 +1219,10 @@
                       </div>
                       <div
                         class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
-                        v-if="post_info.post.offer_post != null"
+                        v-if="
+                          post_info.post.offer_post != null &&
+                          post_info.post.offer_post.caption != null
+                        "
                       >
                         <p
                           class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
@@ -1217,7 +1232,10 @@
                       </div>
                       <div
                         class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
-                        v-if="post_info.post.request_post != null"
+                        v-if="
+                          post_info.post.request_post != null &&
+                          post_info.post.request_post.caption != null
+                        "
                       >
                         <p
                           class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
@@ -1371,7 +1389,7 @@
 
             <div class="text-base bg-white rounded-b-xl">
               <label for="" class="pl-6 font-normal text-gray-500">
-                {{confirmedOrders[0].transactionShoppingList.length}} items
+                {{ confirmedOrders[0].transactionShoppingList.length }} items
               </label>
 
               <label
@@ -1556,7 +1574,8 @@
 
             <div class="text-base bg-white rounded-b-xl">
               <label for="" class="pl-6 font-normal text-gray-500">
-                {{confirmedDeliveries[0].transactionShoppingList.length}} items
+                {{ confirmedDeliveries[0].transactionShoppingList.length }}
+                items
               </label>
 
               <label
@@ -2014,7 +2033,7 @@
 
                             <div class="flex flex-row space-x-5">
                               <span
-                                @click="item.quantity = item.quantity + 1"
+                                @click="item.quantity++"
                                 class="material-icons select-none cursor-pointer text-red-700"
                               >
                                 add
@@ -2023,7 +2042,7 @@
                                 <p>{{ item.quantity }}</p>
                               </div>
                               <span
-                                @click="item.quantity = item.quantity - 1"
+                                @click="item.quantity = minusQty(item.quantity)"
                                 class="material-icons select-none cursor-pointer text-red-700"
                               >
                                 remove
@@ -2208,7 +2227,7 @@
 
                             <div class="flex flex-row space-x-5">
                               <span
-                                @click="item.quantity = item.quantity + 1"
+                                @click="item.quantity++"
                                 class="material-icons select-none cursor-pointer text-red-700"
                               >
                                 add
@@ -2217,7 +2236,7 @@
                                 <p>{{ item.quantity }}</p>
                               </div>
                               <span
-                                @click="item.quantity = item.quantity - 1"
+                                @click="item.quantity =minusQty(item.quantity)"
                                 class="material-icons select-none cursor-pointer text-red-700"
                               >
                                 remove
@@ -2467,6 +2486,7 @@ import Navbar from "./Navbar";
 import EditShoppingOfferPostVue from "./EditShoppingOffer.vue";
 import PostModal from "./PostModal";
 import UpdateOfferStatus from "./updateOfferStatus";
+import UpdateOrderStatus from "./updateOrderStatus";
 import SendRequest from "./sendRequest";
 import createShopList from "./createShopList";
 import EditOrderRequest from "./EditOrderRequest";
@@ -2526,6 +2546,7 @@ export default {
       postModalVisible: false,
       postModalVisible1: false,
       postModalVisible2: false,
+      postModalVisible3: false,
       postSendModal: false,
       postChatModal: false,
       editVisible: false,
@@ -2719,6 +2740,7 @@ export default {
     SendRequest,
     createShopList,
     EditOrderRequest,
+    UpdateOrderStatus,
     SendOffer,
   },
   watch: {
@@ -2732,6 +2754,39 @@ export default {
     },
   },
   methods: {
+    copyThisLink(postNumber) {
+      var temp = JSON.parse(JSON.stringify(this.posts));
+      var temp2 = temp.filter((x) => {
+        return x.postNumber === postNumber;
+      });
+
+      console.log("temp2", temp2[0]);
+
+      if (temp2[0].postIdentity == "request_post") {
+        var link =
+          "http://localhost:8080/OrderRequestSinglePage?post=" +
+          this.toEncrypt(JSON.stringify(postNumber));
+        return link;
+      } else {
+        var link2 =
+          "http://localhost:8080/ShoppingOfferSinglePage?post=" +
+          this.toEncrypt(JSON.stringify(postNumber));
+        return link2;
+      }
+    },
+    copyLink(postNum) {
+      var copyText = document.getElementById("myInput" + postNum);
+
+      const textToCopy = copyText.value;
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(() => {
+          alert(`Copied!`);
+        })
+        .catch((error) => {
+          alert(`Copy failed! ${error}`);
+        });
+    },
     setCookie() {
       this.popupTriggers.timedTrigger = false;
       sessionStorage.setItem("sessionCookieNotify", false);
@@ -2871,7 +2926,7 @@ export default {
       let y = document.getElementById("brand").value;
       let z = document.getElementById("size").value;
       let n = this.quantity;
-      if (x != "" ) {
+      if (x != "") {
         let datax = {
           id: this.ctr,
           product: x,
@@ -3107,20 +3162,20 @@ export default {
       var temp2 = temp.filter((x) => {
         return x.transactionNumber === transactNum;
       });
-      console.log('yrmp2',temp2)
+      console.log("yrmp2", temp2);
       if (temp2.length <= 0) {
         temp = JSON.parse(JSON.stringify(this.confirmedDeliveries));
         temp2 = temp.filter((x) => {
           return x.transactionNumber === transactNum;
         });
-        console.log('in deliveries', temp2)
+        console.log("in deliveries", temp2);
         this.$router.push({
           name: "singlePostDelivery",
           query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
         });
         return;
       }
-        console.log('in orders', temp2)
+      console.log("in orders", temp2);
 
       this.$router.push({
         name: "singlePostOrder",
@@ -3441,8 +3496,8 @@ export default {
         ctr = ctr + temp[i].rate;
         // console.log(temp[i])
       }
-      var rate = ctr / (i).toFixed(1);
-      return (rate == null) || isNaN(rate) ? 0 : rate;
+      var rate = ctr / i.toFixed(1);
+      return rate == null || isNaN(rate) ? 0 : rate;
     },
     userReviews(userEmail) {
       return this.reviews.filter((x) => {
@@ -3474,7 +3529,6 @@ export default {
       return store.getters.getPosts.filter((x) => {
         return (
           x.postStatus == "Accepting Requests" ||
-          x.postStatus == "Cancelled" ||
           x.postStatus == "Accepting Offer"
         );
       });
@@ -3483,7 +3537,6 @@ export default {
       return store.getters.getAllShares.filter((x) => {
         return (
           x.post.postStatus == "Accepting Requests" ||
-          x.post.postStatus == "Cancelled" ||
           x.post.postStatus == "Accepting Offer"
         );
       });
@@ -3503,7 +3556,9 @@ export default {
     confirmedOrders() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          (x.transactionStatus == "Confirmed" || x.transactionStatus == "confirmed" || x.transactionStatus == "In Transit") &&
+          (x.transactionStatus == "Confirmed" ||
+            x.transactionStatus == "confirmed" ||
+            x.transactionStatus == "In Transit") &&
           ((x.post.postIdentity == "request_post" &&
             x.post.email == this.user.email) ||
             (x.post.postIdentity == "offer_post" &&
@@ -3514,7 +3569,9 @@ export default {
     confirmedDeliveries() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          (x.transactionStatus == "Confirmed" || x.transactionStatus == "confirmed" || x.transactionStatus == "In Transit") &&
+          (x.transactionStatus == "Confirmed" ||
+            x.transactionStatus == "confirmed" ||
+            x.transactionStatus == "In Transit") &&
           ((x.post.postIdentity == "request_post" &&
             x.post.email != this.user.email) ||
             (x.post.postIdentity == "offer_post" &&
