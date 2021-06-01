@@ -21,7 +21,7 @@ class shoppingListController extends Controller
         for($i=0;$i<$data->count();$i++){
             $data[$i]->shoppingListContent = json_decode($data[$i]->shoppingListContent);
         }
-		return $data;
+		return $data;   
 	}
     public function editList(Request $request, $listNum)
 	{

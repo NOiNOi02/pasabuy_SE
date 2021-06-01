@@ -151,26 +151,28 @@
           </div>
         </router-link>
         <hr />
-        <router-link to="/orders" class="rounded-2xl">
+        <router-link to="/orders" :class="{ disabled: !ifUserVerified(user.email) }" class="rounded-2xl">
           <div
             class="mobile rounded-2xl items-center flex h-10 mt-4 pl-2 space-2-x-4"
           >
             <span class="material-icons"> shopping_bag </span>
-            <p class="text-gray-500">Orders</p>
-          </div></router-link
+            <p class="text-gray-500">Orders</p><span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
+        </div></router-link
+      >
         >
-        <router-link to="/deliver" class="rounded-2xl">
+        <router-link to="/deliver" :class="{ disabled: !ifUserVerified(user.email) }" class="rounded-2xl">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> delivery_dining </span>
+             <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
             <p class="text-gray-500">Deliveries</p>
           </div></router-link
         >
-        <router-link to="/shopping-list" class="rounded-2xl">
+        <router-link to="/shopping-list" class="rounded-2xl" :class="{ disabled:true }">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> list </span>
-            <p class="text-gray-500">Shopping Lists</p>
-          </div></router-link
-        >
+            <p class="text-gray-500">Shopping Lists</p><span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
+          <span class="pl-5 text-gray-400" v-else>Under Maintenance</span></div></router-link
+      >
         <router-link to="/account-settings" class="rounded-2xl">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> manage_accounts </span>
@@ -217,6 +219,16 @@ export default {
     };
   },
   methods: {
+        ifUserVerified(email) {
+      var temp = this.verifiedUsers.filter((x) => {
+        return x.email === email && x.verifyStatus == "verified";
+      });
+      if (temp.length <= 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     dispatchSearch() {
       var input = document.getElementById("searchInput").value;
       var temp = JSON.parse(JSON.stringify(this.posts));
@@ -396,6 +408,9 @@ export default {
   },
 
   computed: {
+    verifiedUsers() {
+      return store.getters.getVerifiedUsers;
+    },
     posts() {
       return store.getters.getPosts;
     },
@@ -446,6 +461,10 @@ export default {
 }
 .active_notif #btn_notif {
   color: #cd0f0f;
+}
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 </style>
  
