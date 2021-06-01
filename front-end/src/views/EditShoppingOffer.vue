@@ -556,12 +556,12 @@ export default {
         });
     },
     setTransportMode(index) {
-      this.shop_info.offer_post.transportMode = document.getElementById(
+      this.shop_info.transportMode = document.getElementById(
         "tm" + index
       ).innerHTML;
     },
     setShoppingPlace(index) {
-      this.shop_info.offer_post.shoppingPlace = document.getElementById(
+      this.shop_info.shoppingPlace = document.getElementById(
         "sp" + index
       ).innerHTML;
     },
@@ -611,7 +611,7 @@ export default {
       //this.toggle=false;
     },
     setPayment(index) {
-      this.shop_info.offer_post.paymentMethod = document.getElementById(
+      this.shop_info.paymentMethod = document.getElementById(
         "pm" + index
       ).innerHTML;
     },

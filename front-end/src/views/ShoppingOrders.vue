@@ -233,7 +233,7 @@
 
           <!--section 4-->
           <!--section 4-->
-          <div
+          <div v-if="shoppingOrder_info.request_post.shoppingListContent !=null"
             class="flex flex-col ssm:mt-2 vs:mt-2 mt-3 w-full items-start justify-start h-auto vs:pr-0 vs:min-w-0 vs:px-2 ssm:pr-0 ssm:min-w-0 ssm:px-2 p-4 bg-gray-100 rounded-xl"
           >
             <div class="inline-flex flex-row space-x-4">
@@ -242,7 +242,9 @@
               >
               <span class="text-base ssm:text-sm leading-none text-gray-500"
                 >{{
-                  shoppingOrder_info.request_post.shoppingListContent.length
+                  computedShopItemList(
+                  shoppingOrder_info.request_post.shoppingListContent
+                ).length
                 }}
                 items</span
               >
@@ -1002,7 +1004,14 @@ export default {
       }
     },
     computedShopItemList(list) {
-      return this.limit_by ? list.slice(0, this.limit_by) : list;
+      if(list!=null){
+         var temp = list.filter((x) => {
+          return x.status == 1;
+        });
+      return this.limit_by ? temp.slice(0, this.limit_by) : temp;
+      }else{
+        return [];
+      }
     },
     isFew(filter_itemList) {
       filter_itemList.length < 5;

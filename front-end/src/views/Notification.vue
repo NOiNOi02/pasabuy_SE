@@ -62,11 +62,12 @@
         <span class="font-semibold">
           has declined your {{ notif.data.identity }}</span
         ><br />
-        <router-link
-          :to="'/orders/?postnum=' + notif.data.postNumber"
+     <button
+          @click="dispatchSinglePagePost(notif.data.postNumber)"
           class="font-bold text-blue-500"
-          >View Order
-        </router-link>
+        >
+          View Post
+        </button>
         <span class="text-xs text-gray-500">
           {{ timestamp(notif.created_at) }}</span
         >
@@ -86,11 +87,12 @@
         <span class="font-semibold">
           has accepted your {{ notif.data.identity }}</span
         ><br />
-        <router-link
-          :to="'/orders/?postnum=' + notif.data.postNumber"
+       <button
+          @click="dispatchSinglePagePost(notif.data.postNumber)"
           class="font-bold text-blue-500"
-          >View Order
-        </router-link>
+        >
+          View Post
+        </button>
         <span class="text-xs text-gray-500">
           {{ timestamp(notif.created_at) }}</span
         >
@@ -138,11 +140,12 @@
         <span class="font-semibold">
           has changed their post status to {{ notif.data.status }}</span
         ><br />
-        <router-link
-          :to="'/orders/?postnum=' + notif.data.postNumber"
+        <button
+          @click="dispatchSinglePagePost(notif.data.postNumber)"
           class="font-bold text-blue-500"
-          >View Order
-        </router-link>
+        >
+          View Post
+        </button>
         <span class="text-xs text-gray-500">
           {{ timestamp(notif.created_at) }}</span
         >
@@ -218,6 +221,23 @@ export default {
       return;
     },
        dispatchSinglePagePost(postNumber) {
+         var temp =  JSON.parse(JSON.stringify(this.posts))
+         var temp2 = temp.filter((x)=>{return x.postNumber === postNumber})
+
+         console.log('temp2',temp2[0])
+
+         if(temp2[0].postIdentity == 'request_post'){
+          this.$router.push({
+              name: "OrderRequestSinglePage",
+              query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
+            });
+         }
+         else{
+          this.$router.push({
+              name: "ShoppingOfferSinglePage",
+              query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
+            });
+         }
       // var temp = JSON.parse(JSON.stringify(this.Orders));
       // var temp2 = temp.filter((x) => {
       //   return x.transactionNumber === transactNum;
@@ -238,11 +258,8 @@ export default {
       //   return;
       // }
       // console.log("in orders", temp2);
-  console.log(postNumber)
-      this.$router.push({
-        name: "OrderRequestSinglePage"
-        // query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
-      });
+  // console.log(postNumber)
+ 
       // return;
     },
     timestamp(datetime) {
@@ -283,6 +300,9 @@ export default {
         );
       });
     },
+    posts(){
+      return store.getters.getPosts
+    }
   },
   created() {
     api

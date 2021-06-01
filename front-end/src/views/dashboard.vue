@@ -461,8 +461,8 @@
                     <div
                       class="inline-flex mt-4 items-center space-x-2 justify-start px-2 py-1 bg-gray-100 rounded-full text-green-600"
                       v-if="
-                        post_info.postStatus !== 'Accepting Requests' &&
-                        post_info.postStatus !== 'Accepting Offer'
+                        post_info.postStatus != 'Accepting Requests' &&
+                        post_info.postStatus != 'Accepting Offer'
                       "
                     >
                       <span class="rounded-full material-icons text-red-600">
@@ -483,7 +483,7 @@
                       "
                     >
                       <span class="rounded-full material-icons">
-                        remove_circle_outline
+                        check_circle_outline
                       </span>
                       <p
                         class="text-sm vs:text-xs ssm:text-xs lvs:text-sm font-bold leading-none items-center"
@@ -986,7 +986,7 @@
                         "
                       >
                         <span class="rounded-full material-icons">
-                          remove_circle_outline
+                          check_circle_outline
                         </span>
                         <p
                           class="text-sm vs:text-xs ssm:text-xs lvs:text-sm font-bold leading-none items-center"
@@ -3473,7 +3473,7 @@ export default {
     posts() {
       return store.getters.getPosts.filter((x) => {
         return (
-          x.postStatus == "Accepting Request" ||
+          x.postStatus == "Accepting Requests" ||
           x.postStatus == "Cancelled" ||
           x.postStatus == "Accepting Offer"
         );
@@ -3482,7 +3482,7 @@ export default {
     allShares() {
       return store.getters.getAllShares.filter((x) => {
         return (
-          x.post.postStatus == "Accepting Request" ||
+          x.post.postStatus == "Accepting Requests" ||
           x.post.postStatus == "Cancelled" ||
           x.post.postStatus == "Accepting Offer"
         );
