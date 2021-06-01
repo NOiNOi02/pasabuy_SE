@@ -43,20 +43,20 @@
           </span>
       <p class="text-gray-500">Orders</p>   
       </div></router-link>
-      <router-link to="/orders"  class="rounded-2xl  ">
+      <router-link to="/deliver"  class="rounded-2xl  ">
        <div class="rounded-2xl items-center flex h-10 space-x-2 pl-2 ">
        <span class="material-icons ">
           delivery_dining
           </span>
       <p class="text-gray-500">Deliveries</p>   
       </div></router-link>
-        <router-link to="/deliver" class="rounded-2xl">
+        <router-link to="/deliver" :class="{ disabled:true }" >
        <div class="rounded-2xl items-center flex h-10 space-x-2 pl-2 ">
        <span class="material-icons ">
           list
           </span>
-      <p class="text-gray-500">Shopping Lists</p>   
-      </div></router-link>
+      <p class="text-gray-500">Shopping Lists <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
+          <span class="pl-5 text-gray-400" v-else>Under Maintenance</span></router-link>
         <router-link to="/shopping-list" class="rounded-2xl  ">
        <div class="rounded-2xl items-center flex h-10 space-x-2 pl-2 ">
        <span class="material-icons ">
@@ -78,6 +78,10 @@
 .router-link-active{
   color:red;
  background-color: rgba(236, 233, 233, 0.705);
+},
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 </style>
 <script>

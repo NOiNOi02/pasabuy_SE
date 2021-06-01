@@ -14,7 +14,7 @@ use App\Models\share;
 use App\Models\User;
 use App\Models\userAddress;
 use App\Notifications\SharedNotification;
-use App\Models\ShoppingList;
+// use App\Models\ShoppingList;
 use App\Models\Follower;
 use App\Models\transaction;
 use App\Notifications\postStatusNotification;

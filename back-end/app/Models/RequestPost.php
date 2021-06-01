@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
-use App\Models\ShoppingList;
+use App\Models\shoppingList;
 use Illuminate\Support\Facades\Auth;
 
 class RequestPost extends Model
