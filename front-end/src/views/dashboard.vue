@@ -2871,7 +2871,7 @@ export default {
       let y = document.getElementById("brand").value;
       let z = document.getElementById("size").value;
       let n = this.quantity;
-      if (x != "" || y != "" || z != "") {
+      if (x != "" ) {
         let datax = {
           id: this.ctr,
           product: x,
@@ -2972,7 +2972,7 @@ export default {
       let brandx = document.getElementById(b).value;
       let sizex = document.getElementById(c).value;
       let quantx = document.getElementById(e).innerHTML;
-      if (productx == "" || brandx == "" || sizex == "" || quantx <= 0) {
+      if (productx == "") {
         alert("Empty Field");
         return false;
       }
