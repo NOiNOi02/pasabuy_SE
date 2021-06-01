@@ -915,7 +915,7 @@
                               this.userPersonal.firstName +
                                 ' ' +
                                 this.userPersonal.lastName &&
-                            msgStatus.status === 'Declined'
+                            (msgStatus.status === 'Declined' ||  msgStatus.status === 'Accepted')
                           "
                         >
                           You {{ msgStatus.status }} {{ msgStatus.receiver }}'s
@@ -1119,7 +1119,7 @@
                               this.userPersonal.firstName +
                                 ' ' +
                                 this.userPersonal.lastName &&
-                            msgStatus.status === 'Declined'
+                               (msgStatus.status === 'Declined' ||  msgStatus.status === 'Accepted')
                           "
                         >
                           You {{ msgStatus.status }} {{ msgStatus.receiver }}'s
@@ -4090,6 +4090,8 @@ export default {
       var dataMessage2 = {
         roomID: this.activeRoom,
         message: JSON.stringify(currTrans[0].transactionData),
+        transaction:true,
+        transactionSender: this.activeUser,
       };
       console.log(dataMessage, dataMessage2);
       Axios.all([
