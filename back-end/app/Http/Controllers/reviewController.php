@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\reviews;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class reviewController extends Controller
@@ -31,6 +32,7 @@ class reviewController extends Controller
         $record->reviewerEmail = $request->reviewerEmail;
         $record->rate = $request->rate;
         $record->feedback = $request->feedback;
+        $record->dateCreated = Carbon::now('Asia/Manila');
         $record->save();
     }
 }

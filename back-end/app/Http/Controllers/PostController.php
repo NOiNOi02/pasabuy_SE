@@ -51,6 +51,8 @@ class PostController extends Controller
 		$post->email = $user->email;
 		$post->postIdentity = $request->postIdentity;
 		$post->postStatus = $request->postStatus;
+		$post->dateCreated = Carbon::now('Asia/Manila');
+
 
 		$offer_post = new OfferPost;
 		$offer_post->postStatus = $request->postStatus;
@@ -61,6 +63,7 @@ class PostController extends Controller
 		$offer_post->capacity = $request->capacity;
 		$offer_post->paymentMethod = $request->paymentMethod;
 		$offer_post->caption = $request->caption;
+		
 
 		//check if shopping place already exist in tbl_shoppingPlace
 		$shoppingPlace = DB::select('SELECT * from tbl_shoppingPlace WHERE shoppingPlace = \'' . $request->shoppingPlace . '\'');
@@ -117,6 +120,8 @@ class PostController extends Controller
 		$post->email = $user;
 		$post->postIdentity = $request->postIdentity;
 		$post->postStatus = $request->postStatus;
+		$post->dateCreated = Carbon::now('Asia/Manila');
+
 
 		// request post model
 		$request_post = new RequestPost;
@@ -223,6 +228,8 @@ class PostController extends Controller
 		$newShare->sharerEmail = $user->email;
 		$newShare->shareNumber = share::count() + 1;
 		$newShare->postNumber = $postNum;
+		$newShare->dateCreated = Carbon::now('Asia/Manila');
+
 		if ($newShare->save()) {
 			broadcast(new newPostEvent())->toOthers();
 			//find the right user to notify, in this case the owner of the post
@@ -442,6 +449,8 @@ class PostController extends Controller
 
 				$post->postIdentity = $request->postIdentity;
 				$post->postStatus = $request->postStatus;
+				$post->dateModified = Carbon::now('Asia/Manila');
+
 
 				$post->offer_post->postStatus = $request->postStatus;
 				$post->offer_post->deliveryArea = $request->deliveryArea;
@@ -451,6 +460,7 @@ class PostController extends Controller
 				$post->offer_post->capacity = $request->capacity;
 				$post->offer_post->paymentMethod = $request->paymentMethod;
 				$post->offer_post->caption = $request->caption;
+				
 
 				DB::transaction(function () use ($post) {
 					$post->save();
@@ -465,6 +475,8 @@ class PostController extends Controller
 
 				$post->postIdentity = $request->postIdentity;
 				$post->postStatus = $request->postStatus;
+				$post->dateModified = Carbon::now('Asia/Manila');
+
 
 				$post->request_post->postStatus = $request->postStatus;
 				$post->request_post->deliveryAddress = $request->deliveryAddress;
@@ -515,6 +527,8 @@ class PostController extends Controller
 
 		$post = Post::where('postNumber', '=', $post_id)->where('email', '=', $user->email)->firstOrFail();
 		$post->postDeleteStatus = 1;
+		$post->deletedDate = Carbon::now('Asia/Manila');
+
 
 		DB::transaction(function () use ($post) {
 			$post->save();
@@ -533,6 +547,7 @@ class PostController extends Controller
 
 		// return $transactionPost;
 		$post->postStatus = $request->status;
+		$post->dateModified = Carbon::now('Asia/Manila');
 
 		if ($post->save()) {
 			//check if there is a trhansaction
