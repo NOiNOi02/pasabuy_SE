@@ -404,6 +404,15 @@ import UpdateOrderStatus from "./updateOrderStatus"
       this.updateOrderStatus = false;
     },
  
+  },
+    mounted(){
+    console.log(this.searchResults)
+  },
+  computed:{
+    searchResults(){
+      return JSON.parse(atob(this.$route.query.search));
+    }
   }
 }
 </script>
+

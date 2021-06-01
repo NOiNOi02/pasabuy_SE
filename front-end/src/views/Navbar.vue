@@ -87,9 +87,11 @@
               type="search"
               class="focus:outline-none text-black lg:w-28 pl-3 rounded-2xl h-5"
               placeholder="Search"
+              id="searchInput"
+              @keyup.enter="dispatchSearch()"
             />
             <button class="material-icons mr-2 text-gray-400 w-full">
-              <router-link to="/search"> search</router-link>
+              <button @click="dispatchSearch()">search</button>
             </button>
           </div>
           <div class="hidden 2xl:block lg:block xl:block">
@@ -215,6 +217,76 @@ export default {
     };
   },
   methods: {
+    dispatchSearch() {
+      var input = document.getElementById("searchInput").value;
+      var temp = JSON.parse(JSON.stringify(this.posts));
+      console.log(temp);
+      console.log(input);
+
+      var result = temp.filter((x) => {
+        if (x.postIdentity == "offer_post") {
+          if (x.offer_post.caption != null) {
+            return (
+              x.offer_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.deliveryArea.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.transportMode.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.capacity.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.caption.toLowerCase().includes(input.toLowerCase()) ||
+              x.user.firstName.toLowerCase().includes(input.toLowerCase()) ||
+              x.user.lastName.toLowerCase().includes(input.toLowerCase())
+            );
+          } else {
+            return (
+              x.offer_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.deliveryArea.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.transportMode.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.capacity.toLowerCase().includes(input.toLowerCase()) ||
+              x.user.firstName.toLowerCase().includes(input.toLowerCase()) ||
+              x.user.lastName.toLowerCase().includes(input.toLowerCase())
+            );
+          }
+        } else if (x.postIdentity == "request_post") {
+          if (x.request_post.caption != null) {
+            return (
+              x.request_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.deliveryAddress.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.caption.toLowerCase().includes(input.toLowerCase()) ||
+              JSON.stringify(x.request_post.shoppingListContent).includes(
+                input
+              ) ||
+              x.user.firstName.toLowerCase().includes(input.toLowerCase()) ||
+              x.user.lastName.toLowerCase().includes(input.toLowerCase())
+            );
+          } else {
+            return (
+              x.request_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.deliveryAddress.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
+              JSON.stringify(x.request_post.shoppingListContent).includes(
+                input
+              ) ||
+              x.user.firstName.toLowerCase().includes(input.toLowerCase()) ||
+              x.user.lastName.toLowerCase().includes(input.toLowerCase())
+            );
+          }
+        } else {
+          console.log("not found");
+        }
+      });
+
+       this.$router.push({
+              name: "search",
+              query: { search: this.toEncrypt(JSON.stringify(result)) },
+            });
+      console.log(result);
+    },
     toggle_event() {
       const sidebar = document.querySelector(".sidebar");
       // add our event listener for the click
@@ -296,7 +368,7 @@ export default {
         for (var i = 0; i < users.length; i++) {
           store.commit("setOnlineUsers", users[i].email);
         }
-        console.log('users online are',users);
+        console.log("users online are", users);
       })
       .joining((user) => {
         //add the user who just logged in tpo online
@@ -324,6 +396,9 @@ export default {
   },
 
   computed: {
+    posts() {
+      return store.getters.getPosts;
+    },
     unreadNotif() {
       return store.getters.getUnreadNotif.filter((x) => {
         return (
