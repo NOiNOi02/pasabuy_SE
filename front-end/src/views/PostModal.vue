@@ -203,7 +203,7 @@
                     type="text"
                     id="myInputSP"
                     v-on:keyup="myFunctionSP()"
-                    placeholder="Search for place"
+                    placeholder="Shopping Place"
                     title="Shopping Place"
                     class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 px-4 items-center py-2.5 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
                     v-model="shoppingPlace"
@@ -1459,7 +1459,7 @@ export default {
       dropdown6: false,
       dropdown7: false,
       dropdown8: false,
-      shoppingPlaceRequest: "Shopping Place",
+      shoppingPlaceRequest: "",
       captionRequest: null,
       schedRequest: null,
       paymentRequest: "Payment Method",

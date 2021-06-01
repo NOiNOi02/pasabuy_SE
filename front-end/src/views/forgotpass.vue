@@ -73,7 +73,7 @@ img{
 </style>
 
 <script>
-import api from '../api'
+import api from '../api-guest'
 export default {
     data(){
         return{
@@ -87,6 +87,7 @@ export default {
         sendEmail(){
             api.post('/api/password/email',this.forgot).then((res)=>{
               console.log(res.data)
+              localStorage.setItem('forgotPassEmail', this.forgot.email)
               this.$router.push({name:"forgotPassVerify"});
             }).catch((errors)=>{
               this.error = errors.response.data.error;
