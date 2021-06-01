@@ -76,7 +76,7 @@
               @change="filechange"
               class="hidden"
             />
-          
+
             <p class="text-center text-xs text-red-500 mt-3">
               {{ error_front_image }}
             </p>
@@ -128,7 +128,7 @@
               @change="filechange_back"
               class="hidden"
             />
-            
+
             <p class="text-center text-xs text-red-500 mt-3">
               {{ error_back_image }}
             </p>
@@ -280,47 +280,53 @@ export default {
       // this.logginIn = !this.logginIn;
       console.log("back image ", this.front_image);
       if (skip == false) {
-        if (this.back_image == "" || this.back_image == null || this.front_image == "" || this.front_image == null) {
+        if (
+          this.back_image == "" ||
+          this.back_image == null ||
+          this.front_image == "" ||
+          this.front_image == null
+        ) {
           this.error_back_image = "This Field is required";
           this.error_front_image = "This Field is required";
-        return;
-       }
+          return;
+        }
         console.log("Next", this.error_back_image);
-      } 
-        api
-          .post("/api/register", this.registrationData)
-          .then((res) => {
-            console.log(res.data);
-            sessionStorage.setItem("Authorization", res.data.token);
-            if (res) {
-              this.dispatches().then(() => {
-                //wait for the dispatches to finish
-                 localStorage.removeItem("personal");
-                  localStorage.removeItem("account");
-                  localStorage.removeItem("address");
-                this.show = !this.show;
-                sessionStorage.setItem("isLoggedIn", true);
-                if (skip) {
-                 
-                  this.show = !this.show;
-                  this.$router.push({ name: "accountsettings" });
-                }
-              });
-            } else {
-              this.logginIn = !this.logginIn;
-              console.log("informmation not saved");
-            }
-          })
-          .catch((errors) => {
-            if (errors.response.data.front_image == null)
-              errors.response.data.front_image = "";
-            if (errors.response.data.back_image == null)
-              errors.response.data.back_image = "";
-            this.errors =
-              errors.response.data.front_image +
-              " " +
-              errors.response.data.back_image;
-          });
+      }
+      api
+        .post("/api/register", this.registrationData)
+        .then((res) => {
+          console.log(res.data);
+          sessionStorage.setItem("Authorization", res.data.token);
+          if (res) {
+            this.dispatches().then(() => {
+              //wait for the dispatches to finish
+              localStorage.removeItem("personal");
+              localStorage.removeItem("account");
+              localStorage.removeItem("address");
+              this.show = !this.show;
+              sessionStorage.setItem("isLoggedIn", true);
+              if (skip) {
+                this.$router.push({ name: "accountsettings" });
+              }else{
+                this.$router.push({ name: "verifymessage" });
+
+              }
+            });
+          } else {
+            this.logginIn = !this.logginIn;
+            console.log("informmation not saved");
+          }
+        })
+        .catch((errors) => {
+          if (errors.response.data.front_image == null)
+            errors.response.data.front_image = "";
+          if (errors.response.data.back_image == null)
+            errors.response.data.back_image = "";
+          this.errors =
+            errors.response.data.front_image +
+            " " +
+            errors.response.data.back_image;
+        });
     },
     async dispatches() {
       await store.dispatch("getAuthUser");
