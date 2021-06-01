@@ -2764,12 +2764,12 @@ export default {
 
       if (temp2[0].postIdentity == "request_post") {
         var link =
-          "http://localhost:8080/OrderRequestSinglePage?post=" +
+          "https://pasabuy-client.herokuapp.com/OrderRequestSinglePage?post=" +
           this.toEncrypt(JSON.stringify(postNumber));
         return link;
       } else {
         var link2 =
-          "http://localhost:8080/ShoppingOfferSinglePage?post=" +
+          "https://pasabuy-client.herokuapp.com/ShoppingOfferSinglePage?post=" +
           this.toEncrypt(JSON.stringify(postNumber));
         return link2;
       }
