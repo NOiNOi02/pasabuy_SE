@@ -326,12 +326,18 @@
 
           <!--section 5-->
           <div
-            v-if="shoppingOffer_info.email != user.email"
+            v-if="shoppingOffer_info.email != user.email && shoppingOffer_info.postStatus === 'Accepting Requests'"
             class="flex justify-evenly w-full vs:space-x-3 vs:min-w-0 vs:px-2 ssm:space-x-1 ssm:px-0 pr-8 ssm:pr-0 vs:pr-0 mt-4 space-x-6"
           >
-            <SendRequest v-if="postSendModal" @closeSendRequest="listener3" />
+            <SendRequest  v-if="
+                            postSendModal &&
+                            sendOfferOrRequestpostNum ==
+                              shoppingOffer_info.offer_post.postNumber
+                          "
+                          @closeSendRequest="listener3"
+                          :post="shoppingOffer_info" />
             <button
-              @click="toggleSendModal"
+              @click="toggleSendModal();sendOfferOrRequestpostNum=shoppingOffer_info.offer_post.postNumber"
               class="flex focus:outline-none items-center space-x-2 ssm:space-x-1"
             >
               <span class="pr-2 ssm:pr-0 material-icons md-24"> send </span>
@@ -816,6 +822,7 @@ export default {
   props: ["userID"],
   data() {
     return {
+      sendOfferOrRequestpostNum:null,
       acceptReqNotiPop:false,
       declineReqNotiPop:false,
       decline: null,
