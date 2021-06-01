@@ -3503,7 +3503,7 @@ export default {
     confirmedOrders() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          (x.transactionStatus == "Confirmed" || x.transactionStatus == "In Transit") &&
+          (x.transactionStatus == "Confirmed" || x.transactionStatus == "confirmed" || x.transactionStatus == "In Transit") &&
           ((x.post.postIdentity == "request_post" &&
             x.post.email == this.user.email) ||
             (x.post.postIdentity == "offer_post" &&
@@ -3514,7 +3514,7 @@ export default {
     confirmedDeliveries() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          (x.transactionStatus == "Confirmed" || x.transactionStatus == "In Transit") &&
+          (x.transactionStatus == "Confirmed" || x.transactionStatus == "confirmed" || x.transactionStatus == "In Transit") &&
           ((x.post.postIdentity == "request_post" &&
             x.post.email != this.user.email) ||
             (x.post.postIdentity == "offer_post" &&
