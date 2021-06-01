@@ -169,7 +169,8 @@
               ></i>
               Valid Phone Number
             </p>
-            <!-- <p
+            
+            <p
               v-show="error_phonenumber.length > 0"
               v-for="(err, index) in error_phonenumber"
               :key="index"
@@ -177,7 +178,7 @@
             >
               <i class="frmIcon fas"></i>
               {{ err }}
-            </p> -->
+            </p>
           </div>
 
           <div
