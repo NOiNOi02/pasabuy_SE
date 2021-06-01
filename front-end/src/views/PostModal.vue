@@ -59,7 +59,7 @@
         <!--User Profile-->
         <div v-if="showCreateShoppingOffer">
           <div
-            class="inline-flex space-x-2 items-center justify-start p-4 ssm:mt-0 vs:mt-1"
+            class="inline-flex sm:px-7 space-x-2 items-center justify-start p-4 ssm:mt-0 vs:mt-1"
           >
             <img
               class="w-14 h-full vs:w-12 ssm:w-10 border rounded-full border-gray-200"
@@ -75,17 +75,17 @@
           <p class="text-red-500 text-center">{{ errorOffer }}</p>
           <!--Delivery information list-->
           <div
-            class="flex flex-col mt-1 vs:mt-1 ssm:px-2 vs:px-2 sm:px-2 justify-center items-center"
+            class="flex flex-col mt-1 vs:mt-1 ssm:px-2 vs:px-2 justify-center items-center"
           >
             <div
-              class="flex flex-row ssm:flex-col ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
+              class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
             >
               <p class="text-red-500 text-center">{{ postError }}</p>
               <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   delivery_dining
                 </span>
-                <div class="sm:w-full">
+                <div class="vs:w-full sm:w-full">
                   <button
                     @click="
                       (deliveryAreaModal = !deliveryAreaModal),
@@ -192,7 +192,7 @@
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   shopping_cart
                 </span>
-                <div class="sm:w-full">
+                <div class="vs:w-full sm:w-full">
                   <input
                     @click="
                       (dropdown4 = !dropdown4),
@@ -203,17 +203,17 @@
                     type="text"
                     id="myInputSP"
                     v-on:keyup="myFunctionSP()"
-                    placeholder="Search for place"
+                    placeholder="Shopping Place"
                     title="Shopping Place"
                     class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 px-4 items-center py-2.5 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
                     v-model="shoppingPlace"
                   />
                   <!-- {{shoppingPlace}} -->
                   <!-- </button> -->
-                  <div class="relative">
+                  <div class="relative md:w-full">
                     <div
                       v-if="dropdown4"
-                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
+                      class="absolute md:w-full py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
                     >
                       <div
                         class="flex flex-col w-full px-2 justify-start items-start"
@@ -245,9 +245,9 @@
             </div>
 
             <div
-              class="flex flex-row ssm:flex-col ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
+              class="flex flex-row sm:px-7 ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
             >
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   alarm
                 </span>
@@ -259,11 +259,11 @@
                 />
               </div>
 
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   directions_car
                 </span>
-                <div class="sm:w-full">
+                <div class="vs:w-full sm:w-full">
                   <input
                     @click="
                       (dropdown3 = !dropdown3),
@@ -315,9 +315,9 @@
             </div>
 
             <div
-              class="flex flex-row ssm:flex-col ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
+              class="flex flex-row sm:px-7 ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
             >
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex space-x-2 sm:px-7 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   shopping_bag
                 </span>
@@ -328,11 +328,11 @@
                 />
               </div>
 
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   payments
                 </span>
-                <div class="sm:w-full">
+                <div class="sm:w-full vs:w-full">
                   <button
                     @click="
                       (dropdown2 = !dropdown2),
@@ -347,7 +347,7 @@
                   <div class="relative">
                     <div
                       v-if="dropdown2"
-                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
+                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 vs:w-full sm:w-full w-52"
                     >
                       <div
                         v-for="(pm, index) in Payments"
@@ -427,16 +427,16 @@
 
           <!--Delivery Information List-->
           <div
-            class="flex flex-col mt-1 ssm:px-2 sm:px-2 justify-center items-center vs:px-2"
+            class="flex flex-col  ssm:px-2 sm:px-2 justify-center items-center vs:px-2"
           >
             <div
-              class="flex flex-row ssm:flex-col ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
+              class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
             >
               <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   delivery_dining
                 </span>
-                <div class="sm:w-full">
+                <div class="sm:w-full vs:w-full">
                   <button
                     @click="
                       (dropdown1 = !dropdown1),
@@ -444,7 +444,7 @@
                         (dropdown3 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs ssm:pr-0 vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="focus:outline-none flex vs:w-full sm:w-full ssm:w-full ssm:h-auto ssm:text-xs ssm:pr-0 vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
                   >
                     {{ deliveryAddress }}
                   </button>
@@ -483,7 +483,7 @@
                               </p>
                             </div>
                           </div>
-                          <hr class="flex w-full px-2" />
+                          <hr class="flex w-full " />
                           <div
                             v-for="(shipAdd, index) in userShippingAddress"
                             :key="index"
@@ -585,11 +585,11 @@
                   </div>
                 </div>
               </div>
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex sm:px-7 space-x-2 sm:w-full vs:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   shopping_cart
                 </span>
-                <div class="sm:w-full">
+                <div class="sm:w-full vs:w-full">
                   <input
                     @click="
                       (dropdown4 = !dropdown4),
@@ -602,7 +602,7 @@
                     v-on:keyup="myFunction()"
                     placeholder="Shopping Place"
                     title="Shopping Place"
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 px-4 items-center py-2.5 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 px-3 items-center py-2.5 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
                     v-model="shoppingPlaceRequest"
                   />
                   <!-- {{shoppingPlace}} -->
@@ -642,25 +642,25 @@
             </div>
 
             <div
-              class="flex flex-row pt-3 ssm:pt-2 ssm:flex-col ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
+              class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
             >
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex sm:px-7 space-x-2 sm:w-full vs:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   alarm
                 </span>
                 <input
                   type="datetime-local"
-                  class="focus:outline-none sm:w-full ssm:w-full ssm:h-auto ssm:text-xs flex vs:w-full w-52 h-11 py-2.5 px-4 items-center vs:pr-0 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                  class="focus:outline-none vs:w-full sm:w-full ssm:w-full ssm:h-auto ssm:text-xs flex vs:w-full w-52 h-11 py-2.5 px-4 items-center vs:pr-0 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
                   placeholder="Schedule"
                   v-model="schedRequest"
                 />
               </div>
 
-              <div class="flex space-x-2 sm:w-full">
+              <div class="flex sm:px-7 space-x-2 sm:w-full vs:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   payments
                 </span>
-                <div class="sm:w-full">
+                <div class="sm:w-full vs:w-full">
                   <button
                     @click="
                       (dropdown8 = !dropdown8),
@@ -668,7 +668,7 @@
                         (dropdown3 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="focus:outline-none flex vs:w-full sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
                   >
                     {{ paymentRequest }}
                   </button>
@@ -1459,7 +1459,7 @@ export default {
       dropdown6: false,
       dropdown7: false,
       dropdown8: false,
-      shoppingPlaceRequest: "Shopping Place",
+      shoppingPlaceRequest: "",
       captionRequest: null,
       schedRequest: null,
       paymentRequest: "Payment Method",

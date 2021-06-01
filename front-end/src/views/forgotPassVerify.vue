@@ -14,15 +14,16 @@
                     Email has been sent!</h2>
                 <p class="text-left  md:text-right lg:text-justify xl:text-center">
                 Please check your email and click on the received link to reset you password.</p>
+                <p class="text-center text-red-600">{{error}}</p>
                 <div class="flex justify-center py-5">
                     <button class="w-full h-12 px-5 py-2 text-white transition-colors duration-150 bg-red-700 rounded-3xl focus:shadow-outline hover:bg-red-700">
-                         <router-link to="/forgot-password-verify">Send</router-link></button>
+                         <router-link to="/log-in">Log-In</router-link></button>
                 </div>
                 <div class="mt-4 text-left text-grey-dark">
                     Did you received the link?
-                    <router-link to="/forgot-password" class="font-bold" href="#">
+                    <button @click="resend()" class="font-bold" href="#">
                         Resend
-                    </router-link> 
+                    </button> 
                 </div>
             </div>
         </div>
@@ -63,7 +64,27 @@ img{
 
 
 <script>
-
+import api from '../api-guest'
+export default {
+    data(){
+        return{
+          forgot:{
+            email:null,
+          },
+          error:null
+        }
+    }, 
+    methods:{
+        resend(){
+            api.post('/api/password/email',{email:localStorage.getItem("forgotPassEmail")}).then((res)=>{
+              console.log(res.data)
+            }).catch((errors)=>{
+              this.error = errors.response.data.error;
+            })
+        
+        }
+    },
+}
 
 </script>
 

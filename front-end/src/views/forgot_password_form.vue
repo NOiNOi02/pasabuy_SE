@@ -71,7 +71,7 @@
 </style>
 
 <script>
-import api from '../api'
+import api from '../api-guest'
 import VueSimpleAlert from 'vue-simple-alert'
 export default {
     data(){
