@@ -650,7 +650,7 @@
 
             <div
               v-if="
-                transaction.transactionStatus === 'Confirmed' ||
+                transaction.transactionStatus === 'Confirmed' || transaction.transactionStatus === 'confirmed' ||
                 transaction.transactionStatus === 'In Transit'
               "
               class="text-sm w-full"
@@ -810,7 +810,7 @@
                     >
                       <span
                         v-if="
-                          transact.transactionStatus === 'Confirmed' ||
+                          transact.transactionStatus === 'Confirmed' || transact.transactionStatus === 'confirmed' ||
                           transact.transactionStatus === 'In Transit'
                         "
                         class="h-6 flex items-center tracking-wide rounded py-1 flex text-xs hover:bg-gray-400 hover:text-white text-blue-500 justify-start pl-4"
@@ -1595,7 +1595,7 @@
                 </div>
                 <!--------------transaction details confirmed------>
                 <div
-                  v-else-if="transaction.transactionStatus === 'Confirmed'"
+                  v-else-if="transaction.transactionStatus === 'Confirmed' || transaction.transactionStatus === 'confirmed'"
                   class="text-sm w-full"
                 >
                   <div class="flex flex-row justify-between">
