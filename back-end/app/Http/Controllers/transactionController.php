@@ -130,9 +130,9 @@ class transactionController extends Controller
 			$userToNotif = User::where('email',$request->userNotif)->get();
 			$userToNotif = User::find($userToNotif[0]->indexUserAuthentication);
 			$userToNotif->notify(new confirmRequestNotification($request->postNumber, $request->postIdentity));
-
             if($request->postIdentity == "offer"){
                 $transaction = transaction::with('post')->where('transactionStatus', 'pending')->where('postNumber', $request->postNumber)->get();
+                // return  response()->json($transaction);
                 if(!empty($transaction))
                 foreach($transaction as $trans){
                     $trans->transactionStatus = "Declined";
@@ -143,9 +143,9 @@ class transactionController extends Controller
                     $userToNotif = User::find($userToNotif[0]->indexUserAuthentication);
                     $userToNotif->notify(new declinedRequestNotification($request->postNumber, $request->postIdentity));
                 }
-                return response()->json('ok');
+                return response()->json('ok1');
             }
-            return response()->json('ok');
+            return response()->json('ok2');
         }
         else 
             return response()->json('not ok');

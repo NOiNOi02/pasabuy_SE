@@ -4107,6 +4107,7 @@ export default {
       ]).then((resArr) => {
         store.commit("setUserTransactions", resArr[3].data);
         store.commit("FETCH_ROOMS", resArr[2].data);
+        store.dispatch("getPosts")
         $(".acceptRequestNotiPop").fadeIn(), (this.acceptReqNotiPop = true);
         setTimeout(function () {
           this.acceptReqNotiPop = false;
