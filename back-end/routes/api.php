@@ -90,10 +90,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post("/updateEduc", [educationController::class, 'updateEduc']);
     Route::get("/getEduc", [educationController::class, 'getEduc']);
     Route::get("/getVerifiedUsers", [verificationIDController::class, 'getVerifiedUsers']);
-
-
-
-
+    Route::post("/postIDAccSet", [userInformationController::class, 'postID']);
     
 });
 

@@ -76,6 +76,7 @@
                   A government ID helps us check you're really you. It also
                   helps us keep Pasabuy secure, fight fraud, and more.
                 </p>
+                <p class="text-red-600 text-center">{{errors}}</p>
                 <div
                   class="flex flex-col justify-between space-y-4 sm:flex-row sm:space-y-0 sm:space-x-8 md:flex-row md:space-y-0 md:space-x-8 lg:flex-row lg:space-y-0 lg:space-x-8 xl:flex-row xl:space-y-0 xl:space-x-8 2xl:flex-row 2xl:space-y-0 2xl:space-x-8"
                 >
@@ -188,17 +189,9 @@
                     </button>
                     <button
                       id="confirm_next"
-                      v-if="front_image != null && back_image != null"
                       @click="
-                        (verify_message = !verify_message), (verify_id = false)
+                        submitID()
                       "
-                      class="h-10 m-2 text-white transition-colors bg-red-buttons px-7 font-bold rounded-3xl focus:outline-none"
-                    >
-                      Next
-                    </button>
-                    <button
-                      id="confirm_next"
-                      v-else
                       class="h-10 m-2 text-white transition-colors bg-red-buttons px-7 font-bold rounded-3xl focus:outline-none"
                     >
                       Next
@@ -278,7 +271,7 @@ import Personal from "../views/personal_info.vue";
 import Address from "../views/address_info.vue";
 import InfoAccount from "../views/account_info.vue";
 import Education from "./education";
-// import api from "../api";
+import api from "../api";
 import store from "../store/index";
 export default {
   name: "Account",
@@ -314,11 +307,33 @@ export default {
       filename: null,
       filename2: null,
       status: "notVerfied",
-      verifyMsg:null
+      verifyMsg:null,
+      ID:new FormData(),
+      errors:null
 
     };
   },
   methods: {
+    submitID(){
+      // console.log(this.ID)
+        api.post('api/postIDAccSet',this.ID).then((res)=>{
+          console.log('data res ',res.data)
+          store.dispatch('getVerifiedUsers').then(()=>{
+            this.verify_message = !this.verify_message
+            this.verify_id = false
+          })
+        }) .catch((errors) => {
+          this.show = !this.show;
+          if (errors.response.data.front_image == null)
+            errors.response.data.front_image = "";
+          if (errors.response.data.back_image == null)
+            errors.response.data.back_image = "";
+          this.errors =
+            errors.response.data.front_image +
+            " " +
+            errors.response.data.back_image;
+        });
+    },
     submit: function () {},
     Edit: function (pars) {
       let x = document.getElementById(pars).innerHTML;
@@ -332,6 +347,7 @@ export default {
     filechange(e) {
       const file = e.target.files[0];
       this.front_image = URL.createObjectURL(file);
+      this.ID.append('front_image', file)
       this.icon_front = null;
       this.browse1 = null;
       this.filename = file.name;
@@ -350,6 +366,7 @@ export default {
     filechange_back(e) {
       const file = e.target.files[0];
       this.back_image = URL.createObjectURL(file);
+      this.ID.append('back_image', file)
       this.icon_back = null;
       this.browse2 = null;
       this.filename2 = file.name;

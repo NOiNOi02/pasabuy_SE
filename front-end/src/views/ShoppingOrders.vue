@@ -343,19 +343,25 @@
 
           <!--section 5-->
           <div
-            v-if="shoppingOrder_info.email !== user.email"
+            v-if="shoppingOrder_info.email !== user.email && shoppingOrder_info.postStatus==='Accepting Offer'"
             class="flex justify-evenly w-full ssm:space-x-1 ssm:px-0 ssm:pr-0 vs:space-x-3 vs:min-w-0 vs:px-2 pr-8 vs:pr-0 mt-4 space-x-6"
           >
-            <SendRequest v-if="postSendModal" @closeSendRequest="listener4" />
+            <SendOffer   v-if="
+                            postSendModal &&
+                            sendOfferOrRequestpostNum ==
+                              shoppingOrder_info.request_post.postNumber
+                          "
+                          @closeSendOffer="listener4"
+                          :post="shoppingOrder_info"/>
             <button
-              @click="toggleSendModal"
+              @click="toggleSendModal();sendOfferOrRequestpostNum=shoppingOrder_info.request_post.postNumber"
               class="flex focus:outline-none items-center space-x-2 ssm:space-x-1"
             >
               <span class="pr-2 ssm:pr-0 material-icons md-24"> send </span>
               <p
                 class="text-base ssm:text-xs vs:text-xs lvs:text-sm font-bold leading-none text-gray-600"
               >
-                Send Request
+                Send Offer
               </p>
             </button>
             <router-link
@@ -666,7 +672,7 @@ import store from "../store/index";
 import PostModal from "./PostModal";
 import EditOrderRequest from "./EditOrderRequest";
 import UpdateOrderStatus from "./updateOrderStatus";
-import SendRequest from "./sendRequest";
+import SendOffer from "./sendOffer";
 import moment from "moment";
 import api from "../api";
 import VueSimpleAlert from "vue-simple-alert";
@@ -677,6 +683,7 @@ export default {
   data() {
     return {
       currentPostViewDetails:null,
+      sendOfferOrRequestpostNum:null,
       acceptReqNotiPop:false,
       declineReqNotiPop:false,
       decline: null,
@@ -784,7 +791,7 @@ export default {
     PostModal,
     EditOrderRequest,
     UpdateOrderStatus,
-    SendRequest,
+    SendOffer,
   },
   methods: {
           ifUserVerified(email) {

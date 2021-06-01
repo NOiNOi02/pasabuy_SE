@@ -6,6 +6,7 @@ use App\Mail\emailConfirmation;
 use App\Models\User;
 use App\Models\Messages;
 use App\Models\userAddress;
+use App\Models\userid;
 use App\Models\userInformation;
 use App\Models\userLanguages;
 use Illuminate\Http\Request;
@@ -240,6 +241,59 @@ class userInformationController extends Controller
         $data = DB::select('SELECT * FROM tbl_userInformation WHERE  email = \''.$request->email.'\'');
         // $data[0]->profilePicture= Storage::disk('s3')->response($data[0]->profilePicture);
         return response()->json($data[0]);
+    }
+
+    public function postID(Request $request)
+    {
+        # code...
+        $validator = Validator::make($request->all(),[
+            'front_image' => ['image','max:25000','required'],
+            'back_image' =>  ['image','max:25000','required'],
+        ]);
+        if($validator->fails()) {
+            return response()->json($validator->errors(),422);
+        }
+        $userInfo = userInformation::where('email', Auth::user()->email)->first();
+        if (($request->file('front_image') != NULL) && ($request->file('back_image') != NULL)) {
+            $user = new userid();
+            $user->email = $userInfo->email;
+            // $image = $request->file('front_image');
+            // $file_name = $request->file('front_image')->hashName();
+            // $image_resize = Image::make($image->getRealPath());
+            // $image_resize->save(public_path('storage\images\\' . $request->indexUserInformation . '\\' . $file_name))->fit(500, 500);
+
+
+            // $user->IDFrontPicture = Storage::url('/images/' . $request->indexUserInformation . '/' . $file_name);
+
+            $image = $request->file('front_image');
+            $file_name = $request->file('front_image')->hashName();
+            $image_resize = Image::make($image);
+    
+            Storage::disk('s3')->put('/images/'.$userInfo->indexUserInformation.'/validID/Front/'.$file_name, $image_resize->stream(),'public');
+     
+            $user->IDFrontPicture = Storage::disk('s3')->url('images/'.$userInfo->indexUserInformation.'/validID/Front/'.$file_name);
+
+            // $image = $request->file('back_image');
+            // $file_name = $request->file('back_image')->hashName();
+            // $image_resize = Image::make($image->getRealPath());
+            // $image_resize->save(public_path('storage\images\\' . $request->indexUserInformation . '\\' . $file_name))->fit(500, 500);
+
+            // $user->IDBackPicture = Storage::url('/images/' . $request->indexUserInformation . '/' . $file_name);
+
+
+            $image = $request->file('back_image');
+            $file_name = $request->file('back_image')->hashName();
+            $image_resize = Image::make($image);
+    
+            Storage::disk('s3')->put('/images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name, $image_resize->stream(),'public');
+     
+            $user->IDFrontPicture = Storage::disk('s3')->url('images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name);
+
+            $user->save();
+
+            return 'ok';
+        }
+        return 'not ok';
     }
   
 
