@@ -238,29 +238,6 @@ export default {
               query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
             });
          }
-      // var temp = JSON.parse(JSON.stringify(this.Orders));
-      // var temp2 = temp.filter((x) => {
-      //   return x.transactionNumber === transactNum;
-      // });
-      // console.log("yrmp2", temp);
-
-      // console.log("yrmp2", temp2);
-      // if (temp2.length <= 0) {
-      //   temp = JSON.parse(JSON.stringify(this.Deliveries));
-      //   temp2 = temp.filter((x) => {
-      //     return x.transactionNumber === transactNum;
-      //   });
-      //   console.log("in deliveries", temp2);
-      //   this.$router.push({
-      //     name: "singlePostDelivery",
-      //     query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
-      //   });
-      //   return;
-      // }
-      // console.log("in orders", temp2);
-  // console.log(postNumber)
- 
-      // return;
     },
     timestamp(datetime) {
       var postedDate = new Date(datetime);

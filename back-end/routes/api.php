@@ -21,6 +21,7 @@ use App\Http\Controllers\interestController;
 use App\Http\Controllers\skillsController;
 use App\Http\Controllers\userAboutController;
 use App\Http\Controllers\verificationIDController;
+use App\Http\Controllers\saerchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -91,6 +92,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get("/getEduc", [educationController::class, 'getEduc']);
     Route::get("/getVerifiedUsers", [verificationIDController::class, 'getVerifiedUsers']);
     Route::post("/postIDAccSet", [userInformationController::class, 'postID']);
+    Route::get("/search", [searchController::class, 'search']);
+    
     
 });
 
