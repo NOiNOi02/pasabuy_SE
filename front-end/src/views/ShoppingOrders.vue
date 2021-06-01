@@ -826,7 +826,9 @@ export default {
       };
       var dataMessage2 = {
               roomID: activeRoom,
-              message: JSON.stringify(this.currentPostViewDetails.transactionData)
+              message: JSON.stringify(this.currentPostViewDetails.transactionData),
+              transaction:true,
+              transactionSender: this.currentPostViewDetails.transaction_sender.email
             };
             console.log(dataMessage,dataMessage2)
       Axios.all([

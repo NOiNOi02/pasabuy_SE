@@ -49,7 +49,17 @@ class messageController extends Controller
         $messageCount = Messages::count();
         $newMessage = new Messages;
         $newMessage->messageRoomNumber = $request->roomID;
-        $newMessage->messageSender = Auth::user()->email;
+
+        if($request->transaction != null){
+            if($request->transaction){
+                $newMessage->messageSender = $request->transactionSender;
+            }
+            else{
+                $newMessage->messageSender = Auth::user()->email;
+            }
+        }else{
+            $newMessage->messageSender = Auth::user()->email;
+        }
         $newMessage->messageText =$request->message;
         $newMessage->messageNumber = $messageCount.'-Message';
         if($newMessage->save()){
