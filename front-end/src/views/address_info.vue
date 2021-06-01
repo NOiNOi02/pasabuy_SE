@@ -577,7 +577,7 @@ export default {
         barangay: "",
         landMark: "",
       },
-      Landmark: "",
+      // Landmark: "",
       House_number: "",
       Province: "",
       City: "",
@@ -605,7 +605,7 @@ export default {
         console.log(error);
       });
     this.address_info = {
-      landmark: this.userHomeAddress.landMark,
+      // landmark: this.userHomeAddress.landMark,
       house_number: this.userHomeAddress.houseNumber,
       province: this.userHomeAddress.province,
       city: this.userHomeAddress.cityMunicipality,
@@ -619,7 +619,7 @@ export default {
       this.userShippingAddresses
     );
     if( this.shippingAdd[0]!=null){
-      this.Landmark = this.shippingAdd[0].landMark;
+      // this.Landmark = this.shippingAdd[0].landMark;
       this.House_number = this.shippingAdd[0].houseNumber;
       this.Province = this.shippingAdd[0].province;
       this.City = this.shippingAdd[0].cityMunicipality;
@@ -634,7 +634,7 @@ export default {
         city: this.address_info.city,
         barangay: this.address_info.barangay,
         house_number: this.address_info.house_number,
-        landmark: this.address_info.landmark,
+        // landmark: this.address_info.landmark,
       };
       this.address_info.province = document.getElementById("Province").options[
         document.getElementById("Province").selectedIndex
@@ -672,14 +672,14 @@ export default {
       this.old.province = this.address_info.province;
       this.old.city = this.address_info.city;
       this.old.barangay = this.address_info.barangay;
-      this.old.landMark = this.address_info.landmark;
+      // this.old.landMark = this.address_info.landmark;
     },
     getOldData() {
       this.address_info.house_number = this.old.house_number;
       this.address_info.province = this.old.province;
       this.address_info.city = this.old.city;
       this.address_info.barangay = this.old.barangay;
-      this.address_info.landmark = this.old.landMark;
+      // this.address_info.landmark = this.old.landMark;
       this.selectedProvince = "Province";
       this.selectedCity = "City";
       this.selectedBrgy = "Brgy";
@@ -692,7 +692,7 @@ export default {
       this.old.barangay =  this.shippingAdd[y].barangay ;
       this.old.landMark= this.shippingAdd[y].landMark ;
       console.log(y,this.shippingAdd[y].landMark, this.shippingAdd[y].houseNumber)
-      this.Landmark = this.shippingAdd[y].landMark
+      // this.Landmark = this.shippingAdd[y].landMark
       this.House_number = this.shippingAdd[y].houseNumber
     },
     getOldDataShip() {
@@ -702,7 +702,7 @@ export default {
       this.shippingAdd[y].city = this.old.city;
       this.shippingAdd[y].barangay = this.old.barangay;
       this.shippingAdd[y].landMark = this.old.landMark;
-      this.Landmark = this.shippingAdd[y].landMark
+      // this.Landmark = this.shippingAdd[y].landMark
       this.House_number = this.shippingAdd[y].houseNumber
       this.selectedProvince = "Province";
       this.selectedCity = "City";
@@ -710,7 +710,7 @@ export default {
     },
     AddShippingAdd() {
       let x = document.getElementById("select_address").value;
-      this.Landmark = this.shippingAdd[x].landMark;
+      // this.Landmark = this.shippingAdd[x].landMark;
       this.House_number = this.shippingAdd[x].houseNumber;
       this.Province = this.shippingAdd[x].province;
       this.City = this.shippingAdd[x].cityMunicipality;
@@ -724,7 +724,7 @@ export default {
         city: this.shippingAdd[y].city,
         barangay: this.shippingAdd[y].barangay,
         house_number: this.shippingAdd[y].house_number,
-        landmark: this.shippingAdd[y].landmark,
+        // landmark: this.shippingAdd[y].landmark,
       };
       this.Province = document.getElementById("Province").options[
         document.getElementById("Province").selectedIndex
@@ -734,7 +734,7 @@ export default {
       ].text;
       this.Barangay = this.selectedBrgy;
       let data = {
-        landmark: this.Landmark,
+        // landmark: this.Landmark,
         house_number: this.House_number,
         province: document.getElementById("Province").options[
           document.getElementById("Province").selectedIndex
@@ -755,7 +755,7 @@ export default {
             VueSimpleAlert.alert(res.data.message, "Success", "success");
             this.toggle_shipping = false;
             this.shippingAdd = this.userShippingAddresses;
-            this.Landmark = this.shippingAdd[y].landMark;
+            // this.Landmark = this.shippingAdd[y].landMark;
             this.House_number = this.shippingAdd[y].houseNumber;
             this.Province = this.shippingAdd[y].province;
             this.City = this.shippingAdd[y].cityMunicipality;
