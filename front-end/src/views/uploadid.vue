@@ -1,5 +1,5 @@
 <template class="bg-gray-00 font-nunito">
- <loading v-if="logginIn"/>
+  <loading v-if="logginIn" />
   <div class="flex items-center">
     <router-link to="/">
       <img src="/img/pasaBUYLogoOnly.png" class="w-16 h-16 block" />
@@ -50,6 +50,9 @@
                 <label for="front_id">
                   <span class="text-black">{{ browse1 }}</span>
                 </label>
+                <p class="text-xs w-full overflow-x-auto">
+                  Note: .jpg and .png files only (maximum size 25mb)
+                </p>
               </div>
               <div class="w-28 mt-">
                 <p class="text-sm w-full overflow-x-auto">{{ filename }}</p>
@@ -73,7 +76,12 @@
               @change="filechange"
               class="hidden"
             />
+          
+            <p class="text-center text-xs text-red-500 mt-3">
+              {{ error_front_image }}
+            </p>
           </div>
+
           <!--Back id-->
           <div
             class="text-left text-gray-500 md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2 sm:w-1/2"
@@ -94,6 +102,9 @@
                 <label for="back_id">
                   <span class="text-black">{{ browse2 }}</span>
                 </label>
+                <p class="text-xs w-full overflow-x-auto">
+                  Note: .jpg and .png files only (maximum size 25mb)
+                </p>
               </div>
               <div class="w-28 mt-">
                 <p class="text-sm w-full overflow-x-auto">{{ filename2 }}</p>
@@ -117,10 +128,12 @@
               @change="filechange_back"
               class="hidden"
             />
+            
+            <p class="text-center text-xs text-red-500 mt-3">
+              {{ error_back_image }}
+            </p>
           </div>
         </div>
-
-
       </div>
 
       <!--Buttons-->
@@ -134,7 +147,9 @@
                       </button>
                     </div> -->
         <div class="space-x-4">
-          <button class="font-bold" @click="saveUser(true)">Skip for now</button>
+          <button class="font-bold" @click="saveUser(true)">
+            Skip for now
+          </button>
           <button
             class="h-10 m-2 text-white transition-colors duration-150 bg-red-buttons px-7 rounded-3xl focus:outline-none"
             @click="saveUser(false)"
@@ -168,7 +183,7 @@
 // import api from "../api";
 import store from "../store/index";
 import loading from "./loading";
-import api from "../api-guest"
+import api from "../api-guest";
 export default {
   components: {
     loading,
@@ -195,6 +210,8 @@ export default {
       file_back: "",
       logginIn: false,
       errors: null,
+      error_front_image: "",
+      error_back_image: "",
     };
   },
   methods: {
@@ -236,8 +253,7 @@ export default {
       this.edit2 = null;
     },
     saveUser(skip) {
-      
-      this.show = !this.show;
+      // this.show = !this.show;
       var dataform = {
         personal: JSON.parse(localStorage.getItem("personal")),
         account: JSON.parse(localStorage.getItem("account")),
@@ -261,43 +277,50 @@ export default {
         "cityMunicipality",
         dataform.address.cityMunicipality
       );
-      this.logginIn = !this.logginIn;
-      api
-        .post("/api/register", this.registrationData)
-        .then((res) => {
-          console.log(res.data);
-          sessionStorage.setItem("Authorization", res.data.token);
-          if (res) {
-            this.dispatches().then(() => {
-              //wait for the dispatches to finish
-              localStorage.removeItem("personal");
-              localStorage.removeItem("account");
-              localStorage.removeItem("address");
-              this.show = !this.show;
-              sessionStorage.setItem("isLoggedIn", true);
-              if(skip){
-                this.$router.push({ name: "accountsettings" });
-              }else{
-                this.$router.push({ name: "verifymessage" });
-
-              }
-            });
-          } else {
-            this.logginIn = !this.logginIn;
-            console.log("informmation not saved");
-          }
-        })
-        .catch((errors) => {
-          this.show = !this.show;
-          if (errors.response.data.front_image == null)
-            errors.response.data.front_image = "";
-          if (errors.response.data.back_image == null)
-            errors.response.data.back_image = "";
-          this.errors =
-            errors.response.data.front_image +
-            " " +
-            errors.response.data.back_image;
-        });
+      // this.logginIn = !this.logginIn;
+      console.log("back image ", this.front_image);
+      if (skip == false) {
+        if (this.back_image == "" || this.back_image == null || this.front_image == "" || this.front_image == null) {
+          this.error_back_image = "This Field is required";
+          this.error_front_image = "This Field is required";
+        return;
+       }
+        console.log("Next", this.error_back_image);
+      } 
+        api
+          .post("/api/register", this.registrationData)
+          .then((res) => {
+            console.log(res.data);
+            sessionStorage.setItem("Authorization", res.data.token);
+            if (res) {
+              this.dispatches().then(() => {
+                //wait for the dispatches to finish
+                 localStorage.removeItem("personal");
+                  localStorage.removeItem("account");
+                  localStorage.removeItem("address");
+                this.show = !this.show;
+                sessionStorage.setItem("isLoggedIn", true);
+                if (skip) {
+                 
+                  this.show = !this.show;
+                  this.$router.push({ name: "accountsettings" });
+                }
+              });
+            } else {
+              this.logginIn = !this.logginIn;
+              console.log("informmation not saved");
+            }
+          })
+          .catch((errors) => {
+            if (errors.response.data.front_image == null)
+              errors.response.data.front_image = "";
+            if (errors.response.data.back_image == null)
+              errors.response.data.back_image = "";
+            this.errors =
+              errors.response.data.front_image +
+              " " +
+              errors.response.data.back_image;
+          });
     },
     async dispatches() {
       await store.dispatch("getAuthUser");
@@ -314,7 +337,6 @@ export default {
       await store.dispatch("getAllShares");
       await store.dispatch("getUserShoppingList");
       await store.dispatch("getVerifiedUsers");
-
     },
   },
 };
