@@ -88,6 +88,7 @@ export default {
             store.dispatch("getUserTransactions")
             VueSimpleAlert.alert(res.data.message, "Success", "success");
             this.$emit("getSortPosts");
+            this.close3()
           });
         })
         .catch((error) => {

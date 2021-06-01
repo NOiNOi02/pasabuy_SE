@@ -73,6 +73,7 @@
           </div>
           <!--end-->
           <p class="text-red-500 text-center">{{ errorOffer }}</p>
+          <p class="text-red-500 text-center">{{ postError }}</p>
           <!--Delivery information list-->
           <div
             class="flex flex-col mt-1 vs:mt-1 ssm:px-2 vs:px-2 justify-center items-center"
@@ -80,7 +81,6 @@
             <div
               class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
             >
-              <p class="text-red-500 text-center">{{ postError }}</p>
               <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   delivery_dining
@@ -427,7 +427,7 @@
 
           <!--Delivery Information List-->
           <div
-            class="flex flex-col  ssm:px-2 sm:px-2 justify-center items-center vs:px-2"
+            class="flex flex-col ssm:px-2 sm:px-2 justify-center items-center vs:px-2"
           >
             <div
               class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
@@ -483,7 +483,7 @@
                               </p>
                             </div>
                           </div>
-                          <hr class="flex w-full " />
+                          <hr class="flex w-full" />
                           <div
                             v-for="(shipAdd, index) in userShippingAddress"
                             :key="index"
@@ -1569,7 +1569,6 @@ export default {
             if (this.listToggleFlag) this.togglePostModal();
             this.listToggleFlag = false;
             this.showCreateNewShopListModal = !this.showCreateNewShopListModal;
-
           });
         })
         .catch(() => {
@@ -1595,8 +1594,8 @@ export default {
         };
         console.log(form);
 
-        store
-          .dispatch("createPostOffer", form)
+        api
+          .post("api/post/offer", form)
           .then(() => {
             store.dispatch("getPosts").then(() => {
               store.dispatch("getShoppingPlaces");
@@ -1605,18 +1604,53 @@ export default {
               this.$emit("sortPosts");
               this.$emit("closeModal");
               this.errorOffer = "";
+              this.postError = "";
             });
           })
           .catch((errors) => {
-            this.errorOffer = errors.response.data.message.deliverySchedule;
+            console.log("errross", errors.response.data.errors);
+            if (errors.response.data.errors.shoppingPlace == null)
+              errors.response.data.errors.shoppingPlace = "";
+            if (errors.response.data.errors.deliverySchedule == null)
+              errors.response.data.errors.deliverySchedule = "";
+            if (errors.response.data.errors.deliverArea == null)
+              errors.response.data.errors.deliverArea = "";
+            if (errors.response.data.errors.paymentMethod == null)
+              errors.response.data.errors.paymentMethod = "";
+            if (errors.response.data.errors.transportMode == null)
+              errors.response.data.errors.transportMode = "";
+            if (errors.response.data.errors.capacity == null)
+              errors.response.data.errors.capacity = "";
+            this.errorOffer =
+              errors.response.data.errors.shoppingPlace +
+              " " +
+              errors.response.data.errors.deliverySchedule +
+              " " +
+              errors.response.data.errors.deliveryArea +
+              " " +
+              errors.response.data.errors.paymentMethod +
+              " " +
+              errors.response.data.errors.capacity +
+              " " +
+              errors.response.data.errors.transportMode;
+            this.postError = "";
+
+            //     this.deliveryAddress = "Delivery Address"
+            // this.paymentRequest = "Payment Method";
           });
       }
     },
     postRequest() {
+      if (this.deliveryAddress === "Delivery Address") {
+        this.deliveryAddress = "";
+      }
+      if (this.paymentRequest === "Payment Method") {
+        this.paymentRequest = "";
+      }
       var form = {
         postIdentity: "request_post",
         postStatus: "Accepting Offer",
-        deliveryArea: this.deliveryAddress,
+        deliveryAddress: this.deliveryAddress,
         shoppingPlace: this.shoppingPlaceRequest,
         deliverySchedule: this.schedRequest,
         paymentMethod: this.paymentRequest,
@@ -1626,8 +1660,8 @@ export default {
       };
 
       console.log("request form", form);
-      store
-        .dispatch("createPostRequest", form)
+      api
+        .post("api/post/request", form)
         .then(() => {
           store.dispatch("getPosts").then(() => {
             store.dispatch("getShoppingPlaces");
@@ -1638,7 +1672,26 @@ export default {
           });
         })
         .catch((errors) => {
-          this.errorOrder = errors.response.data.message.deliverySchedule;
+          console.log("errross", errors.response.data.errors);
+          if (errors.response.data.errors.shoppingPlace == null)
+            errors.response.data.errors.shoppingPlace = "";
+          if (errors.response.data.errors.deliverySchedule == null)
+            errors.response.data.errors.deliverySchedule = "";
+          if (errors.response.data.errors.deliveryAddress == null)
+            errors.response.data.errors.deliveryAddress = "";
+          if (errors.response.data.errors.paymentMethod == null)
+            errors.response.data.errors.paymentMethod = "";
+          this.errorOrder =
+            errors.response.data.errors.shoppingPlace +
+            " " +
+            errors.response.data.errors.deliverySchedule +
+            " " +
+            errors.response.data.errors.deliveryAddress +
+            " " +
+            errors.response.data.errors.paymentMethod;
+
+          this.deliveryAddress = "Delivery Address";
+          this.paymentRequest = "Payment Method";
         });
     },
     editShoppingList() {

@@ -257,7 +257,7 @@
           <!--end-->
 
           <!--section 4-->
-          <div
+          <div v-if="shoppingOffer_info.offer_post.caption!=null"
             class="flex flex-grow-0 mt-4 ssm:mt-2 vs:mt-2 w-full items-start justify-start p-4 bg-gray-100 rounded-xl"
           >
             <p
@@ -592,7 +592,7 @@
           {{ showListStatus }}
         </button>
       </div>
-      <div
+      <div v-if=" currentPostViewDetails.transactionData.caption!=null"
         class="inline-flex items-start ssm:px-2 justify-start mt-3 rounded-xl h-auto bg-white w-full"
       >
         <p

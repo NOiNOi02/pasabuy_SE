@@ -22,13 +22,13 @@
         <input v-model="shop_info.offer_post.caption" type="hidden" name="caption">
         <div class="ml-5 flex w-full" >
           <label class="inline-flex items-center">
-            <input type="radio" class="form-radio w-4 h-4 vs:w-3 vs:h-3 lvs:w-4 lvs:h-4" id="NLAR">
+            <input type="radio" name="offer" class="form-radio w-4 h-4 vs:w-3 vs:h-3 lvs:w-4 lvs:h-4" id="NLAR">
             <span class="ml-5 text-base ssm:text-xs vs:text-sm lvs:text-base">No Longer Accepting Requests</span>
           </label>
         </div>
         <div class="ml-5 flex w-full">
           <label class="inline-flex items-center">
-            <input type="radio" class="form-radio w-4 h-4 vs:w-3 vs:h-3 lvs:w-4 lvs:h-4" id="C">
+            <input type="radio"  name="offer"  class="form-radio w-4 h-4 vs:w-3 vs:h-3 lvs:w-4 lvs:h-4" id="C">
             <span class="ml-5 text-base ssm:text-xs vs:text-sm lvs:text-base">Cancel Offer</span>
           </label>
         </div>
@@ -87,6 +87,7 @@ export default {
             store.dispatch("getUserTransactions")
             VueSimpleAlert.alert(res.data.message, "Success", "success");
             this.$emit("getSortPosts");
+            this.close2()
           });
         }).catch(error=>{
           VueSimpleAlert.alert(error.response.data.error, "Error", "error")

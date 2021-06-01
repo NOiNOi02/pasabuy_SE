@@ -107,7 +107,7 @@ class PostController extends Controller
 		$request->validate([
 			'postIdentity' => 'required|string|max:100',
 			'postStatus' => 'required|string|max:50',
-			'deliveryArea' => 'required|string|max:500',
+			'deliveryAddress' => 'required|string|max:500',
 			'shoppingPlace' => 'required|string|max:500',
 			'deliverySchedule' => 'required|date|after_or_equal:today',
 			'paymentMethod' => 'required|string|max:200',
@@ -126,7 +126,7 @@ class PostController extends Controller
 		// request post model
 		$request_post = new RequestPost;
 		$request_post->postStatus = $request->postStatus;
-		$request_post->deliveryAddress = $request->deliveryArea;
+		$request_post->deliveryAddress = $request->deliveryAddress;
 		$request_post->shoppingPlace = $request->shoppingPlace;
 		$request_post->deliverySchedule = $request->deliverySchedule;
 		$request_post->paymentMethod = $request->paymentMethod;

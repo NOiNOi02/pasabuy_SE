@@ -47,7 +47,7 @@ class passwordResetNotification extends Notification
     public function toMail($notifiable)
     {
 
-        $url ="http://localhost:8080/forgot_password_form/?token=".$this->token."/?email=".$this->email;
+        $url ="https://pasabuy-client.herokuapp.com/forgot_password_form/?token=".$this->token."/?email=".$this->email;
         return (new MailMessage)
         ->subject(Lang::get('Reset Password Notification'))
         ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
