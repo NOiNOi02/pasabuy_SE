@@ -33,6 +33,7 @@ class messageController extends Controller
             $newdata->email1 = Auth::user()->email;
             $newdata->email2 = $request->userEmail;
             $newdata->dateModified = Carbon::now('Asia/Manila');
+            $newdata->dateCreated = Carbon::now('Asia/Manila');
             $newdata->save();
             return response()->json($newdata);
         }
@@ -62,10 +63,13 @@ class messageController extends Controller
         }
         $newMessage->messageText =$request->message;
         $newMessage->messageNumber = $messageCount.'-Message';
+        $newMessage->dateCreated = Carbon::now('Asia/Manila');
+
         if($newMessage->save()){
             $msgRoom = messageRoom::find($request->roomID);
             $msgRoom = messageRoom::where('messageRoomNumber',$request->roomID)->first();
             $msgRoom->dateModified = Carbon::now('Asia/Manila');
+            $msgRoom->dateCreated = Carbon::now('Asia/Manila');
             $msgRoom->save();
             if($msgRoom->email1 === Auth::user()->email){
                 $userToNotif = User::where('email',$msgRoom->email2)->first();

@@ -218,7 +218,7 @@ class RegisterController extends Controller
                 
                         Storage::disk('s3')->put('/images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name, $image_resize->stream(),'public');
                  
-                        $user->IDFrontPicture = Storage::disk('s3')->url('images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name);
+                        $user->IDBackPicture = Storage::disk('s3')->url('images/'.$userInfo->indexUserInformation.'/validID/Back/'.$file_name);
 
                         $user->save();
                     }

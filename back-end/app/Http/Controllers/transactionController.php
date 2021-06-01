@@ -31,6 +31,8 @@ class transactionController extends Controller
         $newTransaction->transactionData = json_encode($request->transactionData);
         $newTransaction->transactionShoppingList = json_encode($request->transactionShoppingList);
         $newTransaction->emailCustomerShopper = Auth::user()->email;
+        $newTransaction->dateCreated = Carbon::now('Asia/Manila');
+
 
         if($newTransaction->save()){
             $userToNotif = User::where('email',$request->email)->get();
