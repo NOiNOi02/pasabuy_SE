@@ -304,7 +304,10 @@ export default {
                  
                   this.show = !this.show;
                   this.$router.push({ name: "accountsettings" });
-                }
+                
+                }else{
+                this.$router.push({ name: "verifymessage" });
+              }
               });
             } else {
               this.logginIn = !this.logginIn;
