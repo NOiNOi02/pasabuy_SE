@@ -57,6 +57,17 @@
                 {{ followStatus }}
               </button>
             </div>
+            <div
+              v-if="account_infos.email != authUser.email"
+              class="followButton flex items-center justify-center ssm:pl-2 ssm:pr-2 vs:pl-6 vs:pr-6 w-32 bg-white-700 border-2 rounded-full border-red-500"
+            >
+              <button
+                @click="messageBtn()"
+                class="flex-1 text-base ssm:text-sm font-bold focus:outline-none tracking-wider leading-loose text-center text-gray-900"
+              >
+                Message
+              </button>
+            </div>
           </div>
           <div class="flex flex-col ssm:hidden vs:hidden">
             <div class="flex flex-row vs:space-x-4 space-x-8 py-3">
@@ -318,6 +329,15 @@ export default {
   },
 
   methods: {
+      messageBtn() {
+        this.$router.push({
+          name: "messages",
+          query: { ID: this.toEncrypt(this.account_infos.email) },
+        })
+    },
+     toEncrypt(val) {
+      return btoa(val);
+    },
     ifUserVerified(email) {
       var temp = this.verifiedUsers.filter((x) => {
         return x.email === email && x.verifyStatus == "verified";

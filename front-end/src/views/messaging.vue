@@ -31,9 +31,11 @@
             type="text"
             class="h-8 w-11/12 pl-5 border font-normal text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 rounded-full"
             placeholder="Search"
+            @keyup="searchBtn()"
+            v-model="searchInput"
           />
           <button
-            @click="searchBtn"
+            @click="searchBtn()"
             class="align-middle absolute right-8 pt-1 h-7 focus:outline-none hover:text-red-700"
           >
             <span class="material-icons" style="font-size: 22px"> search </span>
@@ -650,7 +652,8 @@
 
             <div
               v-if="
-                transaction.transactionStatus === 'Confirmed' || transaction.transactionStatus === 'confirmed' ||
+                transaction.transactionStatus === 'Confirmed' ||
+                transaction.transactionStatus === 'confirmed' ||
                 transaction.transactionStatus === 'In Transit'
               "
               class="text-sm w-full"
@@ -810,7 +813,8 @@
                     >
                       <span
                         v-if="
-                          transact.transactionStatus === 'Confirmed' || transact.transactionStatus === 'confirmed' ||
+                          transact.transactionStatus === 'Confirmed' ||
+                          transact.transactionStatus === 'confirmed' ||
                           transact.transactionStatus === 'In Transit'
                         "
                         class="h-6 flex items-center tracking-wide rounded py-1 flex text-xs hover:bg-gray-400 hover:text-white text-blue-500 justify-start pl-4"
@@ -915,7 +919,8 @@
                               this.userPersonal.firstName +
                                 ' ' +
                                 this.userPersonal.lastName &&
-                            (msgStatus.status === 'Declined' ||  msgStatus.status === 'Accepted')
+                            (msgStatus.status === 'Declined' ||
+                              msgStatus.status === 'Accepted')
                           "
                         >
                           You {{ msgStatus.status }} {{ msgStatus.receiver }}'s
@@ -1119,7 +1124,8 @@
                               this.userPersonal.firstName +
                                 ' ' +
                                 this.userPersonal.lastName &&
-                               (msgStatus.status === 'Declined' ||  msgStatus.status === 'Accepted')
+                            (msgStatus.status === 'Declined' ||
+                              msgStatus.status === 'Accepted')
                           "
                         >
                           You {{ msgStatus.status }} {{ msgStatus.receiver }}'s
@@ -1595,7 +1601,10 @@
                 </div>
                 <!--------------transaction details confirmed------>
                 <div
-                  v-else-if="transaction.transactionStatus === 'Confirmed' || transaction.transactionStatus === 'confirmed'"
+                  v-else-if="
+                    transaction.transactionStatus === 'Confirmed' ||
+                    transaction.transactionStatus === 'confirmed'
+                  "
                   class="text-sm w-full"
                 >
                   <div class="flex flex-row justify-between">
@@ -2274,9 +2283,10 @@
               type="text"
               class="h-8 w-11/12 pl-5 border font-normal text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 rounded-full"
               placeholder="Search"
+              @keyup="searchBtn()"
             />
             <button
-              @click="searchBtn"
+              @click="searchBtn()"
               class="align-middle absolute right-8 pt-1 h-7 focus:outline-none hover:text-red-700"
             >
               <span class="material-icons" style="font-size: 22px">
@@ -3258,6 +3268,8 @@ export default {
   data() {
     return {
       //buttons
+      tempUsers: null,
+      searchInput: null,
       toggle: false,
       toggleInbox: true,
       toggleChat: false,
@@ -3922,9 +3934,109 @@ export default {
       }
     },
     searchBtn() {
-      this.showSearchResults = !this.showSearchResults;
-      this.searchMessageInactive = !this.searchMessageInactive;
-      document.getElementByID("search").value = "Mark";
+      // this.showSearchResults = !this.showSearchResults;
+      // this.searchMessageInactive = !this.searchMessageInactive;
+      var val = this.searchInput;
+      
+      this.searchUser(val, this.room, this.authUser, this);
+    },
+    searchUser: _.debounce((val, users, currentUser, vm) => {
+      var temp = users;
+      if (val == null) {
+        vm.getChatRooms();
+      } else {
+        var res = temp.filter((x) => {
+          if (x.get_email1.email != currentUser.email) {
+            if (
+              (x.get_email1.firstName + " " + x.get_email1.lastName)
+                .toLowerCase()
+                .includes(val.toLowerCase())
+            ) {
+              return x;
+            }
+          } else {
+            if (
+              (x.get_email2.firstName + " " + x.get_email2.lastName)
+                .toLowerCase()
+                .includes(val.toLowerCase())
+            ) {
+              return x;
+            }
+          }
+        });
+        vm.getChatSearch(res);
+        console.log(res);
+      }
+    }, 2000),
+    getChatSearch(result) {
+      //filtering the message room where there are no message and not the active room if there is
+      var z = 0;
+      this.chatRooms=[]
+      this.chatRoomNames=[]
+      this.activeRoom=null
+      for (i = 0; i < result.length; i++) {
+        console.log("chatroom temp", this.transactions);
+        var temp = this.transactions.filter((x) => {
+          return (
+            (x.emailCustomerShopper == result[i].email1 ||
+              x.emailCustomerShopper == result[i].email2) &&
+            (x.transactionReceiver == result[i].email1 ||
+              x.transactionReceiver == result[i].email2)
+          );
+        });
+        console.log("chatroom temp", temp);
+        console.log(result[i].get_messages.length == 0 && !(temp.length > 0));
+        if (result[i].get_messages.length == 0 && !(temp.length > 0)) {
+          //means epmty messages on room
+          if (
+            (this.authUser.email === result[i].email1 ||
+              this.authUser.email === result[i].email2) &&
+            (this.userQueryID === result[i].email1 ||
+              this.userQueryID === result[i].email2)
+          ) {
+            //filtering only the user with messages and the active chatroom
+            this.chatRooms[z] = result[i];
+            z++;
+            continue;
+          }
+        } else {
+          this.chatRooms[z] = result[i];
+          z++;
+        }
+      }
+      var i;
+      //var x=0;
+      for (i = 0; i < this.chatRooms.length; i++) {
+        //setting the picture and name of the chatrooms
+        if (this.chatRooms[i].email1.localeCompare(this.authUser.email) == 0) {
+          this.chatRoomNames[i] =
+            this.chatRooms[i].get_email2.firstName +
+            " " +
+            this.chatRooms[i].get_email2.lastName;
+          this.chatRoomPic[i] = this.chatRooms[i].get_email2.profilePicture;
+        } else {
+          this.chatRoomNames[i] =
+            this.chatRooms[i].get_email1.firstName +
+            " " +
+            this.chatRooms[i].get_email1.lastName;
+          this.chatRoomPic[i] = this.chatRooms[i].get_email1.profilePicture;
+        }
+      }
+      console.log(screen.width);
+      if (screen.width >= 639)
+        if (this.activeRoom == null && this.chatRooms.length != 0)
+          this.setRoom(
+            this.chatRoomNames[0],
+            this.chatRooms[0].messageRoomNumber,
+            this.chatRooms[0].email1,
+            this.chatRooms[0].email2
+          );
+        else {
+          this.toggleInbox = true;
+          this.toggleChat = false;
+        }
+
+      this.$nextTick(() => this.scrollToEnd());
     },
     alert() {
       alert("called");
@@ -4090,7 +4202,7 @@ export default {
       var dataMessage2 = {
         roomID: this.activeRoom,
         message: JSON.stringify(currTrans[0].transactionData),
-        transaction:true,
+        transaction: true,
         transactionSender: this.activeUser,
       };
       console.log(dataMessage, dataMessage2);
@@ -4107,7 +4219,7 @@ export default {
       ]).then((resArr) => {
         store.commit("setUserTransactions", resArr[3].data);
         store.commit("FETCH_ROOMS", resArr[2].data);
-        store.dispatch("getPosts")
+        store.dispatch("getPosts");
         $(".acceptRequestNotiPop").fadeIn(), (this.acceptReqNotiPop = true);
         setTimeout(function () {
           this.acceptReqNotiPop = false;
@@ -4265,6 +4377,9 @@ export default {
       return store.getters.getPersonal;
     },
     room() {
+      return store.getters.getRooms;
+    },
+    rooms() {
       return store.getters.getRooms;
     },
     posts() {
