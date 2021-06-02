@@ -22,7 +22,8 @@
         "nexmo/laravel": "^2.4",
         "pusher/pusher-php-server": "^5.0",
         "twilio/sdk": "^6.24",
-        "webpatser/laravel-uuid": "^4.0"
+        "webpatser/laravel-uuid": "^4.0",
+        "ext-gd":"*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

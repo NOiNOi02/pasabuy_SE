@@ -907,7 +907,43 @@
                         </p>
                       </button>
                     </div>
+                        <div
+                        id="3dotmenu"
+                        class="vs:mt-1 relative"
+                        v-if="post_info.sharerEmail == user.email"
+                      >
+                        <button
+                          @click="
+                            share3dot = !share3dot;
+                            share3dotPostNum = post_info.postNumber;
+                          "
+                          class="focus:outline-none"
+                        >
+                          <img
+                            class="w-6 h-auto vs:w-4 lvs:w-5 ssm:w-4"
+                            src="img/3dot.svg"
+                          />
+                        </button>
+
+                        <div class="flex w-full">
+                          <div
+                            v-if="share3dot && share3dotPostNum == post_info.postNumber"
+                            class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
+                          >
+                          
+                            <button
+                              @click="deleteShared(post_info.postNumber)"
+                              class="flex flex-row text-base gap-x-2 vs:text-sm vs:md-14"
+                            >
+                              <span class="text-gray-500 material-icons"
+                                >delete</span
+                              >Delete
+                            </button>
+                          </div>
+                        </div>
+                   </div>
                   </div>
+               
                   <div
                     id="changeBoxRadius"
                     class="h-auto p-6 space-x-4 bg-white shadow vs:p-4 mv:w-full ssm:p-2 ssm:w-full vs:w-full sm:w-full w-608 rounded-xl"
@@ -2343,7 +2379,7 @@
           </div>
         </div>
 
-        <div
+        <!-- <div
           class="flex flex-wrap float-left font-nunito md:block vs:hidden xsm:hidden ssm:hidden"
         >
           <div
@@ -2353,7 +2389,7 @@
             refund Policy Help Center <br />
             Pasabuy © 2021
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -2532,6 +2568,8 @@ export default {
   },
   data() {
     return {
+      share3dot:false,
+      share3dotPostNum:null,
       ctrProp: 0,
       brandSearchTag: false,
       popUp3: false,
@@ -2754,6 +2792,14 @@ export default {
     },
   },
   methods: {
+    deleteShared(postNum){
+       api.delete("api/sharedPost/" + postNum + "/delete").then(() => {
+        store.dispatch("getAllShares").then(() => {
+          this.sortPosts();
+          this.changeFilter();
+        });
+      });
+    },
     copyThisLink(postNumber) {
       var temp = JSON.parse(JSON.stringify(this.posts));
       var temp2 = temp.filter((x) => {
