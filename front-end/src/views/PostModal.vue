@@ -921,7 +921,10 @@
           class="flex flex-row w-full justify-around vs:space-x-2 sm:space-x-4 items-center p-4"
         >
           <button
-            @click="createNewShopList"
+            @click="
+              createNewShopList();
+              ctr = 0;
+            "
             class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2 border-2 rounded-full border-red-700"
           >
             <p class="text-base font-bold leading-none text-gray-900">
@@ -975,7 +978,6 @@
               type="text"
               placeholder="Title"
               class="w-10 focus:outline-none"
-              v-model="shoppingListTitle"
               oninput='this.style.width = 0; this.style.width = this.scrollWidth + "px";'
             />
             <button
@@ -1054,119 +1056,68 @@
                 </div>
               </div>
             </div>
-
             <div
-              v-if="saveItem1"
-              class="flex flex-row vs:space-x-2 ssm:space-x-1 space-x-4 px-0.5"
+              class="flex flex-row w-full justify-between items-center space-x-3"
+              v-for="item in new_items"
+              :key="item.id"
             >
-              <div
-                class="itemButtons bg-white border-2 rounded-none w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 border-gray-900"
-              >
-                <input
-                  @click="editDisItem1"
-                  type="checkbox"
-                  class="editItemButton opacity-0 absolute"
-                />
-                <img
-                  src="img/check-mark.svg"
-                  class="thisCheck fill-current hidden w-3 h-3 text-black font-bold pointer-events-none"
-                />
-              </div>
-              <div class="flex flex-col space-y-2">
-                <p
-                  class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
-                >
-                  Powdered Sugar (1 kg)
-                </p>
-                <p
-                  class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
-                >
-                  Any brand
-                </p>
-              </div>
-            </div>
-            <div
-              v-if="editItem1"
-              class="flex flex-col space-y-2 h-auto w-full rounded-xl border-2 p-4 border-gray-200 bg-white"
-            >
-              <div
-                class="flex bg-gray-100 rounded-xl w-full flex-col space-y-1 h-auto p-2"
-              >
-                <p class="text-sm leading-3 text-gray-500">Product</p>
-                <input
-                  v-model="filter_itemList[0].item"
-                  class="bg-gray-100 w-full h-4 focus:outline-none text-base leading-none text-gray-900"
-                />
-              </div>
-              <div class="flex flex-row space-x-2">
+              <div class="flex flex-row vs:space-x-2 ssm:space-x-1 space-x-4">
                 <div
-                  class="flex bg-gray-100 rounded-xl w-full flex-col space-y-1 h-auto p-2"
+                  class="itemButtons bg-white border-2 rounded-none w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 border-gray-900"
                 >
-                  <p class="text-sm leading-3 text-gray-500">Brand</p>
                   <input
-                    v-model="filter_itemList[0].brand"
-                    class="bg-gray-100 w-full h-4 focus:outline-none text-base leading-none text-gray-900"
+                    type="checkbox"
+                    class="opacity-0"
+                    :checked="item.status === 1"
+                    :id="'check' + item.id"
+                  />
+                  <img
+                    src="img/check-mark.svg"
+                    class="fill-current hidden w-3 h-3 text-black mr-3 font-bold pointer-events-none"
                   />
                 </div>
-                <div
-                  class="flex bg-gray-100 rounded-xl w-full flex-col space-y-1 h-auto p-2"
-                >
-                  <p class="text-sm leading-3 text-gray-500">Size</p>
-                  <input
-                    v-model="filter_itemList[0].amount"
-                    class="bg-gray-100 w-full h-4 focus:outline-none text-base leading-none text-gray-900"
-                  />
-                </div>
-              </div>
-              <div class="flex flex-row items-center pt-2 space-x-4">
-                <p
-                  class="text-base ssm:text-sm se:text-sm leading-7 text-gray-900"
-                >
-                  Quantity
-                </p>
-                <div class="flex flex-row space-x-2">
-                  <button class="focus:outline-none">
-                    <span class="material-icons bg-gray-100 text-red-700">
-                      add
-                    </span>
-                  </button>
+                <div class="flex flex-col space-y-2">
                   <p
-                    class="text-base ssm:text-sm se:text-sm items-center flex leading-none text-gray-900"
+                    class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
                   >
-                    {{ Quantity }}
+                    {{ item.product }} ({{ item.size }})
                   </p>
-                  <button class="focus:outline-none">
-                    <span class="material-icons bg-gray-100 text-red-700">
-                      remove
-                    </span>
-                  </button>
+                  <p
+                    class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
+                  >
+                    {{ item.brand }}
+                  </p>
                 </div>
               </div>
-              <div
-                class="flex flex-row justify-end items-center ssm:space-x-1 space-x-2"
-              >
+              <div class="flex flex-row space-x-2 items-center">
                 <button
-                  @click="editDisItemAndUnchecked"
-                  class="focus:outline-none inline-flex px-4 py-2 border-2 rounded-full border-red-700"
+                  class="focus:outline-none flex"
+                  @click="item.quantity++"
                 >
-                  <p
-                    class="text-base ssm:text-sm se:text-sm font-bold leading-none text-gray-900"
-                  >
-                    Cancel
-                  </p>
+                  <span class="material-icons bg-gray-100 text-red-700">
+                    add
+                  </span>
                 </button>
-                <button
-                  class="focus:outline-none inline-flex px-4 py-2.5 bg-red-700 rounded-full"
+                <p
+                  class="text-base ssm:text-sm se:text-sm items-center flex leading-none text-gray-900"
                 >
-                  <p
-                    class="text-base ssm:text-sm se:text-sm font-bold leading-none text-white"
-                  >
-                    Save
-                  </p>
+                  {{ item.quantity }}
+                </p>
+                <button
+                  class="focus:outline-none flex"
+                  @click="item.quantity = minusQty(item.quantity)"
+                >
+                  <span class="material-icons bg-gray-100 text-red-700">
+                    remove
+                  </span>
+                </button>
+                <button class="focus:outline-none flex">
+                  <span class="material-icons"> more_vert </span>
                 </button>
               </div>
             </div>
           </div>
+
           <div class="flex px-4 justify-end items-center">
             <p class="text-xs leading-none text-gray-500">Updated 7:13 PM</p>
           </div>
@@ -1551,30 +1502,26 @@ export default {
           this.new_items[i].status = 0;
         }
       }
+      console.log(document.getElementById("createTitle").value,'title')
       let obj = {
-        listName: document.getElementById("new_title").value,
+        listName: document.getElementById("createTitle").value,
         list: this.new_items,
       };
       console.log(this.new_items);
-      this.shopping_list.push(obj);
+      // this.shopping_list.push(obj);
       api
         .post("api/createList", obj)
         .then((res) => {
           store.dispatch("getUserShoppingList").then(() => {
             this.selectedList = res.data;
-            this.showItemList = true;
-            console.log("before", this.selectedList, this.showItemList);
             this.new_items = [];
-            this.addlist = false;
-            if (this.listToggleFlag) this.togglePostModal();
-            this.listToggleFlag = false;
-            this.showCreateNewShopListModal = !this.showCreateNewShopListModal;
+            this.showPreviousModal2()
           });
         })
         .catch(() => {
           //if encountered error means the user will not add a new shopping list
           this.new_items = [];
-          this.addlist = false;
+          
         });
     },
     postOffer() {
@@ -1736,7 +1683,7 @@ export default {
       let y = document.getElementById("brand1").value;
       let z = document.getElementById("size1").value;
       let n = this.quantity;
-      if (x == "" || y == "" || z == "" || n <= 0) {
+      if (x == "") {
         alert("Empty Field");
         return false;
       } else {
@@ -1761,7 +1708,7 @@ export default {
       let y = document.getElementById("brand").value;
       let z = document.getElementById("size").value;
       let n = this.quantity;
-      if (x == "" || y == "" || z == "" || n <= 0) {
+      if (x == "") {
         alert("Empty Field");
         return false;
       } else {

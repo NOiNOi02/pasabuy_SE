@@ -159,7 +159,6 @@
             <p class="text-gray-500">Orders</p><span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
         </div></router-link
       >
-        >
         <router-link to="/deliver" :class="{ disabled: !ifUserVerified(user.email) }" class="rounded-2xl">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> delivery_dining </span>
@@ -167,12 +166,11 @@
             <p class="text-gray-500">Deliveries</p>
           </div></router-link
         >
-        <router-link to="/shopping-list" class="rounded-2xl" :class="{ disabled:true }">
+        <button to="/shopping-list" class="rounded-2xl" :class="{ disabled:true }">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> list </span>
             <p class="text-gray-500">Shopping Lists</p><span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
-          <span class="pl-5 text-gray-400" v-else>Under Maintenance</span></div></router-link
-      >
+          <span class="pl-5 text-gray-400" v-else>Under Maintenance</span></div></button>
         <router-link to="/account-settings" class="rounded-2xl">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> manage_accounts </span>
