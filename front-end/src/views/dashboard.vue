@@ -1402,7 +1402,7 @@
             </span>
 
             <span
-              v-if="or_shift < activeOrders.length - 1"
+              v-if="or_shift < confirmedOrders.length - 1"
               @click="next_swap_order"
               class="inline-flex align-bottom cursor-pointer material-icons-round md-18"
             >
@@ -1587,7 +1587,7 @@
             </span>
 
             <span
-              v-if="shift < activeDeliveries.length - 1"
+              v-if="shift < confirmedDeliveries.length - 1"
               @click="next_swap_deliver()"
               class="inline-flex align-bottom cursor-pointer select-none material-icons-round md-18"
             >

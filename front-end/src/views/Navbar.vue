@@ -320,9 +320,13 @@ export default {
         api.get("api/getNotifications"),
         api.get("api/getTransaction"),
       ]).then((resArr) => {
-        store.commit("setUnreadNotifications", resArr[0].data);
+        store.dispatch("getPosts").then(()=>{
+ store.commit("setUnreadNotifications", resArr[0].data);
         store.commit("setNotifications", resArr[1].data);
         store.commit("setUserTransactions", resArr[2].data);
+        })
+       
+        
       });
     }, 2000),
     debounceMethodGetPosts: _.debounce(() => {

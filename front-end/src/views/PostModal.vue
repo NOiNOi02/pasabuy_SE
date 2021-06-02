@@ -878,6 +878,7 @@
                 <label class="inline-flex items-center">
                   <input
                     type="radio"
+                    name="list"
                     class="form-radio w-4 h-4 vs:w-3 vs:h-3 lvs:w-4 lvs:h-4"
                     :id="'listNumber' + list.shoppingListNumber"
                   />

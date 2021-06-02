@@ -261,7 +261,7 @@
                 :key="shoppingItems.id"
                 class="text-sm leading-none text-gray-900"
               >
-                {{ shoppingItems.produc }} ({{ shoppingItems.size }}) ·
+                {{ shoppingItems.product }} ({{ shoppingItems.size }}) ·
                 {{ shoppingItems.brand }} [{{ shoppingItems.quantity }}]
               </li>
             </div>
@@ -299,7 +299,7 @@
               <div class="inline-flex px-2 py-1 bg-red-700 rounded-full">
                 <p class="text-base font-bold leading-none text-white">
                   {{
-                    filteredTransacation(shoppingOrder_info.postNumber).length
+                    maxOffersReceived(shoppingOrder_info.postNumber)
                   }}
                 </p>
               </div>
@@ -310,7 +310,7 @@
             >
               <div
                 class="flex flex-row justify-between"
-                v-for="(transaction, index) in filteredTransacation(
+                v-for="(transaction, index) in computedOffersReceived(
                   shoppingOrder_info.postNumber
                 )"
                 :key="index"
@@ -400,23 +400,22 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="flex flex-row w-full justify-between items-center"
-                v-if="
-                  filteredTransacation(shoppingOrder_info.postNumber).length > 0
-                "
+            </div>
+            <div class="flex flex-row w-full justify-between items-center">
+              <button
+                @click="viewMoreviewLess(shoppingOrder_info.postNumber)"
+                v-if="!isFew2(shoppingOrder_info.postNumber)"
+                class="focus:outline-none inline-flex text-base font-bold leading-none text-gray-500"
               >
-                <button
-                  class="focus:outline-none inline-flex text-base font-bold leading-none text-gray-500"
-                >
-                  View more
-                </button>
-                <p
-                  class="inline-flex text-base font-bold leading-none text-gray-500"
-                >
-                  3 of 4
-                </p>
-              </div>
+                {{ viewMoreStatus }}
+              </button>
+              <p
+                class="inline-flex text-base font-bold leading-none text-gray-500"
+              >
+                {{ computedOffersReceived(
+                  shoppingOrder_info.postNumber
+                ).length }} of {{ maxOffersReceived(shoppingOrder_info.postNumber) }}
+              </p>
             </div>
           </div>
 
@@ -787,6 +786,11 @@ export default {
   props: ["userID"],
   data() {
     return {
+      limitOffersDisplay: 3,
+      limitOffersDisplay2: 3,
+      defaultLimitOffersDisplay: 3,
+      viewMoreStatus: "View More",
+      viewLessStatus: "View Less",
       currentPostViewDetails: null,
       sendOfferOrRequestpostNum: null,
       acceptReqNotiPop: false,
@@ -898,6 +902,34 @@ export default {
     SendOffer,
   },
   methods: {
+      isFew2(post) {
+      return (
+        this.transactions.filter((x) => {
+          return x.postNumber == post;
+        }).length < 4
+      );
+    },
+    computedOffersReceived(post) {
+      var temp = this.transactions.filter((x) => {
+        return x.postNumber == post;
+      });
+      return this.limitOffersDisplay
+        ? temp.slice(0, this.limitOffersDisplay)
+        : temp;
+    },
+       viewMoreviewLess(post) {
+      this.limitOffersDisplay = null;
+      if (this.viewMoreStatus != this.viewLessStatus) {
+        this.viewMoreStatus = this.viewLessStatus;
+        this.limitOffersDisplay2 = this.maxOffersReceived(post);
+        console.log("if");
+      } else {
+        this.viewMoreStatus = "View More";
+        this.limitOffersDisplay = this.defaultLimitOffersDisplay;
+        this.limitOffersDisplay2 = this.limitOffersDisplay;
+        console.log("else");
+      }
+    },
     ifUserVerified(email) {
       var temp = this.verifiedUsers.filter((x) => {
         return x.email === email && x.verifyStatus == "verified";
@@ -957,7 +989,6 @@ export default {
         store.commit("setUserTransactions", resArr[3].data);
         store.commit("FETCH_ROOMS", resArr[2].data);
         store.dispatch("getPosts");
-
         $(".acceptRequestNotiPop").fadeIn(), (this.acceptReqNotiPop = true);
         setTimeout(function () {
           this.acceptReqNotiPop = false;
@@ -1146,6 +1177,11 @@ export default {
     isFew(filter_itemList) {
       filter_itemList.length < 5;
     },
+    maxOffersReceived(post) {
+      return this.transactions.filter((x) => {
+        return x.postNumber == post;
+      }).length;
+    },
   },
   // created(){
   //   this.loadShoppingOrder_infos();
@@ -1155,6 +1191,7 @@ export default {
     console.log("posts", this.request_post);
   },
   computed: {
+  
     verifiedUsers() {
       return store.getters.getVerifiedUsers;
     },

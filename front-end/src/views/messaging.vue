@@ -1356,433 +1356,443 @@
             id="journal-scrollMobile"
           >
             <div
-              v-if="ifHide"
-              class="sticky top-0 p-3 flex justify items-center shadow-lg bg-white border"
+              class="sticky top-0 w-full p-3 flex justify items-center shadow-lg bg-white border"
+              v-for="transaction in transactions"
+              :key="transaction.postNumber"
+              v-show="
+                ifHide &&
+                (transaction.emailCustomerShopper == activeEmail1 ||
+                  transaction.emailCustomerShopper == activeEmail2) &&
+                (transaction.transactionReceiver == activeEmail1 ||
+                  transaction.transactionReceiver == activeEmail2) &&
+                activeDisplayingTransaction == transaction.transactionNumber
+              "
             >
+              <!-- sent offer 1--->
               <div
-                v-for="transaction in transactions"
-                :key="transaction.postNumber"
+                v-if="
+                  transaction.emailCustomerShopper == authUser.email &&
+                  (transaction.transactionReceiver == activeEmail1 ||
+                    transaction.transactionReceiver == activeEmail2)
+                "
               >
-                <!-- sent offer 1--->
-
                 <div
-                  v-if="
-                    (transaction.emailCustomerShopper == authUser.email &&
-                      (transaction.transactionReceiver == activeEmail1 ||
-                        transaction.transactionReceiver == activeEmail2)) ||
-                    toggle1
-                  "
-                >
-                  <div
-                    class="text-sm w-full"
-                    v-if="
-                      (transaction.transactionStatus == 'pending' || toggle1) &&
-                      isRequestPost(transaction.transactionData) == -1
-                    "
-                  >
-                    <div class="flex justify-between items-center">
-                      <span
-                        >You sent an offer to
-                        <span class="font-semibold ml-2">{{ recipient }}</span>
-                        <span class="ml-2">for</span>
-                        <span class="font-semibold ml-2"
-                          >Post {{ transaction.postNumber }}
-                        </span></span
-                      >
-
-                      <button
-                        @click="vertiDots"
-                        class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
-                        type="button"
-                      >
-                        <span class="material-icons" style="font-size: 17px">
-                          more_verti</span
-                        >
-                      </button>
-                    </div>
-                    <div class="flex justify-end pr-3">
-                      <button
-                        @click="
-                          cancel_transact(
-                            transaction.postNumber,
-                            transaction.indexTransactionPost,
-                            'offer'
-                          )
-                        "
-                        class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 rounded-full border border-gray-700"
-                      >
-                        <span>Cancel Offer</span>
-                      </button>
-                      <button
-                        @click="viewDetailsBtn(transaction.transactionNumber)"
-                        class="flex items-center mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full bg-red-700 text-white"
-                      >
-                        <span>View Post</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <!------->
-                  <!-- sent request 1--->
-                  <div
-                    v-if="
-                      (transaction.transactionStatus == 'pending' || toggle2) &&
-                      isRequestPost(transaction.transactionData) != -1
-                    "
-                    class="text-sm w-full"
-                  >
-                    <div class="flex justify-between items-center">
-                      <span
-                        >You sent a request to
-                        <span class="font-semibold ml-2">{{ recipient }}</span>
-                        <span class="ml-2">for</span>
-                        <span class="font-semibold ml-2"
-                          >Post {{ transaction.postNumber }}
-                        </span></span
-                      >
-
-                      <button
-                        @click="vertiDots"
-                        class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
-                        type="button"
-                      >
-                        <span class="material-icons" style="font-size: 17px">
-                          more_verti</span
-                        >
-                      </button>
-                    </div>
-                    <div class="flex justify-end pr-3">
-                      <button
-                        @click="
-                          cancel_transact(
-                            transaction.postNumber,
-                            transaction.indexTransactionPost,
-                            'request'
-                          )
-                        "
-                        class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 rounded-full border border-gray-700"
-                      >
-                        <span>Cancel Request</span>
-                      </button>
-                      <button
-                        @click="viewDetailsBtn(transaction.transactionNumber)"
-                        class="flex items-center mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full bg-red-700 text-white"
-                      >
-                        <span>View Post</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- received offer 1--->
-                <div
-                  v-if="
-                    (transaction.transactionReceiver == authUser.email &&
-                      (transaction.emailCustomerShopper == activeEmail1 ||
-                        transaction.emailCustomerShopper == activeEmail2)) ||
-                    toggle3
-                  "
-                >
-                  <div
-                    class="text-sm w-full"
-                    v-if="
-                      (transaction.transactionStatus == 'pending' || toggle3) &&
-                      isRequestPost(transaction.transactionData) == -1
-                    "
-                  >
-                    <div class="flex justify-between items-center">
-                      <span
-                        ><span class="font-semibold mr-2"
-                          >{{ transaction.transaction_sender.firstName }}
-                          {{ transaction.transaction_sender.lastName }}</span
-                        >sent you an offer
-                        <span class="ml-2">for your </span>
-                        <span class="font-semibold ml-2"
-                          >Post {{ transaction.postNumber }}
-                        </span></span
-                      >
-                      <button
-                        @click="vertiDots"
-                        class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
-                        type="button"
-                      >
-                        <span class="material-icons" style="font-size: 17px">
-                          more_verti</span
-                        >
-                      </button>
-                    </div>
-                    <div class="flex justify-end pr-3">
-                      <button
-                        @click="
-                          decline_transact(
-                            transaction.postNumber,
-                            transaction.indexTransactionPost,
-                            transaction.emailCustomerShopper,
-                            'offer'
-                          )
-                        "
-                        class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 focus:outline-none rounded-full border border-gray-700"
-                      >
-                        <span>Decline</span>
-                      </button>
-                      <button
-                        @click="
-                          accept_transact(
-                            transaction.postNumber,
-                            transaction.indexTransactionPost,
-                            transaction.emailCustomerShopper,
-                            'offer'
-                          )
-                        "
-                        class="mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full focus:outline-none bg-red-700 text-white"
-                      >
-                        <span>Accept</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  <!------->
-                  <!-- received request 1--->
-                  <div
-                    v-if="
-                      (transaction.transactionStatus == 'pending' || toggle4) &&
-                      isRequestPost(transaction.transactionData) != -1
-                    "
-                    class="text-sm w-full"
-                  >
-                    <div class="flex justify-between items-center">
-                      <span
-                        ><span class="font-semibold mr-2">{{ sender }}</span
-                        >sent you a request
-                        <span class="ml-2">for your </span>
-                        <span class="font-semibold ml-2"
-                          >Post {{ postNum2 }}
-                        </span></span
-                      >
-                      <button
-                        @click="vertiDots"
-                        class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
-                        type="button"
-                      >
-                        <span class="material-icons" style="font-size: 17px">
-                          more_verti</span
-                        >
-                      </button>
-                    </div>
-                    <div class="flex justify-end pr-3">
-                      <button
-                        @click="
-                          decline_transact(
-                            transaction.postNumber,
-                            transaction.indexTransactionPost,
-                            transaction.emailCustomerShopper,
-                            'request'
-                          )
-                        "
-                        class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 focus:outline-none rounded-full border border-gray-700"
-                      >
-                        <span>Decline</span>
-                      </button>
-                      <button
-                        @click="
-                          accept_transact(
-                            transaction.postNumber,
-                            transaction.indexTransactionPost,
-                            transaction.emailCustomerShopper,
-                            'request'
-                          )
-                        "
-                        class="mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full focus:outline-none bg-red-700 text-white"
-                      >
-                        <span>Accept</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <!--------------transaction details confirmed------>
-                <div
-                  v-else-if="
-                    transaction.transactionStatus === 'Confirmed' ||
-                    transaction.transactionStatus === 'confirmed'
-                  "
                   class="text-sm w-full"
+                  v-if="
+                    (transaction.transactionStatus == 'pending' || toggle1) &&
+                    isRequestPost(transaction.transactionData) == -1
+                  "
                 >
-                  <div class="flex flex-row justify-between">
+                  <div class="flex justify-between items-center">
                     <span
-                      >Transaction
+                      >You sent an offer to
+                      <span class="font-semibold ml-2">{{ recipient }}</span>
+                      <span class="ml-2">for</span>
                       <span class="font-semibold ml-2"
-                        >#{{ transaction.transactionNumber }}
-                      </span>
-                    </span>
+                        >Post {{ transaction.postNumber }}
+                      </span></span
+                    >
 
-                    <div class="flex items-center">
-                      <span class="rounded border h-6 border-blue-700 px-1"
-                        >Confirmed</span
+                    <button
+                      @click="vertiDots"
+                      class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
+                      type="button"
+                    >
+                      <span class="material-icons" style="font-size: 17px">
+                        more_verti</span
                       >
-
-                      <button
-                        @click="vertiDots"
-                        class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
-                        type="button"
-                      >
-                        <span class="material-icons" style="font-size: 17px">
-                          more_verti</span
-                        >
-                      </button>
-                    </div>
+                    </button>
                   </div>
                   <div class="flex justify-end pr-3">
                     <button
+                      @click="
+                        cancel_transact(
+                          transaction.postNumber,
+                          transaction.indexTransactionPost,
+                          'offer'
+                        )
+                      "
+                      class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 rounded-full border border-gray-700"
+                    >
+                      <span>Cancel Offer</span>
+                    </button>
+                    <button
                       @click="viewDetailsBtn(transaction.transactionNumber)"
+                      class="flex items-center mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full bg-red-700 text-white"
+                    >
+                      <span>View Post</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!------->
+                <!-- sent request 1--->
+                <div
+                  v-if="
+                    (transaction.transactionStatus == 'pending' || toggle2) &&
+                    isRequestPost(transaction.transactionData) != -1
+                  "
+                  class="text-sm w-full"
+                >
+                  <div class="flex justify-between items-center">
+                    <span
+                      >You sent a request to
+                      <span class="font-semibold ml-2">{{ recipient }}</span>
+                      <span class="ml-2">for</span>
+                      <span class="font-semibold ml-2"
+                        >Post {{ transaction.postNumber }}
+                      </span></span
+                    >
+
+                    <button
+                      @click="vertiDots"
+                      class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
+                      type="button"
+                    >
+                      <span class="material-icons" style="font-size: 17px">
+                        more_verti</span
+                      >
+                    </button>
+                  </div>
+                  <div class="flex justify-end pr-3">
+                    <button
+                      @click="
+                        cancel_transact(
+                          transaction.postNumber,
+                          transaction.indexTransactionPost,
+                          'request'
+                        )
+                      "
+                      class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 rounded-full border border-gray-700"
+                    >
+                      <span>Cancel Request</span>
+                    </button>
+                    <button
+                      @click="viewDetailsBtn(transaction.transactionNumber)"
+                      class="flex items-center mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full bg-red-700 text-white"
+                    >
+                      <span>View Post</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- received offer 1--->
+              <div
+                v-if="
+                  (transaction.transactionReceiver == authUser.email &&
+                    (transaction.emailCustomerShopper == activeEmail1 ||
+                      transaction.emailCustomerShopper == activeEmail2)) ||
+                  toggle3
+                "
+              >
+                <div
+                  class="text-sm w-full"
+                  v-if="
+                    (transaction.transactionStatus == 'pending' || toggle3) &&
+                    isRequestPost(transaction.transactionData) == -1
+                  "
+                >
+                  <div class="flex justify-between items-center">
+                    <span
+                      ><span class="font-semibold mr-2"
+                        >{{ transaction.transaction_sender.firstName }}
+                        {{ transaction.transaction_sender.lastName }}</span
+                      >sent you an offer
+                      <span class="ml-2">for your </span>
+                      <span class="font-semibold ml-2"
+                        >Post {{ transaction.postNumber }}
+                      </span></span
+                    >
+                    <button
+                      @click="vertiDots"
+                      class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
+                      type="button"
+                    >
+                      <span class="material-icons" style="font-size: 17px">
+                        more_verti</span
+                      >
+                    </button>
+                  </div>
+                  <div class="flex justify-end pr-3">
+                    <button
+                      @click="
+                        decline_transact(
+                          transaction.postNumber,
+                          transaction.indexTransactionPost,
+                          transaction.emailCustomerShopper,
+                          'offer'
+                        )
+                      "
                       class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 focus:outline-none rounded-full border border-gray-700"
                     >
-                      <span>View Details</span>
+                      <span>Decline</span>
                     </button>
                     <button
                       @click="
-                        (toggle_status = !toggle_status), (trans_id = itemx.id)
+                        accept_transact(
+                          transaction.postNumber,
+                          transaction.indexTransactionPost,
+                          transaction.emailCustomerShopper,
+                          'offer'
+                        )
                       "
                       class="mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full focus:outline-none bg-red-700 text-white"
                     >
-                      <span>Update</span>
+                      <span>Accept</span>
                     </button>
                   </div>
                 </div>
-                <!------------------->
 
-                <!--------------transaction details cancelled------>
+                <!------->
+                <!-- received request 1--->
                 <div
-                  v-else-if="transaction.transactionStatus === 'Cancelled'"
+                  v-if="
+                    (transaction.transactionStatus == 'pending' || toggle4) &&
+                    isRequestPost(transaction.transactionData) != -1
+                  "
                   class="text-sm w-full"
                 >
-                  <div class="flex flex-row justify-between">
+                  <div class="flex justify-between items-center">
                     <span
-                      >Transaction
+                      ><span class="font-semibold mr-2">{{ sender }}</span
+                      >sent you a request
+                      <span class="ml-2">for your </span>
                       <span class="font-semibold ml-2"
-                        >#{{ transaction.postNumber }}
-                      </span>
-                    </span>
-
-                    <div class="flex items-center">
-                      <span
-                        class="rounded border h-6 border-crimsonRed text-crimsonRed px-1"
-                        >Cancelled</span
+                        >Post {{ postNum2 }}
+                      </span></span
+                    >
+                    <button
+                      @click="vertiDots"
+                      class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
+                      type="button"
+                    >
+                      <span class="material-icons" style="font-size: 17px">
+                        more_verti</span
                       >
-
-                      <button
-                        @click="vertiDots"
-                        class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
-                        type="button"
-                      >
-                        <span class="material-icons" style="font-size: 17px">
-                          more_verti</span
-                        >
-                      </button>
-                    </div>
+                    </button>
                   </div>
                   <div class="flex justify-end pr-3">
                     <button
-                      @click="viewDetailsBtn(transaction.transactionNumber)"
+                      @click="
+                        decline_transact(
+                          transaction.postNumber,
+                          transaction.indexTransactionPost,
+                          transaction.emailCustomerShopper,
+                          'request'
+                        )
+                      "
                       class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 focus:outline-none rounded-full border border-gray-700"
                     >
-                      <span>View Details</span>
+                      <span>Decline</span>
                     </button>
                     <button
-                      @click="VOID"
-                      class="bg-opacity-50 mx-2 mt-2 h-7 px-2 rounded-full focus:outline-none bg-red-700 text-white"
+                      @click="
+                        accept_transact(
+                          transaction.postNumber,
+                          transaction.indexTransactionPost,
+                          transaction.emailCustomerShopper,
+                          'request'
+                        )
+                      "
+                      class="mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full focus:outline-none bg-red-700 text-white"
                     >
-                      <span>Update</span>
+                      <span>Accept</span>
                     </button>
                   </div>
                 </div>
-                <!------------------->
-                <!-----vertical-dot  options-->
-                <div
-                  v-if="toggleVerti"
-                  id="vertiOPTIONS-MOBILE"
-                  class="absolute right-4 top-2 xl:fixed xl:top-36 xl:right-16 px-2 mr-4 bg-gray-200 w-2/5 shadow-inner rounded-lg border-solid border-2 border-white"
-                  style="width: 220px"
-                >
-                  <div class="flex flex-col">
-                    <div class="flex flex-row items-center">
+              </div>
+              <!--------------transaction details confirmed------>
+              <div
+                v-else-if="
+                  transaction.transactionStatus === 'Confirmed' ||
+                  transaction.transactionStatus === 'confirmed'
+                "
+                class="text-sm w-full"
+              >
+                <div class="flex flex-row justify-between">
+                  <span
+                    >Transaction
+                    <span class="font-semibold ml-2"
+                      >#{{ transaction.transactionNumber }}
+                    </span>
+                  </span>
+
+                  <div class="flex items-center">
+                    <span class="rounded border h-6 border-blue-700 px-1"
+                      >Confirmed</span
+                    >
+
+                    <button
+                      @click="vertiDots"
+                      class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
+                      type="button"
+                    >
+                      <span class="material-icons" style="font-size: 17px">
+                        more_verti</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <div class="flex justify-end pr-3">
+                  <button
+                    @click="viewDetailsBtn(transaction.transactionNumber)"
+                    class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 focus:outline-none rounded-full border border-gray-700"
+                  >
+                    <span>View Details</span>
+                  </button>
+                  <button
+                    @click="
+                      (toggle_status = !toggle_status), (trans_id = itemx.id)
+                    "
+                    class="mx-2 mt-2 h-7 px-2 hover:bg-gray-300 rounded-full focus:outline-none bg-red-700 text-white"
+                  >
+                    <span>Update</span>
+                  </button>
+                </div>
+              </div>
+              <!------------------->
+
+              <!--------------transaction details cancelled------>
+              <div
+                v-else-if="transaction.transactionStatus === 'Cancelled'"
+                class="text-sm w-full"
+              >
+                <div class="flex flex-row justify-between">
+                  <span
+                    >Transaction
+                    <span class="font-semibold ml-2"
+                      >#{{ transaction.postNumber }}
+                    </span>
+                  </span>
+
+                  <div class="flex items-center">
+                    <span
+                      class="rounded border h-6 border-crimsonRed text-crimsonRed px-1"
+                      >Cancelled</span
+                    >
+
+                    <button
+                      @click="vertiDots"
+                      class="w-4 h-6 py-1 pb-1 pr-1 rounded-full focus:outline-none hover:text-red-700 hover:bg-gray-300 active:bg-gray-300"
+                      type="button"
+                    >
+                      <span class="material-icons" style="font-size: 17px">
+                        more_verti</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <div class="flex justify-end pr-3">
+                  <button
+                    @click="viewDetailsBtn(transaction.transactionNumber)"
+                    class="mx-2 mt-2 h-7 px-2 hover:text-white hover:bg-gray-300 focus:outline-none rounded-full border border-gray-700"
+                  >
+                    <span>View Details</span>
+                  </button>
+                  <button
+                    @click="VOID"
+                    class="bg-opacity-50 mx-2 mt-2 h-7 px-2 rounded-full focus:outline-none bg-red-700 text-white"
+                  >
+                    <span>Update</span>
+                  </button>
+                </div>
+              </div>
+              <!------------------->
+              <!-----vertical-dot  options-->
+              <div
+                v-if="toggleVerti"
+                id="vertiOPTIONS-MOBILE"
+                class="absolute right-4 top-2 xl:fixed xl:top-36 xl:right-16 px-2 mr-4 bg-gray-200 w-2/5 shadow-inner rounded-lg border-solid border-2 border-white"
+                style="width: 220px"
+              >
+                <div class="flex flex-col">
+                  <div class="flex flex-row items-center">
+                    <button
+                      @click="hideVertiOptions"
+                      class="w-full items-center flex py-1 hover:bg-white hover:text-crimsonRed justify-start mt-2 border border-gray-300 rounded-lg"
+                    >
+                      <span class="material-icons pl-3" style="font-size: 20px"
+                        >visibility</span
+                      >
+                      <span class="font-semibold pl-2">Hide</span>
+                    </button>
+                  </div>
+                  <div class="divide-y divide-gray-300 tracking-wide">
+                    <div class="flex flex-col pb-2">
+                      <span
+                        class="pl-1 font-semibold py-1 text-gray-500 py-1 text-xs"
+                        >Request(s)/Offers RECEIVED</span
+                      >
                       <button
-                        @click="hideVertiOptions"
-                        class="w-full items-center flex py-1 hover:bg-white hover:text-crimsonRed justify-start mt-2 border border-gray-300 rounded-lg"
+                        v-for="(received, index) in transactionsReceived"
+                        :key="index"
+                        @click="active_transact(received.transactionNumber)"
+                        class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white justify-start pl-4"
                       >
                         <span
-                          class="material-icons pl-3"
-                          style="font-size: 20px"
-                          >visibility</span
+                          v-if="isRequestPost(received.transactionData) != -1"
+                          >Offer #{{ index + 1 }}</span
                         >
-                        <span class="font-semibold pl-2">Hide</span>
+                        <span v-else>Request #{{ index + 1 }}</span>
                       </button>
                     </div>
-                    <div class="divide-y divide-gray-300 tracking-wide">
-                      <div class="flex flex-col pb-2">
-                        <span
-                          class="pl-1 font-semibold py-1 text-gray-500 py-1 text-xs"
-                          >Request(s)/Offers RECEIVED</span
-                        >
-                        <button
-                          v-for="(received, index) in transactionsReceived"
-                          :key="index"
-                          @click="active_transact('toggle' + index + 1)"
-                          class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white justify-start pl-4"
-                        >
-                          <span
-                            v-if="isRequestPost(received.transactionData) != -1"
-                            >Offer #{{ index + 1 }}</span
-                          >
-                          <span v-else>Request #{{ index + 1 }}</span>
-                        </button>
-                      </div>
 
-                      <div class="flex flex-col pb-2">
-                        <span
-                          class="pl-1 font-semibold text-gray-500 py-1 py-1 text-xs"
-                          >Request(s)/Offers SENT</span
+                    <div class="flex flex-col pb-2">
+                      <span
+                        class="pl-1 font-semibold text-gray-500 py-1 py-1 text-xs"
+                        >Request(s)/Offers SENT</span
+                      >
+                      <button
+                        v-for="(sent, index) in transactionsSent"
+                        :key="index"
+                        @click="active_transact(sent.transactionNumber)"
+                        class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white justify-start pl-4"
+                      >
+                        <span v-if="isRequestPost(sent.transactionData) != -1"
+                          >Offer #{{ index + 1 }}</span
                         >
-                        <button
-                          @click="active_transact('toggle3')"
-                          class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white justify-start pl-4"
-                        >
-                          Offer #1
-                        </button>
-                        <button
-                          @click="active_transact('toggle4')"
-                          class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white justify-start pl-4"
-                        >
-                          Request #1
-                        </button>
-                      </div>
+                        <span v-else>Request #{{ index + 1 }}</span>
+                      </button>
+                    </div>
 
-                      <div class="flex flex-col pb-2">
+                    <div class="flex flex-col pb-2">
+                      <span
+                        class="pl-1 font-semibold text-gray-500 py-1 py-1 text-xs"
+                        >OTHER TRANSACTIONS</span
+                      >
+                      <button
+                        v-for="(transact, index) in transactions"
+                        :key="index"
+                        @click="active_transact(transact.transactionNumber)"
+                      >
                         <span
-                          class="pl-1 font-semibold text-gray-500 py-1 py-1 text-xs"
-                          >OTHER TRANSACTIONS</span
+                          v-if="
+                            transact.transactionStatus === 'Confirmed' ||
+                            transact.transactionStatus === 'confirmed' ||
+                            transact.transactionStatus === 'In Transit'
+                          "
+                          class="h-6 flex items-center tracking-wide rounded py-1 flex text-xs hover:bg-gray-400 hover:text-white text-blue-500 justify-start pl-4"
+                          >Transaction #{{ index + 1 }}</span
                         >
-                        <button
-                          @click="active_transact('toggle5')"
-                          class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white text-blue-500 justify-start pl-4"
-                        >
-                          Tansactions #17
-                        </button>
-                        <button
-                          @click="active_transact('toggle6')"
-                          class="h-6 flex items-center rounded tracking-wide py-1 flex text-xs hover:bg-gray-400 hover:text-white text-crimsonRed justify-start pl-4"
-                        >
-                          Transactions #18
-                        </button>
                         <span
-                          class="pl-4 font-semibold italic text-gray-400 py-1 py-1 text-xs"
-                          >No other transactions</span
+                          v-else-if="
+                            transact.transactionStatus === 'Cancelled' ||
+                            transact.transactionStatus === 'Declined'
+                          "
+                          class="h-6 flex items-center tracking-wide rounded py=1 flex text-xs hover:bg-gray-400 hover:text-white text-crimsonRed justify-start pl-4"
+                          >Transaction #{{ index + 1 }}</span
                         >
-                      </div>
+                      </button>
+                      <span
+                        class="pl-4 font-semibold italic text-gray-400 py-1 py-1 text-xs"
+                        >No other transactions</span
+                      >
                     </div>
                   </div>
                 </div>
-                <!-----end of transaction options--->
               </div>
+              <!-----end of transaction options--->
               <!------------------->
             </div>
             <!--end of vfor transaction-->
@@ -2283,6 +2293,7 @@
               type="text"
               class="h-8 w-11/12 pl-5 border font-normal text-sm focus:outline-none focus:ring-1 focus:ring-gray-300 rounded-full"
               placeholder="Search"
+              v-model="searchInput"
               @keyup="searchBtn()"
             />
             <button
@@ -3444,18 +3455,20 @@ export default {
         api.get("api/getChatroom"),
       ]).then((res) => {
         // console.log(res[0].data)
-        store.commit("setUserTransactions", res[0].data);
-        store.commit("FETCH_ROOMS", res[1].data);
-        vm.getChatRooms();
+        
+          store.commit("setUserTransactions", res[0].data);
+          store.commit("FETCH_ROOMS", res[1].data);
+          vm.getChatRooms();
+        
       });
-    }, 4000),
+    }, 2000),
 
     debounceMethodGetMessages: _.debounce((vm) => {
       api.get("api/getChatroom").then(() => {
         console.log("get message");
         vm.getChatRooms();
       });
-    }, 4000),
+    }, 2000),
 
     disconnect(oldval) {
       window.Echo.leave("chat." + oldval);
@@ -3937,7 +3950,7 @@ export default {
       // this.showSearchResults = !this.showSearchResults;
       // this.searchMessageInactive = !this.searchMessageInactive;
       var val = this.searchInput;
-      
+
       this.searchUser(val, this.room, this.authUser, this);
     },
     searchUser: _.debounce((val, users, currentUser, vm) => {
@@ -3971,9 +3984,9 @@ export default {
     getChatSearch(result) {
       //filtering the message room where there are no message and not the active room if there is
       var z = 0;
-      this.chatRooms=[]
-      this.chatRoomNames=[]
-      this.activeRoom=null
+      this.chatRooms = [];
+      this.chatRoomNames = [];
+      this.activeRoom = null;
       for (i = 0; i < result.length; i++) {
         console.log("chatroom temp", this.transactions);
         var temp = this.transactions.filter((x) => {

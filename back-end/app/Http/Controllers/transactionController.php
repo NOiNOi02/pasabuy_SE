@@ -121,19 +121,20 @@ class transactionController extends Controller
     {
           # code...
  
-        $transaction = transaction::find($request->ID);
+        $transaction = transaction::with('post')->find($request->ID);
         $transaction->transactionStatus = "Confirmed";
         $transaction->dateModified = Carbon::now('Asia/Manila');
-
-        if($transaction->save()){
+        $transaction->post->postStatus = "Order Taken";
+        
+        if($transaction->save() && $transaction->post->save()){
             //find the right user to notify, in this case the owner of the post
 			$userToNotif = User::where('email',$request->userNotif)->get();
 			$userToNotif = User::find($userToNotif[0]->indexUserAuthentication);
 			$userToNotif->notify(new confirmRequestNotification($request->postNumber, $request->postIdentity));
-            if($request->postIdentity == "offer"){
+            if($request->postIdentity == "offer" || $request->postIdentity == "Offer"){
                 $transaction = transaction::with('post')->where('transactionStatus', 'pending')->where('postNumber', $request->postNumber)->get();
                 // return  response()->json($transaction);
-                if(!empty($transaction))
+                if($transaction->isNotEmpty())
                 foreach($transaction as $trans){
                     $trans->transactionStatus = "Declined";
                     $trans->post->postStatus = "Order Taken";
