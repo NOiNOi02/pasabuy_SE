@@ -30,6 +30,8 @@ import singlePostOrder from '../views/singlePostOrder.vue'
 import singlePostDelivery from '../views/singlePostDelivery.vue'
 import OrderRequestSinglePage from '../views/OrderRequestSinglePage.vue'
 import ShoppingOfferSinglePage from '../views/ShoppingOfferSinglePage.vue'
+import SharedPostsSinglePage from '../views/SharedPostsSinglePage.vue'
+
 
 
 const routes = [
@@ -238,6 +240,12 @@ const routes = [
     meta: {requiresAuth:true}
   },
 
+  {
+    path: '/SharedPostsSinglePage',
+    name: 'SharedPostsSinglePage',
+    component: SharedPostsSinglePage,
+    meta: {requiresAuth:true}
+  },
 ]
 
 const router = createRouter({

@@ -13,11 +13,12 @@
       <p class="pl-1 mx-2 text-sm text-gray-800">
         <span class="font-bold" href="#">{{ notif.data.sharer }}</span>
         <span class="font-semibold"> has shared your post</span><br />
-        <router-link
-          :to="'/orders/?postnum=' + notif.data.postNumber"
+        <button
+          @click="dispatchSingleSharedPost(notif.data.postNumber)"
           class="font-bold text-blue-500"
-          >View Post
-        </router-link>
+        >
+          View Post
+        </button>
         <span class="text-xs text-gray-500">
           {{ timestamp(notif.created_at) }}</span
         >
@@ -37,7 +38,7 @@
         <span class="font-semibold">
           has cancelled their {{ notif.data.postIdentity }} to your post</span
         ><br />
-         <button
+        <button
           @click="dispatchSinglePagePost(notif.data.postNumber)"
           class="font-bold text-blue-500"
         >
@@ -62,7 +63,7 @@
         <span class="font-semibold">
           has declined your {{ notif.data.identity }}</span
         ><br />
-     <button
+        <button
           @click="dispatchSinglePagePost(notif.data.postNumber)"
           class="font-bold text-blue-500"
         >
@@ -87,7 +88,7 @@
         <span class="font-semibold">
           has accepted your {{ notif.data.identity }}</span
         ><br />
-       <button
+        <button
           @click="dispatchSinglePagePost(notif.data.postNumber)"
           class="font-bold text-blue-500"
         >
@@ -220,32 +221,47 @@ export default {
       });
       return;
     },
-       dispatchSinglePagePost(postNumber) {
-         var temp =  JSON.parse(JSON.stringify(this.posts))
-         var temp2 = temp.filter((x)=>{return x.postNumber === postNumber})
+    dispatchSinglePagePost(postNumber) {
+      var temp = JSON.parse(JSON.stringify(this.posts));
+      var temp2 = temp.filter((x) => {
+        return x.postNumber === postNumber;
+      });
 
-         console.log('temp2',temp2[0])
+      console.log("temp2", temp2[0]);
 
-         if(temp2[0].postIdentity == 'request_post'){
-          this.$router.push({
-              name: "OrderRequestSinglePage",
-              query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
-            });
-         }
-         else{
-          this.$router.push({
-              name: "ShoppingOfferSinglePage",
-              query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
-            });
-         }
+      if (temp2[0].postIdentity == "request_post") {
+        this.$router.push({
+          name: "OrderRequestSinglePage",
+          query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
+        });
+      } else {
+        this.$router.push({
+          name: "ShoppingOfferSinglePage",
+          query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
+        });
+      }
+    },
+    dispatchSingleSharedPost(postNumber) {
+      var temp = JSON.parse(JSON.stringify(this.shares));
+      var temp2 = temp.filter((x) => {
+        return x.postNumber === postNumber;
+      });
+
+      console.log("temp2", temp2[0]);
+
+      this.$router.push({
+        name: "SharedPostsSinglePage",
+        query: { post: this.toEncrypt(JSON.stringify(temp2[0].postNumber)) },
+      });
     },
     timestamp(datetime) {
       var postedDate = new Date(datetime);
-      var dateToday = new Date();
-      var dateDiff = dateToday.getTime() - postedDate.getTime();
-      dateDiff = dateDiff / (1000 * 3600 * 24);
-      if (dateDiff < 1) return moment(datetime).format("[Today at] h:mm a");
-      else if (dateDiff >= 1 && dateDiff < 2)
+      const today = moment().endOf("day");
+      const yesterday = moment().add(-1, "day").endOf("day");
+
+      if (postedDate < today)
+        return moment(datetime).format("[Today at] h:mm a");
+      if (postedDate > yesterday)
         return moment(datetime).format("[Yesterday at] h:mm a");
       else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
     },
@@ -257,29 +273,32 @@ export default {
     user() {
       return store.getters.getUser;
     },
+    shares() {
+      return store.getters.getAllShares;
+    },
     Orders() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          ((x.post.postIdentity == "request_post" &&
+          (x.post.postIdentity == "request_post" &&
             x.post.email == this.user.email) ||
-            (x.post.postIdentity == "offer_post" &&
-              x.post.email != this.user.email))
+          (x.post.postIdentity == "offer_post" &&
+            x.post.email != this.user.email)
         );
       });
     },
     Deliveries() {
       return store.getters.getUserTransactions.filter((x) => {
         return (
-          ((x.post.postIdentity == "request_post" &&
+          (x.post.postIdentity == "request_post" &&
             x.post.email != this.user.email) ||
-            (x.post.postIdentity == "offer_post" &&
-              x.post.email == this.user.email))
+          (x.post.postIdentity == "offer_post" &&
+            x.post.email == this.user.email)
         );
       });
     },
-    posts(){
-      return store.getters.getPosts
-    }
+    posts() {
+      return store.getters.getPosts;
+    },
   },
   created() {
     api

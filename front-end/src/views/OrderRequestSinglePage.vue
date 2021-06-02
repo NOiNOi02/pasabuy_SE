@@ -202,7 +202,7 @@
           <!--end-->
 
           <!--section 4-->
-          <div
+          <div v-if="currentPost.request_post.shoppingListContent!=null"
             class="flex flex-col ssm:mt-2 vs:mt-2 mt-3 w-full items-start justify-start h-auto vs:pr-0 vs:min-w-0 vs:px-2 ssm:pr-0 ssm:min-w-0 ssm:px-2 p-4 bg-gray-100 rounded-xl"
           >
             <div class="inline-flex flex-row space-x-4">
