@@ -277,7 +277,7 @@ export default {
         "cityMunicipality",
         dataform.address.cityMunicipality
       );
-      // this.logginIn = !this.logginIn;
+     
       console.log("back image ", this.front_image);
       if (skip == false) {
         if (
@@ -292,6 +292,7 @@ export default {
         }
         console.log("Next", this.error_back_image);
       }
+      this.logginIn = !this.logginIn;
       api
         .post("/api/register", this.registrationData)
         .then((res) => {
