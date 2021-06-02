@@ -537,6 +537,22 @@ class PostController extends Controller
 		return 200;
 	}
 
+	public function deleteShared(Request $request, $post_id)
+	{
+		$user = Auth::user();
+
+		$post = share::where('postNumber', '=', $post_id)->where('sharerEmail', '=', $user->email)->firstOrFail();
+		$post->shareDeleteStatus = 1;
+		$post->deletedDate = Carbon::now('Asia/Manila');
+
+
+		DB::transaction(function () use ($post) {
+			$post->save();
+		});
+
+		return 200;
+	}
+
 	public function editPostStatus(Request $request)
 	{
 		# code...

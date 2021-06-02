@@ -93,6 +93,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get("/getVerifiedUsers", [verificationIDController::class, 'getVerifiedUsers']);
     Route::post("/postIDAccSet", [userInformationController::class, 'postID']);
     Route::get("/search", [searchController::class, 'search']);
+    Route::delete('sharedPost/{post_id}/delete', [PostController::class, 'deleteShared']);
+
     
     
 });
