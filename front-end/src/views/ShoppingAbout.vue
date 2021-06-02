@@ -238,6 +238,11 @@
               </div>
             </div>
         </div>
+        <div v-for="userTransaction in userTransactions" v-bind:key="userTransaction.indexTransactionPost  " class="overflow-y-auto space-y-4">
+              
+                <p class="text-sm ssm:text-xs vs:text-xs lvs:text-sm leading-loose text-center text-gray-900">{{userTransaction}}</p>
+              
+            </div>
       </div>
       <!--end-->
       </div>
@@ -279,12 +284,13 @@ import EditInterestModal from './profileEditInterestModal'
 import EditVisitedPlaceModal from './profileEditVisitedPlaceModal'
 import store from "../store/index"
 import moment from 'moment'
+// import api from '../api'
 export default {
   data(){
     return{
       // rating: '4.9',
-      deliveries: '20',
-      orders: '13',
+      deliveries: 0,
+      orders: 0,
       postModalVisible: false,
       postModalVisible1: false,
       postModalVisible2: false,
@@ -343,12 +349,6 @@ export default {
     timestamp(datetime){
       return moment(datetime).format('LL');
     },
-    // getWorks() {
-    //   console.log('works lumabas ka');
-    //   api.get("/api/getWorks").then((res) => {
-    //     this.works = res.data;
-    //     console.log('Works: ', this.works);
-    //   });
       
     
   },
@@ -384,13 +384,34 @@ export default {
       
     userEducs(){
       console.log("ssssss", store.getters.getAuthEducation);
-      return store.getters.getAuthEducation;
-      
+      return store.getters.getAuthEducation.filter((value) => {return (value.email ==  this.account_infos.email)})
     },
-    
+      allTransactions() {
+      return store.getters.getAllTransactions.filter((x) => {
+        return (
+          (x.transactionStatus == "Completed" &&
+            x.transactionReceiver == this.account_infos.email) ||
+          (x.transactionStatus == "Completed" &&
+            x.emailCustomerShopper == this.account_infos.email)
+        );
+      });
+    },
     
   },
   created(){
+    let arr = [];
+
+    this.allTransactions.forEach((value, index) => {
+    arr.push(value);
+    console.log("transaction",value);
+    console.log(index);
+    if(value!=null){
+      if(value.post.postIdentity == "post_offer")
+      this.deliveries = this.deliveries+1;
+      else 
+      this.orders = this.orders+1;
+    }
+    });
   },
   
 }

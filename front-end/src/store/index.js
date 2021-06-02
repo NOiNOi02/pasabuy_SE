@@ -30,7 +30,8 @@ const store = new Vuex.Store({
         authUserFollow: [],
         authEducation: [],
         onlineUsers: [],
-        verifiedUsers:[]
+        verifiedUsers:[],
+        allTransactions: [],
 
 
 
@@ -118,6 +119,9 @@ const store = new Vuex.Store({
         },
         setVerifiedUsers(state,data){
             state.verifiedUsers = data
+        },
+        setAllTransactions(state,data){
+            state.allTransactions = data
         }
 
     },
@@ -386,6 +390,18 @@ const store = new Vuex.Store({
                 console.log(error)
             })
         },
+        async getAllTransactions(state){
+            return api
+            .get('api/getAllTransactions')
+            .then((res)=>{
+                //console.log("RESPONSE",res)
+                let data = res.data
+                state.commit('setAllTransactions',data)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+        },
     },
     modules: {},
     getters: {
@@ -412,6 +428,7 @@ const store = new Vuex.Store({
         getAllLangauges:(state) => state.allLanguages,
         getAllUserAbout:(state) => state.allUserAbout,
         getVerifiedUsers:(state) => state.verifiedUsers,
+        getAllTransactions:(state) => state.allTransactions,
 
     }
 })
