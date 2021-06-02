@@ -166,7 +166,13 @@ class transactionController extends Controller
             return response()->json(["message"=>"Transaction succesfully updated."],201);
         }
         else 
-            return response()->json(["error"=>"Error updating transaction."],401);
-
+        return response()->json(["error"=>"Error updating transaction."],401);
+    }
+    public function getAllTransactions(){
+        $transaction = transaction::with('post','post.offer_post','post.request_post','post.user','post.request_post.shoppingList','transactionSender')
+            ->orderBy('dateCreated','desc')
+              ->get();
+        
+        return response()->json($transaction);
     }
 }

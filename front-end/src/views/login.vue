@@ -193,7 +193,7 @@ export default {
       await store.dispatch("getAllUserAbout");
       await store.dispatch("getAuthEducation");
       await store.dispatch("getVerifiedUsers");
-
+      await store.dispatch("getAllTransactions");
 
     },
   },

@@ -27,6 +27,8 @@ class educationController extends Controller
         ]);
 
         print_r($request->schoolList);
+
+        // echo "";
         
         for($i=0;$i<count($request->schoolList);$i++){
             echo $request->schoolList[$i]["id"] . "-";

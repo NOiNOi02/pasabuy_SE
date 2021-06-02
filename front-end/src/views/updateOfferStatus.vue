@@ -85,6 +85,7 @@ export default {
           console.log(res.data)
           store.dispatch("getPosts").then(() => {
             store.dispatch("getUserTransactions")
+            store.dispatch("getAllTransactions")
             VueSimpleAlert.alert(res.data.message, "Success", "success");
             this.$emit("getSortPosts");
             this.close2()
