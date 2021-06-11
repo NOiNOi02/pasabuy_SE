@@ -3,8 +3,6 @@ import axios from 'axios';
 // import Echo from 'laravel-echo'
 import VueSimpleAlert from 'vue-simple-alert'
 
-console.log('apit token', sessionStorage.getItem("Authorization"))
-
 const api = axios.create({
     baseURL: `http://localhost:8000/`,
     headers: {
@@ -19,7 +17,6 @@ const api = axios.create({
 api.interceptors.request.use(function (config) {
     const token = sessionStorage.getItem("Authorization")
     config.headers.Authorization = `Bearer ` + token;
-    console.log('apiiiiiiiii token', token)
     return config;
 });
 

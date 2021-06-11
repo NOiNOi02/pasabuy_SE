@@ -428,12 +428,17 @@
                             </button>
                             <UpdateOrderStatus
                               v-if="postModalVisible3"
-                              @closeModal3="postModalVisible3=!postModalVisible3"
+                              @closeModal3="
+                                postModalVisible3 = !postModalVisible3
+                              "
                               :post="post_info"
                               @getSortPosts="sortPosts"
                             />
                             <button
-                              @click="postModalVisible3=!postModalVisible3; edit1!=edit1"
+                              @click="
+                                postModalVisible3 = !postModalVisible3;
+                                edit1 != edit1;
+                              "
                               class="flex flex-row text-base font-normal vs:text-sm focus:outline-none gap-x-2"
                             >
                               <span
@@ -907,43 +912,45 @@
                         </p>
                       </button>
                     </div>
-                        <div
-                        id="3dotmenu"
-                        class="vs:mt-1 relative"
-                        v-if="post_info.sharerEmail == user.email"
+                    <div
+                      id="3dotmenu"
+                      class="vs:mt-1 relative"
+                      v-if="post_info.sharerEmail == user.email"
+                    >
+                      <button
+                        @click="
+                          share3dot = !share3dot;
+                          share3dotPostNum = post_info.postNumber;
+                        "
+                        class="focus:outline-none"
                       >
-                        <button
-                          @click="
-                            share3dot = !share3dot;
-                            share3dotPostNum = post_info.postNumber;
-                          "
-                          class="focus:outline-none"
-                        >
-                          <img
-                            class="w-6 h-auto vs:w-4 lvs:w-5 ssm:w-4"
-                            src="img/3dot.svg"
-                          />
-                        </button>
+                        <img
+                          class="w-6 h-auto vs:w-4 lvs:w-5 ssm:w-4"
+                          src="img/3dot.svg"
+                        />
+                      </button>
 
-                        <div class="flex w-full">
-                          <div
-                            v-if="share3dot && share3dotPostNum == post_info.postNumber"
-                            class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
+                      <div class="flex w-full">
+                        <div
+                          v-if="
+                            share3dot &&
+                            share3dotPostNum == post_info.postNumber
+                          "
+                          class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
+                        >
+                          <button
+                            @click="deleteShared(post_info.postNumber)"
+                            class="flex flex-row text-base gap-x-2 vs:text-sm vs:md-14"
                           >
-                          
-                            <button
-                              @click="deleteShared(post_info.postNumber)"
-                              class="flex flex-row text-base gap-x-2 vs:text-sm vs:md-14"
-                            >
-                              <span class="text-gray-500 material-icons"
-                                >delete</span
-                              >Delete
-                            </button>
-                          </div>
+                            <span class="text-gray-500 material-icons"
+                              >delete</span
+                            >Delete
+                          </button>
                         </div>
-                   </div>
+                      </div>
+                    </div>
                   </div>
-               
+
                   <div
                     id="changeBoxRadius"
                     class="h-auto p-6 space-x-4 bg-white shadow vs:p-4 mv:w-full ssm:p-2 ssm:w-full vs:w-full sm:w-full w-608 rounded-xl"
@@ -2030,10 +2037,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="flex text-gray-400 text-xs justify-end">
+                    <!-- <div class="flex text-gray-400 text-xs justify-end">
                       <p>Updated</p>
                       {{ time }}
-                    </div>
+                    </div> -->
                     <hr class="bg-black" />
                     <p class="text-center text-red-500">{{ listError }}</p>
                     <div class="flex justify-between">
@@ -2083,9 +2090,9 @@
                               >
                                 remove
                               </span>
-                              <span class="cursor-pointer material-icons">
-                                more_vert
-                              </span>
+                              <button @click="productOptions(item.id); " class="focus:outline-none flex">
+                                <span class="material-icons"> more_vert </span>
+                              </button>
                             </div>
                           </div>
                         </li>
@@ -2225,8 +2232,10 @@
                       </div>
                     </div>
                     <div class="flex text-gray-400 text-xs justify-end">
-                      <p>Updated</p>
-                      {{ time }}
+                      <p>
+                        Last updated
+                        {{ timestamp(shoppingLists[0].dateModified) }}
+                      </p>
                     </div>
                     <hr class="bg-black" />
                     <p class="text-center text-red-500">{{ listError }}</p>
@@ -2272,14 +2281,14 @@
                                 <p>{{ item.quantity }}</p>
                               </div>
                               <span
-                                @click="item.quantity =minusQty(item.quantity)"
+                                @click="item.quantity = minusQty(item.quantity)"
                                 class="material-icons select-none cursor-pointer text-red-700"
                               >
                                 remove
                               </span>
-                              <span class="cursor-pointer material-icons">
-                                more_vert
-                              </span>
+                              <button class="focus:outline-none flex">
+                                <span class="material-icons"> more_vert </span>
+                              </button>
                             </div>
                           </div>
                         </li>
@@ -2568,8 +2577,8 @@ export default {
   },
   data() {
     return {
-      share3dot:false,
-      share3dotPostNum:null,
+      share3dot: false,
+      share3dotPostNum: null,
       ctrProp: 0,
       brandSearchTag: false,
       popUp3: false,
@@ -2792,8 +2801,8 @@ export default {
     },
   },
   methods: {
-    deleteShared(postNum){
-       api.delete("api/sharedPost/" + postNum + "/delete").then(() => {
+    deleteShared(postNum) {
+      api.delete("api/sharedPost/" + postNum + "/delete").then(() => {
         store.dispatch("getAllShares").then(() => {
           this.sortPosts();
           this.changeFilter();
@@ -3028,18 +3037,15 @@ export default {
         listName: document.getElementById("new_title").value,
         list: this.new_items,
       };
-      console.log("edit list", this.new_items);
-      console.log("edit list", listNumber);
-      console.log("edit list", obj);
 
       this.shopping_list.push(obj);
       api
         .post("api/editList/" + listNumber, obj)
         .then((res) => {
+          console.log("edit", res.data);
           store.dispatch("getUserShoppingList").then(() => {
             this.selectedList = res.data;
             this.showItemList = true;
-            console.log("before", this.selectedList, this.showItemList);
             this.new_items = [];
             this.Editlist = false;
             if (this.listToggleFlag) this.togglePostModal();
