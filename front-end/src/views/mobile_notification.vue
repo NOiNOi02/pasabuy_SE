@@ -279,17 +279,17 @@ export default {
         });
       }
     },
-    timestamp(datetime) {
-      var postedDate = new Date(datetime);
+       timestamp(datetime) {
+      var postedDate = moment(datetime);
       const today = moment().endOf("day");
       const yesterday = moment().add(-1, "day").endOf("day");
-
-      if (postedDate < today)
-        return moment(datetime).format("[Today at] h:mm a");
-      if (postedDate > yesterday)
+      if (moment(postedDate).isBefore(yesterday))
         return moment(datetime).format("[Yesterday at] h:mm a");
+      if (moment(postedDate).isBefore(today))
+        return moment(datetime).format("[Today at] h:mm a");
       else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
     },
+ 
   },
   computed: {
     allNotifications() {

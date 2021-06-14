@@ -510,20 +510,32 @@ export default {
         this.allOrders = this.orders;
       }
     },
-    timestampSched(datetime) {
-      var schedDate = new Date(datetime);
-      var dateToday = new Date();
-      var dateDiff = schedDate.getTime() - dateToday.getTime();
-      dateDiff = dateDiff / (1000 * 3600 * 24);
-      console.log(dateDiff);
-      if (dateDiff < 1 && dateDiff > 0)
+       timestamp(datetime) {
+      var postedDate = moment(datetime);
+      const today = moment().endOf("day");
+      const yesterday = moment().add(-1, "day").endOf("day");
+      if (moment(postedDate).isBefore(yesterday))
+        return moment(datetime).format("[Yesterday at] h:mm a");
+      if (moment(postedDate).isBefore(today))
         return moment(datetime).format("[Today at] h:mm a");
-      else if (dateDiff >= 1 && dateDiff < 2)
-        return moment(datetime).format("[Tommorow at] h:mm a");
-      else return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
+      else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
     },
-    timestamp(datetime) {
-      return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
+    timestampSched(datetime) {
+      var schedDate = moment(datetime);
+      const today = moment();
+      const startOfTomorrow = moment().add(1, "day").startOf("day");
+      const endOfTomorrow = moment().add(1, "day").endOf("day");
+     
+      if (moment(schedDate).isBefore(today)) {
+        return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
+      }
+      if (moment(schedDate).isAfter(today)) {
+        if (moment(schedDate).isAfter(endOfTomorrow))
+          return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
+        if (moment(schedDate).isBefore(startOfTomorrow))
+          return moment(datetime).format("[Today at] h:mm a");
+        else return moment(datetime).format("[Tommorow at] h:mm a");
+      }
     },
     toEncrypt(val) {
       return btoa(val);
