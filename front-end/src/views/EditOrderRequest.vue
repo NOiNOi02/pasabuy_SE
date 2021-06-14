@@ -1152,16 +1152,17 @@ export default {
       this.Quantity = 1;
       this.addNewListFlag = true;
     },
-    timestamp(datetime) {
-      var postedDate = new Date(datetime);
-      var dateToday = new Date();
-      var dateDiff = dateToday.getTime() - postedDate.getTime();
-      dateDiff = dateDiff / (1000 * 3600 * 24);
-      if (dateDiff < 1) return moment(datetime).format("[Today at] h:mm a");
-      else if (dateDiff >= 1 && dateDiff < 2)
+      timestamp(datetime) {
+      var postedDate = moment(datetime);
+      const today = moment().endOf("day");
+      const yesterday = moment().add(-1, "day").endOf("day");
+      if (moment(postedDate).isBefore(yesterday))
         return moment(datetime).format("[Yesterday at] h:mm a");
+      if (moment(postedDate).isBefore(today))
+        return moment(datetime).format("[Today at] h:mm a");
       else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
     },
+ 
     minusQty(q){
       q--
       if(q<=0)

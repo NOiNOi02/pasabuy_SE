@@ -144,33 +144,60 @@
             <p class="text-gray-500">Notifications</p>
           </div></router-link
         >
-        <router-link to="/edit-profile" class="rounded-2xl">
-          <div class="mobile rounded-2xl items-center flex h-10 pl-2 space-x-2">
-            <span class="material-icons"> account_circle </span>
-            <p class="text-gray-500">Profile</p>
+         
+          <div class="mobile rounded-2xl items-center flex h-10 pl-2 space-x-2" style="margin-top:0px">
+            <button
+              @click="setDispatches(user.email)"
+              class="flex flex-row gap-x-2 text-black"
+            >
+              <span class="material-icons text-gray-500">account_circle</span
+              > <p class="text-gray-500 font-bold">Profile</p>
+            </button>
           </div>
-        </router-link>
+        
         <hr />
-        <router-link to="/orders" :class="{ disabled: !ifUserVerified(user.email) }" class="rounded-2xl">
+        <router-link
+          to="/orders"
+          :class="{ disabled: !ifUserVerified(user.email) }"
+          class="rounded-2xl"
+        >
           <div
             class="mobile rounded-2xl items-center flex h-10 mt-4 pl-2 space-2-x-4"
           >
             <span class="material-icons"> shopping_bag </span>
-            <p class="text-gray-500">Orders</p><span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
-        </div></router-link
-      >
-        <router-link to="/deliver" :class="{ disabled: !ifUserVerified(user.email) }" class="rounded-2xl">
+            <p class="text-gray-500">Orders</p>
+            <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)"
+              >Get Verified</span
+            >
+          </div></router-link
+        >
+        <router-link
+          to="/deliver"
+          :class="{ disabled: !ifUserVerified(user.email) }"
+          class="rounded-2xl"
+        >
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> delivery_dining </span>
-             <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
+            <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)"
+              >Get Verified</span
+            >
             <p class="text-gray-500">Deliveries</p>
           </div></router-link
         >
-        <button to="/shopping-list" class="rounded-2xl" :class="{ disabled:true }">
+        <button
+          to="/shopping-list"
+          class="rounded-2xl"
+          :class="{ disabled: true }"
+        >
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> list </span>
-            <p class="text-gray-500">Shopping Lists</p><span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
-          <span class="pl-5 text-gray-400" v-else>Under Maintenance</span></div></button>
+            <p class="text-gray-500">Shopping Lists</p>
+            <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)"
+              >Get Verified</span
+            >
+            <span class="pl-5 text-gray-400" v-else>Under Maintenance</span>
+          </div>
+        </button>
         <router-link to="/account-settings" class="rounded-2xl">
           <div class="mobile rounded-2xl items-center flex h-10 space-x-2 pl-2">
             <span class="material-icons"> manage_accounts </span>
@@ -217,7 +244,7 @@ export default {
     };
   },
   methods: {
-        ifUserVerified(email) {
+    ifUserVerified(email) {
       var temp = this.verifiedUsers.filter((x) => {
         return x.email === email && x.verifyStatus == "verified";
       });
@@ -237,24 +264,50 @@ export default {
         if (x.postIdentity == "offer_post") {
           if (x.offer_post.caption != null) {
             return (
-              x.offer_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.deliveryArea.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.transportMode.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.capacity.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.caption.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.postStatus
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.deliveryArea
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.shoppingPlace
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.transportMode
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.paymentMethod
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.capacity
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.caption
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
               x.user.firstName.toLowerCase().includes(input.toLowerCase()) ||
               x.user.lastName.toLowerCase().includes(input.toLowerCase())
             );
           } else {
             return (
-              x.offer_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.deliveryArea.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.transportMode.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
-              x.offer_post.capacity.toLowerCase().includes(input.toLowerCase()) ||
+              x.offer_post.postStatus
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.deliveryArea
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.shoppingPlace
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.transportMode
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.paymentMethod
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.offer_post.capacity
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
               x.user.firstName.toLowerCase().includes(input.toLowerCase()) ||
               x.user.lastName.toLowerCase().includes(input.toLowerCase())
             );
@@ -262,11 +315,21 @@ export default {
         } else if (x.postIdentity == "request_post") {
           if (x.request_post.caption != null) {
             return (
-              x.request_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.deliveryAddress.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.caption.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.postStatus
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.deliveryAddress
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.shoppingPlace
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.paymentMethod
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.caption
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
               JSON.stringify(x.request_post.shoppingListContent).includes(
                 input
               ) ||
@@ -275,10 +338,18 @@ export default {
             );
           } else {
             return (
-              x.request_post.postStatus.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.deliveryAddress.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.shoppingPlace.toLowerCase().includes(input.toLowerCase()) ||
-              x.request_post.paymentMethod.toLowerCase().includes(input.toLowerCase()) ||
+              x.request_post.postStatus
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.deliveryAddress
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.shoppingPlace
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
+              x.request_post.paymentMethod
+                .toLowerCase()
+                .includes(input.toLowerCase()) ||
               JSON.stringify(x.request_post.shoppingListContent).includes(
                 input
               ) ||
@@ -291,10 +362,10 @@ export default {
         }
       });
 
-       this.$router.push({
-              name: "search",
-              query: { search: this.toEncrypt(JSON.stringify(result)) },
-            });
+      this.$router.push({
+        name: "search",
+        query: { search: this.toEncrypt(JSON.stringify(result)) },
+      });
       console.log(result);
     },
     toggle_event() {
@@ -320,13 +391,11 @@ export default {
         api.get("api/getNotifications"),
         api.get("api/getTransaction"),
       ]).then((resArr) => {
-        store.dispatch("getPosts").then(()=>{
- store.commit("setUnreadNotifications", resArr[0].data);
-        store.commit("setNotifications", resArr[1].data);
-        store.commit("setUserTransactions", resArr[2].data);
-        })
-       
-        
+        store.dispatch("getPosts").then(() => {
+          store.commit("setUnreadNotifications", resArr[0].data);
+          store.commit("setNotifications", resArr[1].data);
+          store.commit("setUserTransactions", resArr[2].data);
+        });
       });
     }, 2000),
     debounceMethodGetPosts: _.debounce(() => {
@@ -465,8 +534,8 @@ export default {
   color: #cd0f0f;
 }
 .disabled {
-    opacity: 0.5;
-    pointer-events: none;
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>
  

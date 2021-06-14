@@ -346,8 +346,32 @@ export default {
     listener2(){
       this.postModalVisible2 = false;
     },
-    timestamp(datetime){
-      return moment(datetime).format('LL');
+       timestamp(datetime) {
+      var postedDate = moment(datetime);
+      const today = moment().endOf("day");
+      const yesterday = moment().add(-1, "day").endOf("day");
+      if (moment(postedDate).isBefore(yesterday))
+        return moment(datetime).format("[Yesterday at] h:mm a");
+      if (moment(postedDate).isBefore(today))
+        return moment(datetime).format("[Today at] h:mm a");
+      else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
+    },
+    timestampSched(datetime) {
+      var schedDate = moment(datetime);
+      const today = moment();
+      const startOfTomorrow = moment().add(1, "day").startOf("day");
+      const endOfTomorrow = moment().add(1, "day").endOf("day");
+     
+      if (moment(schedDate).isBefore(today)) {
+        return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
+      }
+      if (moment(schedDate).isAfter(today)) {
+        if (moment(schedDate).isAfter(endOfTomorrow))
+          return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
+        if (moment(schedDate).isBefore(startOfTomorrow))
+          return moment(datetime).format("[Today at] h:mm a");
+        else return moment(datetime).format("[Tommorow at] h:mm a");
+      }
     },
       
     

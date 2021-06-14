@@ -1,16 +1,67 @@
 <template class="bg-gray-bgcolor">
   <Navbar />
   <div
-    class="flex flex-wrap pt-4 pb-24 overflow-hidden lg:h-screen xl:h-screen llg:justify-center llg:px-10 mv:pt-5 vs:pt-9 bg-gray-bgcolor vs:flex-col sm:flex-col font-nunito md:flex-col"
+    class="
+      flex flex-wrap
+      pt-4
+      pb-24
+      overflow-hidden
+      lg:h-screen
+      xl:h-screen
+      llg:justify-center
+      llg:px-10
+      mv:pt-5
+      vs:pt-9
+      bg-gray-bgcolor
+      vs:flex-col
+      sm:flex-col
+      font-nunito
+      md:flex-col
+    "
   >
     <div
-      class="flex w-3/5 xl:h-screen 2xl:h-screen lg:h-screen xl:overflow-hidden lg:overflow-hidden 2xl:overflow-hidden llg:w-65 vs:w-full xsm:w-full sm:w-full md:w-full ssm:w-full"
+      class="
+        flex
+        w-3/5
+        xl:h-screen
+        2xl:h-screen
+        lg:h-screen
+        xl:overflow-hidden
+        lg:overflow-hidden
+        2xl:overflow-hidden
+        llg:w-65
+        vs:w-full
+        xsm:w-full
+        sm:w-full
+        md:w-full
+        ssm:w-full
+      "
     >
       <div
-        class="pt-4 xl:overflow-y-scroll lg:overflow-y-scroll 2xl:overflow-y-scroll bg-gray-bgcolor mv:pt-1 font-nunito rounded-xl llg:pl-5"
+        class="
+          pt-4
+          xl:overflow-y-scroll
+          lg:overflow-y-scroll
+          2xl:overflow-y-scroll
+          bg-gray-bgcolor
+          mv:pt-1
+          font-nunito
+          rounded-xl
+          llg:pl-5
+        "
       >
         <div
-          class="w-full min-w-0 px-2 ssm:h-auto ssm:pb-6 vs:h-auto vs:pb-6 sm:pb-6 rounded-xl"
+          class="
+            w-full
+            min-w-0
+            px-2
+            ssm:h-auto
+            ssm:pb-6
+            vs:h-auto
+            vs:pb-6
+            sm:pb-6
+            rounded-xl
+          "
         >
           <!--Modal-->
           <PostModal
@@ -25,7 +76,25 @@
 
           <div class="flex items-center justify-center pt-16 dv:float-right">
             <div
-              class="inline-flex items-center justify-center p-6 space-x-4 bg-white shadow w-608 rounded-xl ssm:space-x-2 vs:w-full sm:w-full ssm:w-full ssm:p-2 vs:p-4 rounded-x md:w-full"
+              class="
+                inline-flex
+                items-center
+                justify-center
+                p-6
+                space-x-4
+                bg-white
+                shadow
+                w-608
+                rounded-xl
+                ssm:space-x-2
+                vs:w-full
+                sm:w-full
+                ssm:w-full
+                ssm:p-2
+                vs:p-4
+                rounded-x
+                md:w-full
+              "
             >
               <img
                 class="rounded-full w-14 h-14 vs:w-10 vs:h-10 ssm:w-10 ssm:h-10"
@@ -34,7 +103,31 @@
               <button
                 @click="togglePostModal"
                 :disabled="!ifUserVerified(user.email)"
-                class="flex items-center justify-start py-5 pl-6 text-base leading-none text-gray-500 bg-gray-100 rounded-full outline-none md:w-full focus:outline-none lvs:text-sm vs:text-xs ssm:text-xs vs:h-12 ssm:h-10 h-14 w-448 vs:w-full ssm:w-full x-v:text-sm"
+                class="
+                  flex
+                  items-center
+                  justify-start
+                  py-5
+                  pl-6
+                  text-base
+                  leading-none
+                  text-gray-500
+                  bg-gray-100
+                  rounded-full
+                  outline-none
+                  md:w-full
+                  focus:outline-none
+                  lvs:text-sm
+                  vs:text-xs
+                  ssm:text-xs
+                  vs:h-12
+                  ssm:h-10
+                  h-14
+                  w-448
+                  vs:w-full
+                  ssm:w-full
+                  x-v:text-sm
+                "
               >
                 <span v-if="ifUserVerified(user.email)"
                   >Post a Shopping Offer or an Order Request</span
@@ -47,40 +140,133 @@
 
           <!--FILTER--->
           <div
-            class="relative flex items-center justify-center pt-6 ssm:justify-around x-v:pt-2 dv:float-right"
+            class="
+              relative
+              flex
+              items-center
+              justify-center
+              pt-6
+              ssm:justify-around
+              x-v:pt-2
+              dv:float-right
+            "
           >
             <div
-              class="justify-center h-auto bg-transparent ssm:px-0 dv:space-x-4 mv:w-full ssm:p-2 ssm:w-full dv:w-608 rounded-xl"
+              class="
+                justify-center
+                h-auto
+                bg-transparent
+                ssm:px-0
+                dv:space-x-4
+                mv:w-full
+                ssm:p-2
+                ssm:w-full
+                dv:w-608
+                rounded-xl
+              "
             >
               <div
-                class="flex items-start justify-start dv:flex-wrap ssm:space-x-0 ssm:space-y-2 ssm:flex-col ssm:justify-start"
+                class="
+                  flex
+                  items-start
+                  justify-start
+                  dv:flex-wrap
+                  ssm:space-x-0 ssm:space-y-2
+                  ssm:flex-col
+                  ssm:justify-start
+                "
               >
                 <button
                   type="button"
-                  class="mr-4 vs:mr-2 inline-flex ssm:float-left 2xl:w-50 ssm:px-0 justify-around px-3 py-1.5 text-sm font-bold text-black align-bottom bg-white vsv:text-xs vs:text-xs ssm:text-xs font-nunito border border-gray-300 rounded-full shadow-sm w-44 sm:w-full mv-filterbutton1 hover:bg-gray-50 focus:outline-none"
+                  class="
+                    mr-4
+                    vs:mr-2
+                    inline-flex
+                    ssm:float-left
+                    2xl:w-50
+                    ssm:px-0
+                    justify-around
+                    px-3
+                    py-1.5
+                    text-sm
+                    font-bold
+                    text-black
+                    align-bottom
+                    bg-white
+                    vsv:text-xs
+                    vs:text-xs
+                    ssm:text-xs
+                    font-nunito
+                    border border-gray-300
+                    rounded-full
+                    shadow-sm
+                    w-44
+                    sm:w-full
+                    mv-filterbutton1
+                    hover:bg-gray-50
+                    focus:outline-none
+                  "
                   id="options-menu x-v:text-sm"
                   @click="filter = !filter"
                 >
                   <span
-                    class="pr-1 mt-0.5 ssm:pr-0 x-v:mt-0 align-bottom material-icons-round md-24 vsv:pr-0.5"
+                    class="
+                      pr-1
+                      mt-0.5
+                      ssm:pr-0
+                      x-v:mt-0
+                      align-bottom
+                      material-icons-round
+                      md-24
+                      vsv:pr-0.5
+                    "
                   >
                     {{ filter1Logo }}
                   </span>
                   <label
                     for=""
-                    class="pt-1 vs:py-1 se:py-1.5 cursor-pointer se:text-xs x-v:text-sm"
+                    class="
+                      pt-1
+                      vs:py-1
+                      se:py-1.5
+                      cursor-pointer
+                      se:text-xs
+                      x-v:text-sm
+                    "
                   >
                     {{ filter1Value }}</label
                   >
                   <span
-                    class="pt-1 x-v:pt-0.5 ssm:pl-0 vsv:pl-1 pl-2 text-gray-500 align-middle md-24 material-icons"
+                    class="
+                      pt-1
+                      x-v:pt-0.5
+                      ssm:pl-0
+                      vsv:pl-1
+                      pl-2
+                      text-gray-500
+                      align-middle
+                      md-24
+                      material-icons
+                    "
                   >
                     arrow_drop_down
                   </span>
                 </button>
                 <!---------OPTIONS----------->
                 <div
-                  class="absolute z-20 font-bold origin-top-right bg-white rounded-lg shadow-lg top-15 w-44 focus:outline-none x-v:leading-tight"
+                  class="
+                    absolute
+                    z-20
+                    font-bold
+                    origin-top-right
+                    bg-white
+                    rounded-lg
+                    shadow-lg
+                    top-15
+                    w-44
+                    focus:outline-none
+                    x-v:leading-tight
+                  "
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="options-menu"
@@ -88,7 +274,16 @@
                   <div class="py-1" role="none" v-if="filter">
                     <a
                       href="#"
-                      class="block px-4 py-2 text-xs font-light tracking-wider text-gray-500 font-raleway"
+                      class="
+                        block
+                        px-4
+                        py-2
+                        text-xs
+                        font-light
+                        tracking-wider
+                        text-gray-500
+                        font-raleway
+                      "
                       aria-disabled
                       role="menuitem"
                     >
@@ -106,7 +301,14 @@
                       role="menuitem"
                     >
                       <span
-                        class="pr-3 x-v:mt-0 mt-0.5 align-bottom material-icons-round text-gray-600"
+                        class="
+                          pr-3
+                          x-v:mt-0
+                          mt-0.5
+                          align-bottom
+                          material-icons-round
+                          text-gray-600
+                        "
                       >
                         view_stream
                       </span>
@@ -124,7 +326,13 @@
                       role="menuitem"
                     >
                       <span
-                        class="pr-3 mt-0.5 align-bottom material-icons text-gray-600"
+                        class="
+                          pr-3
+                          mt-0.5
+                          align-bottom
+                          material-icons
+                          text-gray-600
+                        "
                       >
                         delivery_dining </span
                       >Shopping Offer</a
@@ -141,7 +349,13 @@
                       role="menuitem"
                     >
                       <span
-                        class="pr-3 mt-0.5 align-bottom material-icons text-gray-600"
+                        class="
+                          pr-3
+                          mt-0.5
+                          align-bottom
+                          material-icons
+                          text-gray-600
+                        "
                       >
                         shopping_bag </span
                       >Order Requests</a
@@ -152,12 +366,55 @@
 
                 <button
                   type="button"
-                  class="2xl:w-64 inline-flex px-3 vs:px-0 sm:px-0 mv:right-0 mv:float-right justify-around w-48 lvs:w-48 sm:w-full py-1.5 text-sm font-bold text-black bg-white s-sm:float-right border-gray-300 vs:w-56 mv-filterbutton1 rounded-full vs:ml-0 shadow-sm align-bottom x-v:text-sm hover:bg-gray-50 vvs:px-0 vvs:w-44 focus:outline-none vsv:text-xs"
+                  class="
+                    2xl:w-64
+                    inline-flex
+                    px-3
+                    vs:px-0
+                    sm:px-0
+                    mv:right-0
+                    mv:float-right
+                    justify-around
+                    w-48
+                    lvs:w-48
+                    sm:w-full
+                    py-1.5
+                    text-sm
+                    font-bold
+                    text-black
+                    bg-white
+                    s-sm:float-right
+                    border-gray-300
+                    vs:w-56
+                    mv-filterbutton1
+                    rounded-full
+                    vs:ml-0
+                    shadow-sm
+                    align-bottom
+                    x-v:text-sm
+                    hover:bg-gray-50
+                    vvs:px-0
+                    vvs:w-44
+                    focus:outline-none
+                    vsv:text-xs
+                  "
                   id="options-menu x-v:text-sm"
                   @click="filter2 = !filter2"
                 >
                   <span
-                    class="pt-1 pr-2 lvs:pr-1 se:pt-0.5 se:pl-1 se:pr-0 vs:pl-2 align-middle vvs:pr-1 material-icons x-v:pt-0"
+                    class="
+                      pt-1
+                      pr-2
+                      lvs:pr-1
+                      se:pt-0.5
+                      se:pl-1
+                      se:pr-0
+                      vs:pl-2
+                      align-middle
+                      vvs:pr-1
+                      material-icons
+                      x-v:pt-0
+                    "
                   >
                     {{ filter2Logo }}
                   </span>
@@ -168,7 +425,19 @@
                     {{ filter2Value }}</label
                   >
                   <span
-                    class="pt-1 pl-2 vs:pl-0 se:pt-0.5 x-v:pt-0.5 text-gray-500 align-middle vvs:pl-1 md-24 x-v:md-18 material-icons"
+                    class="
+                      pt-1
+                      pl-2
+                      vs:pl-0
+                      se:pt-0.5
+                      x-v:pt-0.5
+                      text-gray-500
+                      align-middle
+                      vvs:pl-1
+                      md-24
+                      x-v:md-18
+                      material-icons
+                    "
                   >
                     arrow_drop_down
                   </span>
@@ -176,7 +445,27 @@
 
                 <!---------OPTIONS----------->
                 <div
-                  class="absolute z-20 font-bold origin-top-right bg-white rounded-lg shadow-lg ssm:float-left ssm:right-0 ssm:left-0 right-60 lvs:left-48 w-44 top-15 ssm:top-266 2xl:left-58 2xl:w-60 focus:outline-none mv:right-2"
+                  class="
+                    absolute
+                    z-20
+                    font-bold
+                    origin-top-right
+                    bg-white
+                    rounded-lg
+                    shadow-lg
+                    ssm:float-left
+                    ssm:right-0
+                    ssm:left-0
+                    right-60
+                    lvs:left-48
+                    w-44
+                    top-15
+                    ssm:top-266
+                    2xl:left-58
+                    2xl:w-60
+                    focus:outline-none
+                    mv:right-2
+                  "
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="options-menu"
@@ -184,7 +473,16 @@
                   <div class="py-1" role="none" v-if="filter2">
                     <a
                       href="#"
-                      class="block px-4 py-2 text-xs font-light tracking-wider text-gray-500 font-raleway"
+                      class="
+                        block
+                        px-4
+                        py-2
+                        text-xs
+                        font-light
+                        tracking-wider
+                        text-gray-500
+                        font-raleway
+                      "
                       aria-disabled
                       role="menuitem"
                     >
@@ -236,28 +534,84 @@
             <div v-if="post_info.indexShare == null">
               <div
                 id="shopOffer-UserPost"
-                class="flex items-center justify-center pt-6 x-v:pt-2 dv:float-right"
+                class="
+                  flex
+                  items-center
+                  justify-center
+                  pt-6
+                  x-v:pt-2
+                  dv:float-right
+                "
               >
                 <div
                   id="changeBoxRadius"
-                  class="h-auto p-6 space-x-4 bg-white shadow vs:p-4 mv:w-full ssm:p-2 ssm:w-full vs:w-full sm:w-full w-608 rounded-xl"
+                  class="
+                    h-auto
+                    p-6
+                    space-x-4
+                    bg-white
+                    shadow
+                    vs:p-4
+                    mv:w-full
+                    ssm:p-2
+                    ssm:w-full
+                    vs:w-full
+                    sm:w-full
+                    w-608
+                    rounded-xl
+                  "
                 >
                   <div class="flex flex-col items-start justify-start">
                     <!--section 1-->
                     <div class="flex flex-row justify-between flex-grow w-full">
                       <div class="inline-flex">
                         <img
-                          class="rounded-full x-v:absolute w-14 h-14 vs:w-10 vs:h-10 ssm:w-10 ssm:h-10"
+                          class="
+                            rounded-full
+                            x-v:absolute
+                            w-14
+                            h-14
+                            vs:w-10
+                            vs:h-10
+                            ssm:w-10
+                            ssm:h-10
+                          "
                           :src="post_info.user.profilePicture"
                         />
                         <div
-                          class="flex flex-col items-start w-full px-4 vs:px-1 se:px-2 ssm:px-2"
+                          class="
+                            flex flex-col
+                            items-start
+                            w-full
+                            px-4
+                            vs:px-1
+                            se:px-2
+                            ssm:px-2
+                          "
                         >
                           <div
-                            class="flex mt-1 space-x-4 ssm:space-x-0 se:space-x-0 vs:space-x-1 sm:space-x-2"
+                            class="
+                              flex
+                              mt-1
+                              space-x-4
+                              ssm:space-x-0
+                              se:space-x-0
+                              vs:space-x-1
+                              sm:space-x-2
+                            "
                           >
                             <h5
-                              class="text-base font-bold leading-none text-gray-900 x-v:pl-10 vsv:text-xs ssm:text-sm vs:text-sm lvs:text-sm"
+                              class="
+                                text-base
+                                font-bold
+                                leading-none
+                                text-gray-900
+                                x-v:pl-10
+                                vsv:text-xs
+                                ssm:text-sm
+                                vs:text-sm
+                                lvs:text-sm
+                              "
                             >
                               <button
                                 class="font-bold"
@@ -268,27 +622,60 @@
                               </button>
                               <span
                                 v-if="ifUserVerified(post_info.user.email)"
-                                class="pl-1 inline-block text-blue-900 align-middle material-icons-round md-18"
+                                class="
+                                  pl-1
+                                  inline-block
+                                  text-blue-900
+                                  align-middle
+                                  material-icons-round
+                                  md-18
+                                "
                               >
                                 verified
                               </span>
                               <label
                                 v-if="post_info.offer_post != null"
-                                class="pl-1 font-normal text-gray-500 align-top vs:font-light"
+                                class="
+                                  pl-1
+                                  font-normal
+                                  text-gray-500
+                                  align-top
+                                  vs:font-light
+                                "
                                 >posted a shopping offer</label
                               >
                               <label
                                 v-if="post_info.request_post != null"
-                                class="pl-1 font-normal text-gray-500 align-top vs:font-light"
+                                class="
+                                  pl-1
+                                  font-normal
+                                  text-gray-500
+                                  align-top
+                                  vs:font-light
+                                "
                                 >posted an order request</label
                               >
                             </h5>
                           </div>
                           <div
-                            class="vs:flex vs:w-full ssm:w-full ssm:flex vs:pb-2 x-v:ml-10"
+                            class="
+                              vs:flex
+                              vs:w-full
+                              ssm:w-full
+                              ssm:flex
+                              vs:pb-2
+                              x-v:ml-10
+                            "
                           >
                             <span
-                              class="text-sm leading-none text-gray-500 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                text-sm
+                                leading-none
+                                text-gray-500
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                               >{{ timestamp(post_info.dateCreated) }}</span
                             >
                           </div>
@@ -318,7 +705,25 @@
                         <div class="flex w-full">
                           <div
                             v-if="edit1 && edit2 == post_info.postNumber"
-                            class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
+                            class="
+                              absolute
+                              py-2
+                              pt-2
+                              pl-2
+                              pr-4
+                              leading-loose
+                              bg-white
+                              rounded-lg
+                              shadow-xl
+                              ssm:right-5
+                              vs:right-5
+                              sm:right-5
+                              lg:right-0
+                              md:right-5
+                              xl:right-0
+                              h-min
+                              w-40
+                            "
                           >
                             <EditShoppingOfferPostVue
                               v-if="postModalVisible1"
@@ -329,10 +734,21 @@
 
                             <button
                               @click="togglePostModal1"
-                              class="flex flex-row text-base vs:text-sm gap-x-2 focus:outline-none"
+                              class="
+                                flex flex-row
+                                text-base
+                                vs:text-sm
+                                gap-x-2
+                                focus:outline-none
+                              "
                             >
                               <span
-                                class="font-medium text-gray-500 material-icons vs:md-14"
+                                class="
+                                  font-medium
+                                  text-gray-500
+                                  material-icons
+                                  vs:md-14
+                                "
                               >
                                 mode
                               </span>
@@ -348,10 +764,22 @@
 
                             <button
                               @click="togglePostModal2"
-                              class="flex flex-row text-base font-normal vs:text-sm focus:outline-none gap-x-2"
+                              class="
+                                flex flex-row
+                                text-base
+                                font-normal
+                                vs:text-sm
+                                focus:outline-none
+                                gap-x-2
+                              "
                             >
                               <span
-                                class="font-normal text-gray-500 material-icons vs:md-14"
+                                class="
+                                  font-normal
+                                  text-gray-500
+                                  material-icons
+                                  vs:md-14
+                                "
                               >
                                 autorenew
                               </span>
@@ -360,7 +788,13 @@
 
                             <button
                               @click="deletePost(post_info.postNumber)"
-                              class="flex flex-row text-base gap-x-2 vs:text-sm vs:md-14"
+                              class="
+                                flex flex-row
+                                text-base
+                                gap-x-2
+                                vs:text-sm
+                                vs:md-14
+                              "
                             >
                               <span class="text-gray-500 material-icons"
                                 >delete</span
@@ -392,7 +826,25 @@
                         <div class="flex w-full">
                           <div
                             v-if="edit1 && edit2 == post_info.postNumber"
-                            class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
+                            class="
+                              absolute
+                              py-2
+                              pt-2
+                              pl-2
+                              pr-4
+                              leading-loose
+                              bg-white
+                              rounded-lg
+                              shadow-xl
+                              ssm:right-5
+                              vs:right-5
+                              sm:right-5
+                              lg:right-0
+                              md:right-5
+                              xl:right-0
+                              h-min
+                              w-40
+                            "
                           >
                             <span
                               v-if="
@@ -417,10 +869,21 @@
                             />
                             <button
                               @click="togglePostModal1"
-                              class="flex flex-row text-base vs:text-sm gap-x-2 focus:outline-none"
+                              class="
+                                flex flex-row
+                                text-base
+                                vs:text-sm
+                                gap-x-2
+                                focus:outline-none
+                              "
                             >
                               <span
-                                class="font-medium text-gray-500 material-icons vs:md-14"
+                                class="
+                                  font-medium
+                                  text-gray-500
+                                  material-icons
+                                  vs:md-14
+                                "
                               >
                                 mode
                               </span>
@@ -428,16 +891,33 @@
                             </button>
                             <UpdateOrderStatus
                               v-if="postModalVisible3"
-                              @closeModal3="postModalVisible3=!postModalVisible3"
+                              @closeModal3="
+                                postModalVisible3 = !postModalVisible3
+                              "
                               :post="post_info"
                               @getSortPosts="sortPosts"
                             />
                             <button
-                              @click="postModalVisible3=!postModalVisible3; edit1!=edit1"
-                              class="flex flex-row text-base font-normal vs:text-sm focus:outline-none gap-x-2"
+                              @click="
+                                postModalVisible3 = !postModalVisible3;
+                                edit1 != edit1;
+                              "
+                              class="
+                                flex flex-row
+                                text-base
+                                font-normal
+                                vs:text-sm
+                                focus:outline-none
+                                gap-x-2
+                              "
                             >
                               <span
-                                class="font-normal text-gray-500 material-icons vs:md-14"
+                                class="
+                                  font-normal
+                                  text-gray-500
+                                  material-icons
+                                  vs:md-14
+                                "
                               >
                                 autorenew
                               </span>
@@ -445,7 +925,13 @@
                             </button>
                             <button
                               @click="deletePost(post_info.postNumber)"
-                              class="flex flex-row text-base gap-x-2 vs:text-sm vs:md-14"
+                              class="
+                                flex flex-row
+                                text-base
+                                gap-x-2
+                                vs:text-sm
+                                vs:md-14
+                              "
                             >
                               <span class="text-gray-500 material-icons"
                                 >delete</span
@@ -459,7 +945,18 @@
 
                     <!--section 2-->
                     <div
-                      class="inline-flex mt-4 items-center space-x-2 justify-start px-2 py-1 bg-gray-100 rounded-full text-green-600"
+                      class="
+                        inline-flex
+                        mt-4
+                        items-center
+                        space-x-2
+                        justify-start
+                        px-2
+                        py-1
+                        bg-gray-100
+                        rounded-full
+                        text-green-600
+                      "
                       v-if="
                         post_info.postStatus != 'Accepting Requests' &&
                         post_info.postStatus != 'Accepting Offer'
@@ -469,14 +966,34 @@
                         remove_circle_outline
                       </span>
                       <p
-                        class="text-sm vs:text-xs ssm:text-xs lvs:text-sm font-bold leading-none items-center text-red-600"
+                        class="
+                          text-sm
+                          vs:text-xs
+                          ssm:text-xs
+                          lvs:text-sm
+                          font-bold
+                          leading-none
+                          items-center
+                          text-red-600
+                        "
                       >
                         {{ post_info.postStatus }}
                       </p>
                     </div>
 
                     <div
-                      class="inline-flex mt-4 items-center space-x-2 justify-start px-2 py-1 bg-gray-100 rounded-full text-green-600"
+                      class="
+                        inline-flex
+                        mt-4
+                        items-center
+                        space-x-2
+                        justify-start
+                        px-2
+                        py-1
+                        bg-gray-100
+                        rounded-full
+                        text-green-600
+                      "
                       v-if="
                         post_info.postStatus === 'Accepting Requests' ||
                         post_info.postStatus === 'Accepting Offer'
@@ -486,7 +1003,15 @@
                         check_circle_outline
                       </span>
                       <p
-                        class="text-sm vs:text-xs ssm:text-xs lvs:text-sm font-bold leading-none items-center"
+                        class="
+                          text-sm
+                          vs:text-xs
+                          ssm:text-xs
+                          lvs:text-sm
+                          font-bold
+                          leading-none
+                          items-center
+                        "
                       >
                         {{ post_info.postStatus }}
                       </p>
@@ -495,30 +1020,71 @@
 
                     <!--section 3-->
                     <div
-                      class="flex items-center justify-start w-full mt-4 space-x-4 ssm:flex-col ssm:items-start ssm:space-x-0 vs:flex-col vs:items-start vs:space-x-0"
+                      class="
+                        flex
+                        items-center
+                        justify-start
+                        w-full
+                        mt-4
+                        space-x-4
+                        ssm:flex-col
+                        ssm:items-start
+                        ssm:space-x-0
+                        vs:flex-col
+                        vs:items-start
+                        vs:space-x-0
+                      "
                       v-if="post_info.offer_post != null"
                     >
                       <div class="flex-col items-start w-full">
                         <div class="flex space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             delivery_dining
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.offer_post.deliveryArea }}
                           </p>
                         </div>
                         <div class="flex py-2 space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             alarm
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{
                               timestampSched(
@@ -529,12 +1095,26 @@
                         </div>
                         <div class="flex space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             shopping_bag
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.offer_post.capacity }}
                           </p>
@@ -543,36 +1123,78 @@
                       <div class="flex-col w-full ssm:py-2 vs:py-3">
                         <div class="flex space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             shopping_cart
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.offer_post.shoppingPlace }}
                           </p>
                         </div>
                         <div class="flex py-2 space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             directions_car
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.offer_post.transportMode }}
                           </p>
                         </div>
                         <div class="flex space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             payments
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.offer_post.paymentMethod }}
                           </p>
@@ -583,29 +1205,70 @@
                     <!--section 3 for request post-->
                     <div
                       v-if="post_info.request_post != null"
-                      class="flex items-center justify-start w-full mt-4 space-x-4 ssm:flex-col ssm:items-start ssm:space-x-0 vs:flex-col vs:items-start vs:space-x-0"
+                      class="
+                        flex
+                        items-center
+                        justify-start
+                        w-full
+                        mt-4
+                        space-x-4
+                        ssm:flex-col
+                        ssm:items-start
+                        ssm:space-x-0
+                        vs:flex-col
+                        vs:items-start
+                        vs:space-x-0
+                      "
                     >
                       <div class="flex-col items-start w-full">
                         <div class="flex space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             delivery_dining
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.request_post.deliveryAddress }}
                           </p>
                         </div>
                         <div class="flex py-2 space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             alarm
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{
                               timestampSched(
@@ -618,24 +1281,52 @@
                       <div class="flex-col w-full">
                         <div class="flex space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             shopping_cart
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.request_post.shoppingPlace }}
                           </p>
                         </div>
                         <div class="flex py-2 space-x-2">
                           <span
-                            class="w-6 h-6 text-red-600 rounded-full material-icons"
+                            class="
+                              w-6
+                              h-6
+                              text-red-600
+                              rounded-full
+                              material-icons
+                            "
                           >
                             payments
                           </span>
                           <p
-                            class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              py-1
+                              text-sm
+                              leading-none
+                              text-gray-900
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             {{ post_info.request_post.paymentMethod }}
                           </p>
@@ -646,7 +1337,25 @@
 
                     <!--section 4-->
                     <div
-                      class="flex flex-col ssm:mt-2 vs:mt-2 mt-3 w-full items-start justify-start h-auto vs:pr-0 vs:min-w-0 vs:px-2 ssm:pr-0 ssm:min-w-0 ssm:px-2 p-4 bg-gray-100 rounded-xl"
+                      class="
+                        flex flex-col
+                        ssm:mt-2
+                        vs:mt-2
+                        mt-3
+                        w-full
+                        items-start
+                        justify-start
+                        h-auto
+                        vs:pr-0
+                        vs:min-w-0
+                        vs:px-2
+                        ssm:pr-0
+                        ssm:min-w-0
+                        ssm:px-2
+                        p-4
+                        bg-gray-100
+                        rounded-xl
+                      "
                       v-if="
                         post_info.request_post != null &&
                         post_info.request_post.shoppingListContent != null
@@ -654,7 +1363,15 @@
                     >
                       <div class="flex-col items-start w-full">
                         <span
-                          class="pb-2 pl-2 text-sm font-bold vs:text-sm sm:text-sm sm:font-bold"
+                          class="
+                            pb-2
+                            pl-2
+                            text-sm
+                            font-bold
+                            vs:text-sm
+                            sm:text-sm
+                            sm:font-bold
+                          "
                           >Shopping List
                           <label class="font-normal text-gray-500"
                             >{{
@@ -691,33 +1408,84 @@
                       <button
                         @click="showMoreshowLess"
                         v-if="isFew(post_info.request_post.shoppingListContent)"
-                        class="focus:outline-none items-start justify-start text-sm text-gray-500"
+                        class="
+                          focus:outline-none
+                          items-start
+                          justify-start
+                          text-sm text-gray-500
+                        "
                       >
                         {{ showListStatus }}
                       </button>
                     </div>
                     <div
-                      class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
+                      class="
+                        flex
+                        items-start
+                        justify-start
+                        flex-grow-0
+                        w-full
+                        p-4
+                        mt-4
+                        bg-gray-100
+                        ssm:mt-2
+                        vs:mt-2
+                        rounded-xl
+                      "
                       v-if="
                         post_info.offer_post != null &&
                         post_info.offer_post.caption != null
                       "
                     >
                       <p
-                        class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
+                        class="
+                          w-full
+                          h-auto
+                          text-sm
+                          leading-loose
+                          text-gray-900
+                          ssm:text-xs
+                          vs:text-xs
+                          lvs:text-sm
+                          vs:min-w-0
+                          vs:px-2
+                        "
                       >
                         {{ post_info.offer_post.caption }}
                       </p>
                     </div>
                     <div
-                      class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
+                      class="
+                        flex
+                        items-start
+                        justify-start
+                        flex-grow-0
+                        w-full
+                        p-4
+                        mt-4
+                        bg-gray-100
+                        ssm:mt-2
+                        vs:mt-2
+                        rounded-xl
+                      "
                       v-if="
                         post_info.request_post != null &&
                         post_info.request_post.caption != null
                       "
                     >
                       <p
-                        class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
+                        class="
+                          w-full
+                          h-auto
+                          text-sm
+                          leading-loose
+                          text-gray-900
+                          ssm:text-xs
+                          vs:text-xs
+                          lvs:text-sm
+                          vs:min-w-0
+                          vs:px-2
+                        "
                       >
                         {{ post_info.request_post.caption }}
                       </p>
@@ -726,7 +1494,22 @@
 
                     <!--section 5-->
                     <div
-                      class="relative flex w-full pr-8 mt-4 space-x-6 justify-evenly vs:space-x-3 vs:min-w-0 vs:px-2 ssm:space-x-1 ssm:px-0 ssm:pr-0 vs:pr-0"
+                      class="
+                        relative
+                        flex
+                        w-full
+                        pr-8
+                        mt-4
+                        space-x-6
+                        justify-evenly
+                        vs:space-x-3
+                        vs:min-w-0
+                        vs:px-2
+                        ssm:space-x-1
+                        ssm:px-0
+                        ssm:pr-0
+                        vs:pr-0
+                      "
                     >
                       <div
                         v-if="
@@ -772,15 +1555,37 @@
                             post_info.offer_post.postNumber;
                         "
                         :disabled="!ifUserVerified(user.email)"
-                        class="flex items-center space-x-2 focus:outline-none ssm:space-x-1"
+                        class="
+                          flex
+                          items-center
+                          space-x-2
+                          focus:outline-none
+                          ssm:space-x-1
+                        "
                       >
                         <span
-                          class="pr-2 ssm:pr-0 material-icons md-24 ssm:md-18 xsm:md-18 vs:md-18"
+                          class="
+                            pr-2
+                            ssm:pr-0
+                            material-icons
+                            md-24
+                            ssm:md-18
+                            xsm:md-18
+                            vs:md-18
+                          "
                         >
                           send
                         </span>
                         <p
-                          class="text-base font-bold leading-none text-gray-600 ssm:text-xs vs:text-xs lvs:text-sm"
+                          class="
+                            text-base
+                            font-bold
+                            leading-none
+                            text-gray-600
+                            ssm:text-xs
+                            vs:text-xs
+                            lvs:text-sm
+                          "
                         >
                           Send Request
                         </p>
@@ -797,15 +1602,37 @@
                             post_info.request_post.postNumber;
                         "
                         :disabled="!ifUserVerified(user.email)"
-                        class="flex items-center space-x-2 focus:outline-none ssm:space-x-1"
+                        class="
+                          flex
+                          items-center
+                          space-x-2
+                          focus:outline-none
+                          ssm:space-x-1
+                        "
                       >
                         <span
-                          class="pr-2 ssm:pr-0 material-icons md-24 ssm:md-18 xsm:md-18 vs:md-18"
+                          class="
+                            pr-2
+                            ssm:pr-0
+                            material-icons
+                            md-24
+                            ssm:md-18
+                            xsm:md-18
+                            vs:md-18
+                          "
                         >
                           send
                         </span>
                         <p
-                          class="text-base font-bold leading-none text-gray-600 ssm:text-xs vs:text-xs lvs:text-sm"
+                          class="
+                            text-base
+                            font-bold
+                            leading-none
+                            text-gray-600
+                            ssm:text-xs
+                            vs:text-xs
+                            lvs:text-sm
+                          "
                         >
                           Send Offer
                         </p>
@@ -815,13 +1642,27 @@
                         :to="'/messages/?ID=' + toEncrypt(post_info.user.email)"
                       >
                         <button
-                          class="flex items-center space-x-2 focus:outline-none ssm:space-x-1"
+                          class="
+                            flex
+                            items-center
+                            space-x-2
+                            focus:outline-none
+                            ssm:space-x-1
+                          "
                         >
                           <span class="pr-2 ssm:pr-0 material-icons md-24">
                             forum
                           </span>
                           <p
-                            class="text-base font-bold leading-none text-gray-600 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              text-base
+                              font-bold
+                              leading-none
+                              text-gray-600
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             Chat
                           </p>
@@ -833,15 +1674,36 @@
                             share1 = !share1;
                             share2 = post_info.postNumber;
                           "
-                          class="flex items-center space-x-2 focus:outline-none ssm:space-x-1"
+                          class="
+                            flex
+                            items-center
+                            space-x-2
+                            focus:outline-none
+                            ssm:space-x-1
+                          "
                         >
                           <span
-                            class="pr-2 x-v:pr-1 ssm:pr-0 material-icons md-24 x-v:md-16"
+                            class="
+                              pr-2
+                              x-v:pr-1
+                              ssm:pr-0
+                              material-icons
+                              md-24
+                              x-v:md-16
+                            "
                           >
                             share
                           </span>
                           <p
-                            class="text-base font-bold leading-none text-gray-500 ssm:text-xs vs:text-xs lvs:text-sm"
+                            class="
+                              text-base
+                              font-bold
+                              leading-none
+                              text-gray-500
+                              ssm:text-xs
+                              vs:text-xs
+                              lvs:text-sm
+                            "
                           >
                             Share
                           </p>
@@ -849,14 +1711,46 @@
                         <div class="flex w-full">
                           <div
                             v-show="share2 == post_info.postNumber && share1"
-                            class="absolute z-30 py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl target ssm:right-5 vs:right-5 sm:right-5 lg:right-95 md:right-5 h-min w-30"
+                            class="
+                              absolute
+                              z-30
+                              py-2
+                              pt-2
+                              pl-2
+                              pr-4
+                              leading-loose
+                              bg-white
+                              rounded-lg
+                              shadow-xl
+                              target
+                              ssm:right-5
+                              vs:right-5
+                              sm:right-5
+                              lg:right-95
+                              md:right-5
+                              h-min
+                              w-30
+                            "
                           >
                             <button
                               @click="share(post_info.postNumber)"
-                              class="flex flex-row text-base gap-x-2 vs:text-sm ssm:text-sm xsm:text-sm focus:outline-none"
+                              class="
+                                flex flex-row
+                                text-base
+                                gap-x-2
+                                vs:text-sm
+                                ssm:text-sm
+                                xsm:text-sm
+                                focus:outline-none
+                              "
                             >
                               <span
-                                class="font-medium text-gray-500 material-icons x-v:md-16"
+                                class="
+                                  font-medium
+                                  text-gray-500
+                                  material-icons
+                                  x-v:md-16
+                                "
                               >
                                 share
                               </span>
@@ -869,10 +1763,23 @@
                             />
                             <button
                               @click="copyLink(post_info.postNumber)"
-                              class="flex flex-row py-2 text-base font-normal x-v:text-sm focus:outline-none gap-x-2"
+                              class="
+                                flex flex-row
+                                py-2
+                                text-base
+                                font-normal
+                                x-v:text-sm
+                                focus:outline-none
+                                gap-x-2
+                              "
                             >
                               <span
-                                class="font-normal text-gray-500 material-icons x-v:md-16 x-v:inline-block x-v:align-top"
+                                class="
+                                  font-normal
+                                  text-gray-500
+                                  material-icons
+                                  x-v:md-16 x-v:inline-block x-v:align-top
+                                "
                               >
                                 link
                               </span>
@@ -907,46 +1814,86 @@
                         </p>
                       </button>
                     </div>
-                        <div
-                        id="3dotmenu"
-                        class="vs:mt-1 relative"
-                        v-if="post_info.sharerEmail == user.email"
+                    <div
+                      id="3dotmenu"
+                      class="vs:mt-1 relative"
+                      v-if="post_info.sharerEmail == user.email"
+                    >
+                      <button
+                        @click="
+                          share3dot = !share3dot;
+                          share3dotPostNum = post_info.postNumber;
+                        "
+                        class="focus:outline-none"
                       >
-                        <button
-                          @click="
-                            share3dot = !share3dot;
-                            share3dotPostNum = post_info.postNumber;
-                          "
-                          class="focus:outline-none"
-                        >
-                          <img
-                            class="w-6 h-auto vs:w-4 lvs:w-5 ssm:w-4"
-                            src="img/3dot.svg"
-                          />
-                        </button>
+                        <img
+                          class="w-6 h-auto vs:w-4 lvs:w-5 ssm:w-4"
+                          src="img/3dot.svg"
+                        />
+                      </button>
 
-                        <div class="flex w-full">
-                          <div
-                            v-if="share3dot && share3dotPostNum == post_info.postNumber"
-                            class="absolute py-2 pt-2 pl-2 pr-4 leading-loose bg-white rounded-lg shadow-xl ssm:right-5 vs:right-5 sm:right-5 lg:right-0 md:right-5 xl:right-0 h-min w-40"
+                      <div class="flex w-full">
+                        <div
+                          v-if="
+                            share3dot &&
+                            share3dotPostNum == post_info.postNumber
+                          "
+                          class="
+                            absolute
+                            py-2
+                            pt-2
+                            pl-2
+                            pr-4
+                            leading-loose
+                            bg-white
+                            rounded-lg
+                            shadow-xl
+                            ssm:right-5
+                            vs:right-5
+                            sm:right-5
+                            lg:right-0
+                            md:right-5
+                            xl:right-0
+                            h-min
+                            w-40
+                          "
+                        >
+                          <button
+                            @click="deleteShared(post_info.postNumber)"
+                            class="
+                              flex flex-row
+                              text-base
+                              gap-x-2
+                              vs:text-sm
+                              vs:md-14
+                            "
                           >
-                          
-                            <button
-                              @click="deleteShared(post_info.postNumber)"
-                              class="flex flex-row text-base gap-x-2 vs:text-sm vs:md-14"
-                            >
-                              <span class="text-gray-500 material-icons"
-                                >delete</span
-                              >Delete
-                            </button>
-                          </div>
+                            <span class="text-gray-500 material-icons"
+                              >delete</span
+                            >Delete
+                          </button>
                         </div>
-                   </div>
+                      </div>
+                    </div>
                   </div>
-               
+
                   <div
                     id="changeBoxRadius"
-                    class="h-auto p-6 space-x-4 bg-white shadow vs:p-4 mv:w-full ssm:p-2 ssm:w-full vs:w-full sm:w-full w-608 rounded-xl"
+                    class="
+                      h-auto
+                      p-6
+                      space-x-4
+                      bg-white
+                      shadow
+                      vs:p-4
+                      mv:w-full
+                      ssm:p-2
+                      ssm:w-full
+                      vs:w-full
+                      sm:w-full
+                      w-608
+                      rounded-xl
+                    "
                   >
                     <div class="flex flex-col items-start justify-start">
                       <!--section 1-->
@@ -955,17 +1902,52 @@
                       >
                         <div class="inline-flex">
                           <img
-                            class="rounded-full x-v:absolute w-14 h-14 vs:w-10 vs:h-10 ssm:w-10 ssm:h-10"
+                            class="
+                              rounded-full
+                              x-v:absolute
+                              w-14
+                              h-14
+                              vs:w-10
+                              vs:h-10
+                              ssm:w-10
+                              ssm:h-10
+                            "
                             :src="post_info.post.user.profilePicture"
                           />
                           <div
-                            class="flex flex-col items-start w-full px-4 vs:px-1 se:px-2 ssm:px-2"
+                            class="
+                              flex flex-col
+                              items-start
+                              w-full
+                              px-4
+                              vs:px-1
+                              se:px-2
+                              ssm:px-2
+                            "
                           >
                             <div
-                              class="flex mt-1 space-x-4 ssm:space-x-0 se:space-x-0 vs:space-x-1 sm:space-x-2"
+                              class="
+                                flex
+                                mt-1
+                                space-x-4
+                                ssm:space-x-0
+                                se:space-x-0
+                                vs:space-x-1
+                                sm:space-x-2
+                              "
                             >
                               <h5
-                                class="text-base font-bold leading-none text-gray-900 x-v:pl-10 vsv:text-xs ssm:text-sm vs:text-sm lvs:text-sm"
+                                class="
+                                  text-base
+                                  font-bold
+                                  leading-none
+                                  text-gray-900
+                                  x-v:pl-10
+                                  vsv:text-xs
+                                  ssm:text-sm
+                                  vs:text-sm
+                                  lvs:text-sm
+                                "
                               >
                                 <button
                                   class="font-bold"
@@ -977,27 +1959,60 @@
                                   {{ post_info.post.user.lastName }}
                                 </button>
                                 <span
-                                  class="pl-1 inline-block text-blue-900 align-middle material-icons-round md-18"
+                                  class="
+                                    pl-1
+                                    inline-block
+                                    text-blue-900
+                                    align-middle
+                                    material-icons-round
+                                    md-18
+                                  "
                                 >
                                   verified
                                 </span>
                                 <label
                                   v-if="post_info.post.offer_post != null"
-                                  class="pl-1 font-normal text-gray-500 align-top vs:font-light"
+                                  class="
+                                    pl-1
+                                    font-normal
+                                    text-gray-500
+                                    align-top
+                                    vs:font-light
+                                  "
                                   >posted a shopping offer</label
                                 >
                                 <label
                                   v-if="post_info.post.request_post != null"
-                                  class="pl-1 font-normal text-gray-500 align-top vs:font-light"
+                                  class="
+                                    pl-1
+                                    font-normal
+                                    text-gray-500
+                                    align-top
+                                    vs:font-light
+                                  "
                                   >posted an order request</label
                                 >
                               </h5>
                             </div>
                             <div
-                              class="vs:flex vs:w-full ssm:w-full ssm:flex vs:pb-2 x-v:ml-10"
+                              class="
+                                vs:flex
+                                vs:w-full
+                                ssm:w-full
+                                ssm:flex
+                                vs:pb-2
+                                x-v:ml-10
+                              "
                             >
                               <span
-                                class="text-sm leading-none text-gray-500 ssm:text-xs vs:text-xs lvs:text-sm"
+                                class="
+                                  text-sm
+                                  leading-none
+                                  text-gray-500
+                                  ssm:text-xs
+                                  vs:text-xs
+                                  lvs:text-sm
+                                "
                                 >{{
                                   timestamp(post_info.post.dateCreated)
                                 }}</span
@@ -1010,7 +2025,18 @@
 
                       <!--section 2-->
                       <div
-                        class="inline-flex mt-4 items-center space-x-2 justify-start px-2 py-1 bg-gray-100 rounded-full text-green-600"
+                        class="
+                          inline-flex
+                          mt-4
+                          items-center
+                          space-x-2
+                          justify-start
+                          px-2
+                          py-1
+                          bg-gray-100
+                          rounded-full
+                          text-green-600
+                        "
                         v-if="
                           post_info.post.postStatus !== 'Accepting Requests' &&
                           post_info.post.postStatus !== 'Accepting Offer'
@@ -1020,14 +2046,34 @@
                           remove_circle_outline
                         </span>
                         <p
-                          class="text-sm vs:text-xs ssm:text-xs lvs:text-sm font-bold leading-none items-center text-red-600"
+                          class="
+                            text-sm
+                            vs:text-xs
+                            ssm:text-xs
+                            lvs:text-sm
+                            font-bold
+                            leading-none
+                            items-center
+                            text-red-600
+                          "
                         >
                           {{ post_info.post.postStatus }}
                         </p>
                       </div>
 
                       <div
-                        class="inline-flex mt-4 items-center space-x-2 justify-start px-2 py-1 bg-gray-100 rounded-full text-green-600"
+                        class="
+                          inline-flex
+                          mt-4
+                          items-center
+                          space-x-2
+                          justify-start
+                          px-2
+                          py-1
+                          bg-gray-100
+                          rounded-full
+                          text-green-600
+                        "
                         v-if="
                           post_info.post.postStatus === 'Accepting Requests' ||
                           post_info.post.postStatus === 'Accepting Offer'
@@ -1037,7 +2083,15 @@
                           check_circle_outline
                         </span>
                         <p
-                          class="text-sm vs:text-xs ssm:text-xs lvs:text-sm font-bold leading-none items-center"
+                          class="
+                            text-sm
+                            vs:text-xs
+                            ssm:text-xs
+                            lvs:text-sm
+                            font-bold
+                            leading-none
+                            items-center
+                          "
                         >
                           {{ post_info.post.postStatus }}
                         </p>
@@ -1046,30 +2100,71 @@
 
                       <!--section 3-->
                       <div
-                        class="flex items-center justify-start w-full mt-4 space-x-4 ssm:flex-col ssm:items-start ssm:space-x-0 vs:flex-col vs:items-start vs:space-x-0"
+                        class="
+                          flex
+                          items-center
+                          justify-start
+                          w-full
+                          mt-4
+                          space-x-4
+                          ssm:flex-col
+                          ssm:items-start
+                          ssm:space-x-0
+                          vs:flex-col
+                          vs:items-start
+                          vs:space-x-0
+                        "
                         v-if="post_info.post.offer_post != null"
                       >
                         <div class="flex-col items-start w-full">
                           <div class="flex space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               delivery_dining
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.offer_post.deliveryArea }}
                             </p>
                           </div>
                           <div class="flex py-2 space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               alarm
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{
                                 timestampSched(
@@ -1080,12 +2175,26 @@
                           </div>
                           <div class="flex space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               shopping_bag
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.offer_post.capacity }}
                             </p>
@@ -1094,36 +2203,78 @@
                         <div class="flex-col w-full ssm:py-2 vs:py-3">
                           <div class="flex space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               shopping_cart
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.offer_post.shoppingPlace }}
                             </p>
                           </div>
                           <div class="flex py-2 space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               directions_car
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.offer_post.transportMode }}
                             </p>
                           </div>
                           <div class="flex space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               payments
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.offer_post.paymentMethod }}
                             </p>
@@ -1134,29 +2285,70 @@
                       <!--section 3 for request post-->
                       <div
                         v-if="post_info.post.request_post != null"
-                        class="flex items-center justify-start w-full mt-4 space-x-4 ssm:flex-col ssm:items-start ssm:space-x-0 vs:flex-col vs:items-start vs:space-x-0"
+                        class="
+                          flex
+                          items-center
+                          justify-start
+                          w-full
+                          mt-4
+                          space-x-4
+                          ssm:flex-col
+                          ssm:items-start
+                          ssm:space-x-0
+                          vs:flex-col
+                          vs:items-start
+                          vs:space-x-0
+                        "
                       >
                         <div class="flex-col items-start w-full">
                           <div class="flex space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               delivery_dining
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.request_post.deliveryAddress }}
                             </p>
                           </div>
                           <div class="flex py-2 space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               alarm
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{
                                 timestampSched(
@@ -1169,24 +2361,52 @@
                         <div class="flex-col w-full">
                           <div class="flex space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               shopping_cart
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.request_post.shoppingPlace }}
                             </p>
                           </div>
                           <div class="flex py-2 space-x-2">
                             <span
-                              class="w-6 h-6 text-red-600 rounded-full material-icons"
+                              class="
+                                w-6
+                                h-6
+                                text-red-600
+                                rounded-full
+                                material-icons
+                              "
                             >
                               payments
                             </span>
                             <p
-                              class="py-1 text-sm leading-none text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm"
+                              class="
+                                py-1
+                                text-sm
+                                leading-none
+                                text-gray-900
+                                ssm:text-xs
+                                vs:text-xs
+                                lvs:text-sm
+                              "
                             >
                               {{ post_info.post.request_post.paymentMethod }}
                             </p>
@@ -1197,7 +2417,25 @@
 
                       <!--section 4-->
                       <div
-                        class="flex flex-col ssm:mt-2 vs:mt-2 mt-3 w-full items-start justify-start h-auto vs:pr-0 vs:min-w-0 vs:px-2 ssm:pr-0 ssm:min-w-0 ssm:px-2 p-4 bg-gray-100 rounded-xl"
+                        class="
+                          flex flex-col
+                          ssm:mt-2
+                          vs:mt-2
+                          mt-3
+                          w-full
+                          items-start
+                          justify-start
+                          h-auto
+                          vs:pr-0
+                          vs:min-w-0
+                          vs:px-2
+                          ssm:pr-0
+                          ssm:min-w-0
+                          ssm:px-2
+                          p-4
+                          bg-gray-100
+                          rounded-xl
+                        "
                         v-if="
                           post_info.post.request_post != null &&
                           post_info.post.request_post.shoppingListContent !=
@@ -1206,7 +2444,15 @@
                       >
                         <div class="flex-col items-start w-full">
                           <span
-                            class="pb-2 pl-2 text-sm font-bold vs:text-sm sm:text-sm sm:font-bold"
+                            class="
+                              pb-2
+                              pl-2
+                              text-sm
+                              font-bold
+                              vs:text-sm
+                              sm:text-sm
+                              sm:font-bold
+                            "
                             >Shopping List
                             <label class="font-normal text-gray-500"
                               >{{
@@ -1248,33 +2494,84 @@
                               post_info.post.request_post.shoppingListContent
                             )
                           "
-                          class="focus:outline-none items-start justify-start text-sm text-gray-500"
+                          class="
+                            focus:outline-none
+                            items-start
+                            justify-start
+                            text-sm text-gray-500
+                          "
                         >
                           {{ showListStatus }}
                         </button>
                       </div>
                       <div
-                        class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
+                        class="
+                          flex
+                          items-start
+                          justify-start
+                          flex-grow-0
+                          w-full
+                          p-4
+                          mt-4
+                          bg-gray-100
+                          ssm:mt-2
+                          vs:mt-2
+                          rounded-xl
+                        "
                         v-if="
                           post_info.post.offer_post != null &&
                           post_info.post.offer_post.caption != null
                         "
                       >
                         <p
-                          class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
+                          class="
+                            w-full
+                            h-auto
+                            text-sm
+                            leading-loose
+                            text-gray-900
+                            ssm:text-xs
+                            vs:text-xs
+                            lvs:text-sm
+                            vs:min-w-0
+                            vs:px-2
+                          "
                         >
                           {{ post_info.post.offer_post.caption }}
                         </p>
                       </div>
                       <div
-                        class="flex items-start justify-start flex-grow-0 w-full p-4 mt-4 bg-gray-100 ssm:mt-2 vs:mt-2 rounded-xl"
+                        class="
+                          flex
+                          items-start
+                          justify-start
+                          flex-grow-0
+                          w-full
+                          p-4
+                          mt-4
+                          bg-gray-100
+                          ssm:mt-2
+                          vs:mt-2
+                          rounded-xl
+                        "
                         v-if="
                           post_info.post.request_post != null &&
                           post_info.post.request_post.caption != null
                         "
                       >
                         <p
-                          class="w-full h-auto text-sm leading-loose text-gray-900 ssm:text-xs vs:text-xs lvs:text-sm vs:min-w-0 vs:px-2"
+                          class="
+                            w-full
+                            h-auto
+                            text-sm
+                            leading-loose
+                            text-gray-900
+                            ssm:text-xs
+                            vs:text-xs
+                            lvs:text-sm
+                            vs:min-w-0
+                            vs:px-2
+                          "
                         >
                           {{ post_info.post.request_post.caption }}
                         </p>
@@ -1300,7 +2597,14 @@
             >
               <div
                 id="modal-header"
-                class="flex flex-row items-center justify-between px-2 pt-4 space-x-4"
+                class="
+                  flex flex-row
+                  items-center
+                  justify-between
+                  px-2
+                  pt-4
+                  space-x-4
+                "
               >
                 <button
                   @click="$router.push('edit-profile')"
@@ -1329,13 +2633,42 @@
               ></div>
               <div
                 id="modal-footer"
-                class="flex items-center justify-center px-2 pb-4 ssm:px-2 vs:px-2"
+                class="
+                  flex
+                  items-center
+                  justify-center
+                  px-2
+                  pb-4
+                  ssm:px-2
+                  vs:px-2
+                "
               >
                 <button
-                  class="inline-flex items-center justify-center w-full px-4 py-2 bg-red-700 rounded-full focus:outline-none ssm:h-8 ssm:w-full vs:w-full"
+                  class="
+                    inline-flex
+                    items-center
+                    justify-center
+                    w-full
+                    px-4
+                    py-2
+                    bg-red-700
+                    rounded-full
+                    focus:outline-none
+                    ssm:h-8
+                    ssm:w-full
+                    vs:w-full
+                  "
                 >
                   <p
-                    class="text-base font-bold leading-normal text-center text-white ssm:text-sm vs:text-sm lvs:text-base"
+                    class="
+                      text-base
+                      font-bold
+                      leading-normal
+                      text-center text-white
+                      ssm:text-sm
+                      vs:text-sm
+                      lvs:text-base
+                    "
                   >
                     Share Post
                   </p>
@@ -1352,7 +2685,15 @@
           >
             <div
               id="display-content"
-              class="flex-col h-auto bg-white rounded-lg vs:w-full ssm:w-full w-608"
+              class="
+                flex-col
+                h-auto
+                bg-white
+                rounded-lg
+                vs:w-full
+                ssm:w-full
+                w-608
+              "
             >
               <div
                 id="display-header"
@@ -1378,7 +2719,19 @@
 
     <!----------------------------START OF SHOPPING LISTS--------------------->
     <div
-      class="flex flex-1 w-2/5 h-screen overflow-hidden llg:w-35 pl-7 vs:hidden ssm:hidden md:hidden sm:hidden xsm:hidden"
+      class="
+        flex flex-1
+        w-2/5
+        h-screen
+        overflow-hidden
+        llg:w-35
+        pl-7
+        vs:hidden
+        ssm:hidden
+        md:hidden
+        sm:hidden
+        xsm:hidden
+      "
     >
       <div class="flex-1 overflow-y-scroll">
         <!-----------ACTIVE ORDERS---------------------->
@@ -1390,13 +2743,30 @@
             <span
               v-if="or_shift > 0"
               @click="prev_swap_order"
-              class="inline-flex pl-20 pr-3 align-bottom cursor-pointer material-icons-round md-18"
+              class="
+                inline-flex
+                pl-20
+                pr-3
+                align-bottom
+                cursor-pointer
+                material-icons-round
+                md-18
+              "
             >
               navigate_before
             </span>
             <span
               v-else
-              class="inline-flex pl-20 pr-3 text-gray-300 align-bottom cursor-pointer material-icons-round md-18"
+              class="
+                inline-flex
+                pl-20
+                pr-3
+                text-gray-300
+                align-bottom
+                cursor-pointer
+                material-icons-round
+                md-18
+              "
             >
               navigate_before
             </span>
@@ -1404,13 +2774,26 @@
             <span
               v-if="or_shift < confirmedOrders.length - 1"
               @click="next_swap_order"
-              class="inline-flex align-bottom cursor-pointer material-icons-round md-18"
+              class="
+                inline-flex
+                align-bottom
+                cursor-pointer
+                material-icons-round
+                md-18
+              "
             >
               navigate_next
             </span>
             <span
               v-else
-              class="inline-flex text-gray-300 align-bottom cursor-pointer material-icons-round md-18"
+              class="
+                inline-flex
+                text-gray-300
+                align-bottom
+                cursor-pointer
+                material-icons-round
+                md-18
+              "
             >
               navigate_next
             </span>
@@ -1430,20 +2813,54 @@
 
               <label
                 for=""
-                class="float-right px-3 m-2 py-0.5 text-sm font-semibold border rounded-md border-waterloo text-waterloo"
+                class="
+                  float-right
+                  px-3
+                  m-2
+                  py-0.5
+                  text-sm
+                  font-semibold
+                  border
+                  rounded-md
+                  border-waterloo
+                  text-waterloo
+                "
               >
                 {{ confirmedOrders[0].transactionStatus }}
               </label>
             </div>
 
             <div
-              class="z-0 flex p-1 pl-2 mt-6 ml-2 text-sm font-semibold uppercase rounded-t-xl w-220 bg-gray-bgcolor"
+              class="
+                z-0
+                flex
+                p-1
+                pl-2
+                mt-6
+                ml-2
+                text-sm
+                font-semibold
+                uppercase
+                rounded-t-xl
+                w-220
+                bg-gray-bgcolor
+              "
             >
               <span>Shopper</span>
             </div>
             <div
               v-if="confirmedOrders[0].post.email != user.email"
-              class="relative z-0 flex items-center w-220 p-1.5 rounded-b-xl ml-2 bg-gray-bgcolor"
+              class="
+                relative
+                z-0
+                flex
+                items-center
+                w-220
+                p-1.5
+                rounded-b-xl
+                ml-2
+                bg-gray-bgcolor
+              "
             >
               <button class="top-0 left-0 pl-2 rounded-full border-1">
                 <img
@@ -1457,7 +2874,13 @@
                   {{ confirmedOrders[0].post.user.firstName }}
                   {{ confirmedOrders[0].post.user.lastName }}
                   <span
-                    class="inline-block text-blue-900 align-middle material-icons-round md-18"
+                    class="
+                      inline-block
+                      text-blue-900
+                      align-middle
+                      material-icons-round
+                      md-18
+                    "
                   >
                     verified
                   </span>
@@ -1468,7 +2891,14 @@
                     >{{ starRate(userReviews(confirmedOrders[0].post.email)) }}
                   </span>
                   <span
-                    class="top-0 inline-block text-red-700 align-top material-icons-round md-20"
+                    class="
+                      top-0
+                      inline-block
+                      text-red-700
+                      align-top
+                      material-icons-round
+                      md-20
+                    "
                   >
                     star_rate
                   </span>
@@ -1485,13 +2915,29 @@
                 </span>
                 <router-link
                   :to="'/messages/?ID=' + confirmedOrders[0].post.email"
-                  class="font-bold align-top cursor-pointer mmd:text-base mmd:inline-block"
+                  class="
+                    font-bold
+                    align-top
+                    cursor-pointer
+                    mmd:text-base
+                    mmd:inline-block
+                  "
                 ></router-link>
               </div>
             </div>
             <div
               v-else
-              class="relative z-0 flex items-center w-220 p-1.5 rounded-b-xl ml-2 bg-gray-bgcolor"
+              class="
+                relative
+                z-0
+                flex
+                items-center
+                w-220
+                p-1.5
+                rounded-b-xl
+                ml-2
+                bg-gray-bgcolor
+              "
             >
               <button class="top-0 left-0 pl-2 rounded-full border-1">
                 <img
@@ -1505,7 +2951,13 @@
                   {{ confirmedOrders[0].transaction_sender.firstName }}
                   {{ confirmedOrders[0].transaction_sender.lastName }}
                   <span
-                    class="inline-block text-blue-900 align-middle material-icons-round md-18"
+                    class="
+                      inline-block
+                      text-blue-900
+                      align-middle
+                      material-icons-round
+                      md-18
+                    "
                   >
                     verified
                   </span>
@@ -1520,7 +2972,14 @@
                     }}
                   </span>
                   <span
-                    class="top-0 inline-block text-red-700 align-top material-icons-round md-20"
+                    class="
+                      top-0
+                      inline-block
+                      text-red-700
+                      align-top
+                      material-icons-round
+                      md-20
+                    "
                   >
                     star_rate
                   </span>
@@ -1537,7 +2996,13 @@
                 </span>
                 <router-link
                   :to="'/messages/?ID=' + confirmedOrders[0].transaction_sender"
-                  class="font-bold align-top cursor-pointer mmd:text-base mmd:inline-block"
+                  class="
+                    font-bold
+                    align-top
+                    cursor-pointer
+                    mmd:text-base
+                    mmd:inline-block
+                  "
                 ></router-link>
               </div>
             </div>
@@ -1566,7 +3031,16 @@
 
         <!-----------ACTIVE DELIVERIES---------------------->
         <div
-          class="z-0 mb-6 bg-white w-72 rounded-xl vs:hidden xsm:hidden ssm:hidden"
+          class="
+            z-0
+            mb-6
+            bg-white
+            w-72
+            rounded-xl
+            vs:hidden
+            xsm:hidden
+            ssm:hidden
+          "
         >
           <header
             class="py-3 pl-4 text-sm font-semibold tracking-wide text-gray-500"
@@ -1575,13 +3049,32 @@
             <span
               v-if="shift > 0"
               @click="prev_swap_deliver()"
-              class="inline-flex pl-16 pr-3 align-bottom cursor-pointer select-none material-icons-round md-18"
+              class="
+                inline-flex
+                pl-16
+                pr-3
+                align-bottom
+                cursor-pointer
+                select-none
+                material-icons-round
+                md-18
+              "
             >
               navigate_before
             </span>
             <span
               v-else
-              class="inline-flex pl-16 pr-3 text-gray-300 align-bottom cursor-pointer select-none material-icons-round md-18"
+              class="
+                inline-flex
+                pl-16
+                pr-3
+                text-gray-300
+                align-bottom
+                cursor-pointer
+                select-none
+                material-icons-round
+                md-18
+              "
             >
               navigate_before
             </span>
@@ -1589,13 +3082,28 @@
             <span
               v-if="shift < confirmedDeliveries.length - 1"
               @click="next_swap_deliver()"
-              class="inline-flex align-bottom cursor-pointer select-none material-icons-round md-18"
+              class="
+                inline-flex
+                align-bottom
+                cursor-pointer
+                select-none
+                material-icons-round
+                md-18
+              "
             >
               navigate_next
             </span>
             <span
               v-else
-              class="inline-flex text-gray-300 align-bottom cursor-pointer select-none material-icons-round md-18"
+              class="
+                inline-flex
+                text-gray-300
+                align-bottom
+                cursor-pointer
+                select-none
+                material-icons-round
+                md-18
+              "
             >
               navigate_next
             </span>
@@ -1616,20 +3124,54 @@
 
               <label
                 for=""
-                class="float-right px-3 m-2 py-0.5 text-sm font-semibold border rounded-md border-waterloo text-waterloo"
+                class="
+                  float-right
+                  px-3
+                  m-2
+                  py-0.5
+                  text-sm
+                  font-semibold
+                  border
+                  rounded-md
+                  border-waterloo
+                  text-waterloo
+                "
               >
                 {{ confirmedDeliveries[0].transactionStatus }}
               </label>
             </div>
 
             <div
-              class="z-0 flex p-1 pl-2 mt-6 ml-2 text-sm font-semibold uppercase rounded-t-xl w-220 bg-gray-bgcolor"
+              class="
+                z-0
+                flex
+                p-1
+                pl-2
+                mt-6
+                ml-2
+                text-sm
+                font-semibold
+                uppercase
+                rounded-t-xl
+                w-220
+                bg-gray-bgcolor
+              "
             >
               <span>Customer</span>
             </div>
             <div
               v-if="confirmedDeliveries[0].post.user.email != user.email"
-              class="relative flex items-center w-220 z-0 p-1.5 rounded-b-xl ml-2 bg-gray-bgcolor"
+              class="
+                relative
+                flex
+                items-center
+                w-220
+                z-0
+                p-1.5
+                rounded-b-xl
+                ml-2
+                bg-gray-bgcolor
+              "
             >
               <button class="top-0 left-0 pl-2 rounded-full border-1">
                 <img
@@ -1643,7 +3185,13 @@
                   {{ confirmedDeliveries[0].post.user.firstName }}
                   {{ confirmedDeliveries[0].post.user.lastName }}
                   <span
-                    class="inline-block text-blue-900 align-middle material-icons-round md-18"
+                    class="
+                      inline-block
+                      text-blue-900
+                      align-middle
+                      material-icons-round
+                      md-18
+                    "
                   >
                     verified
                   </span>
@@ -1655,7 +3203,14 @@
                     }}
                   </span>
                   <span
-                    class="top-0 inline-block text-red-700 align-top material-icons-round md-20"
+                    class="
+                      top-0
+                      inline-block
+                      text-red-700
+                      align-top
+                      material-icons-round
+                      md-20
+                    "
                   >
                     star_rate
                   </span>
@@ -1670,13 +3225,29 @@
                 >
                 <router-link
                   :to="'/messages/?ID=' + confirmedDeliveries[0].post.email"
-                  class="font-bold align-top cursor-pointer mmd:text-base mmd:inline-block"
+                  class="
+                    font-bold
+                    align-top
+                    cursor-pointer
+                    mmd:text-base
+                    mmd:inline-block
+                  "
                 ></router-link>
               </div>
             </div>
             <div
               v-else
-              class="relative flex items-center w-220 z-0 p-1.5 rounded-b-xl ml-2 bg-gray-bgcolor"
+              class="
+                relative
+                flex
+                items-center
+                w-220
+                z-0
+                p-1.5
+                rounded-b-xl
+                ml-2
+                bg-gray-bgcolor
+              "
             >
               <button class="top-0 left-0 pl-2 rounded-full border-1">
                 <img
@@ -1692,7 +3263,13 @@
                   {{ confirmedDeliveries[0].transaction_sender.firstName }}
                   {{ confirmedDeliveries[0].transaction_sender.lastName }}
                   <span
-                    class="inline-block text-blue-900 align-middle material-icons-round md-18"
+                    class="
+                      inline-block
+                      text-blue-900
+                      align-middle
+                      material-icons-round
+                      md-18
+                    "
                   >
                     verified
                   </span>
@@ -1708,7 +3285,14 @@
                     }}
                   </span>
                   <span
-                    class="top-0 inline-block text-red-700 align-top material-icons-round md-20"
+                    class="
+                      top-0
+                      inline-block
+                      text-red-700
+                      align-top
+                      material-icons-round
+                      md-20
+                    "
                   >
                     star_rate
                   </span>
@@ -1726,13 +3310,26 @@
                     '/messages/?ID=' +
                     confirmedDeliveries[0].transaction_sender.email
                   "
-                  class="font-bold align-top cursor-pointer mmd:text-base mmd:inline-block"
+                  class="
+                    font-bold
+                    align-top
+                    cursor-pointer
+                    mmd:text-base
+                    mmd:inline-block
+                  "
                 ></router-link>
               </div>
             </div>
             <div class="pt-2">
               <span
-                class="inline-block pl-3 text-gray-500 align-top material-icons-round md-18"
+                class="
+                  inline-block
+                  pl-3
+                  text-gray-500
+                  align-top
+                  material-icons-round
+                  md-18
+                "
               >
                 room
               </span>
@@ -1764,23 +3361,57 @@
         <!-----------END OF ACTIVE DELIVERIES---------------->
 
         <div
-          class="flex flex-wrap float-left font-nunito md:block vs:hidden xsm:hidden ssm:hidden"
+          class="
+            flex flex-wrap
+            float-left
+            font-nunito
+            md:block
+            vs:hidden
+            xsm:hidden
+            ssm:hidden
+          "
         >
           <div class="bg-white w-72 h-56 rounded-xl">
             <header
-              class="py-3 pl-4 text-sm font-semibold tracking-wide text-gray-500"
+              class="
+                py-3
+                pl-4
+                text-sm
+                font-semibold
+                tracking-wide
+                text-gray-500
+              "
             >
               SHOPPING LIST
               <span
                 v-if="s_shift > 0"
                 @click="prev_swap_list()"
-                class="inline-flex pl-24 pr-3 align-bottom cursor-pointer select-none material-icons-round md-18"
+                class="
+                  inline-flex
+                  pl-24
+                  pr-3
+                  align-bottom
+                  cursor-pointer
+                  select-none
+                  material-icons-round
+                  md-18
+                "
               >
                 navigate_before
               </span>
               <span
                 v-else
-                class="inline-flex pl-24 pr-3 text-gray-300 align-bottom cursor-pointer select-none material-icons-round md-18"
+                class="
+                  inline-flex
+                  pl-24
+                  pr-3
+                  text-gray-300
+                  align-bottom
+                  cursor-pointer
+                  select-none
+                  material-icons-round
+                  md-18
+                "
               >
                 navigate_before
               </span>
@@ -1788,13 +3419,28 @@
               <span
                 v-if="s_shift < shoppingLists.length - 1"
                 @click="next_swap_list()"
-                class="inline-flex align-bottom cursor-pointer select-none material-icons-round md-18"
+                class="
+                  inline-flex
+                  align-bottom
+                  cursor-pointer
+                  select-none
+                  material-icons-round
+                  md-18
+                "
               >
                 navigate_next
               </span>
               <span
                 v-else
-                class="inline-flex text-gray-300 align-bottom cursor-pointer select-none material-icons-round md-18"
+                class="
+                  inline-flex
+                  text-gray-300
+                  align-bottom
+                  cursor-pointer
+                  select-none
+                  material-icons-round
+                  md-18
+                "
               >
                 navigate_next
               </span>
@@ -1805,7 +3451,15 @@
             <!--SHOPPING LIST-->
             <div>
               <div
-                class="relative pt-2 pl-5 text-lg font-bold leading-loose tracking-wide"
+                class="
+                  relative
+                  pt-2
+                  pl-5
+                  text-lg
+                  font-bold
+                  leading-loose
+                  tracking-wide
+                "
               >
                 <span v-if="shoppingLists.length > 0">{{
                   shoppingLists[0].shoppingListTitle
@@ -1813,7 +3467,18 @@
 
                 <div
                   v-if="shoppingLists.length > 0"
-                  class="absolute bottom-0 pt-2 pr-2 ml-2 text-sm font-bold right-1 top-2 focus:outline-none"
+                  class="
+                    absolute
+                    bottom-0
+                    pt-2
+                    pr-2
+                    ml-2
+                    text-sm
+                    font-bold
+                    right-1
+                    top-2
+                    focus:outline-none
+                  "
                 >
                   <span
                     @click="option_more = !option_more"
@@ -1823,7 +3488,15 @@
                   </span>
                   <div
                     v-if="option_more"
-                    class="absolute bg-white drop-shadow-2xl right-3 rounded-xl shadow-2xl p-1"
+                    class="
+                      absolute
+                      bg-white
+                      drop-shadow-2xl
+                      right-3
+                      rounded-xl
+                      shadow-2xl
+                      p-1
+                    "
                   >
                     <div
                       @click="editListFromDashboard()"
@@ -1882,7 +3555,19 @@
                 <button
                   v-show="ifUserVerified(user.email)"
                   @click="addlist = !addlist"
-                  class="w-64 h-8 px-5 text-sm font-bold text-red-600 transition-colors duration-150 border-2 border-red-600 rounded-3xl focus:outline-none"
+                  class="
+                    w-64
+                    h-8
+                    px-5
+                    text-sm
+                    font-bold
+                    text-red-600
+                    transition-colors
+                    duration-150
+                    border-2 border-red-600
+                    rounded-3xl
+                    focus:outline-none
+                  "
                 >
                   <span>Create New</span>
                 </button>
@@ -1891,7 +3576,19 @@
                   to="/account-settings"
                 >
                   <button
-                    class="w-64 h-8 px-5 text-sm font-bold text-red-600 transition-colors duration-150 border-2 border-red-600 rounded-3xl focus:outline-none"
+                    class="
+                      w-64
+                      h-8
+                      px-5
+                      text-sm
+                      font-bold
+                      text-red-600
+                      transition-colors
+                      duration-150
+                      border-2 border-red-600
+                      rounded-3xl
+                      focus:outline-none
+                    "
                   >
                     <span>Get verified</span>
                   </button>
@@ -1901,13 +3598,38 @@
               <div
                 v-if="addlist"
                 @click.self="addlist = !addlist"
-                class="fixed z-100 bg-black bg-opacity-75 overflow-y-auto inset-0"
+                class="
+                  fixed
+                  z-100
+                  bg-black bg-opacity-75
+                  overflow-y-auto
+                  inset-0
+                "
               >
                 <div
                   class="flex mt-4 w-full p-3 items-center justify-center py-20"
                 >
                   <div
-                    class="self-center bg-white ring-1 ring-gray-300 py-2 w-full rounded-xl 2xl:w-608 2xl:mt-0 lg:w-608 lg:mt-0 xl:w-608 xl:mt-0 md:w-10/12 md:mt-0 sm:w-11/12 p-5 space-y-3 h-auto"
+                    class="
+                      self-center
+                      bg-white
+                      ring-1 ring-gray-300
+                      py-2
+                      w-full
+                      rounded-xl
+                      2xl:w-608
+                      2xl:mt-0
+                      lg:w-608
+                      lg:mt-0
+                      xl:w-608
+                      xl:mt-0
+                      md:w-10/12
+                      md:mt-0
+                      sm:w-11/12
+                      p-5
+                      space-y-3
+                      h-auto
+                    "
                   >
                     <div class="flex flex-row items-center space-x-2">
                       <input
@@ -1920,13 +3642,24 @@
                         @click="
                           document.getElementbyId('new_title').disable = false
                         "
-                        class="cursor-pointer select-none material-icons text-md text-gray-500"
+                        class="
+                          cursor-pointer
+                          select-none
+                          material-icons
+                          text-md text-gray-500
+                        "
                       >
                         mode
                       </span>
                     </div>
                     <div
-                      class="flex flex-row items-center space-x-3 select-none pl-3"
+                      class="
+                        flex flex-row
+                        items-center
+                        space-x-3
+                        select-none
+                        pl-3
+                      "
                     >
                       <span
                         @click="new_item = !new_item"
@@ -1944,31 +3677,75 @@
                         id="product"
                         type="text"
                         placeholder="Product"
-                        class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                        class="
+                          rounded-xl
+                          pl-5
+                          w-full
+                          focus:outline-none
+                          h-10
+                          bg-gray-100
+                        "
                       />
                       <div class="flex flex-row space-x-2">
                         <div
-                          class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                          class="
+                            rounded-xl
+                            pl-5
+                            w-full
+                            focus:outline-none
+                            h-10
+                            bg-gray-100
+                          "
                         >
                           <input
                             id="brand"
                             type="text"
                             placeholder="Brand"
-                            class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                            class="
+                              rounded-xl
+                              pl-5
+                              w-full
+                              focus:outline-none
+                              h-10
+                              bg-gray-100
+                            "
                             @keyup="brand(), (brandSearchTag = true)"
                             @click="brand(), (brandSearchTag = !brandSearchTag)"
                           />
                           <div class="relative">
                             <div
                               v-if="brandSearchTag"
-                              class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-full"
+                              class="
+                                absolute
+                                py-3
+                                bg-white
+                                rounded-lg
+                                shadow-xl
+                                right-0
+                                h-35.1
+                                sm:w-full
+                                w-full
+                              "
                             >
                               <div
-                                class="flex flex-col w-full px-2 justify-start items-start"
+                                class="
+                                  flex flex-col
+                                  w-full
+                                  px-2
+                                  justify-start
+                                  items-start
+                                "
                               >
                                 <div
                                   id="scroll1"
-                                  class="flex px-2 flex-col overflow-y-scroll w-full h-24"
+                                  class="
+                                    flex
+                                    px-2
+                                    flex-col
+                                    overflow-y-scroll
+                                    w-full
+                                    h-24
+                                  "
                                 >
                                   <ul id="myUL" class="space-y-1">
                                     <li
@@ -1993,7 +3770,14 @@
                           id="size"
                           type="text"
                           placeholder="Size"
-                          class="w-40 rounded-xl pl-5 focus:outline-none h-10 bg-gray-100"
+                          class="
+                            w-40
+                            rounded-xl
+                            pl-5
+                            focus:outline-none
+                            h-10
+                            bg-gray-100
+                          "
                         />
                       </div>
 
@@ -2001,14 +3785,24 @@
                         <p class="font-bold">Quantity</p>
                         <span
                           @click="quantity++"
-                          class="material-icons select-none cursor-pointer text-red-700"
+                          class="
+                            material-icons
+                            select-none
+                            cursor-pointer
+                            text-red-700
+                          "
                         >
                           add
                         </span>
                         <p id="quants">{{ quantity }}</p>
                         <span
                           @click="quantity = minusQty(quantity)"
-                          class="material-icons select-none cursor-pointer text-red-700"
+                          class="
+                            material-icons
+                            select-none
+                            cursor-pointer
+                            text-red-700
+                          "
                         >
                           remove
                         </span>
@@ -2017,23 +3811,41 @@
                         <div class="space-x-3">
                           <button
                             @click="new_item = false"
-                            class="ring-2 rounded-2xl h-6 w-20 font-bold ring-red-buttons focus:outline-none"
+                            class="
+                              ring-2
+                              rounded-2xl
+                              h-6
+                              w-20
+                              font-bold
+                              ring-red-buttons
+                              focus:outline-none
+                            "
                           >
                             Cancel
                           </button>
                           <button
                             @click="add_newItem()"
-                            class="ring-2 rounded-2xl h-6 w-20 font-bold text-white ring-red-buttons focus:outline-none bg-red-buttons"
+                            class="
+                              ring-2
+                              rounded-2xl
+                              h-6
+                              w-20
+                              font-bold
+                              text-white
+                              ring-red-buttons
+                              focus:outline-none
+                              bg-red-buttons
+                            "
                           >
                             Add
                           </button>
                         </div>
                       </div>
                     </div>
-                    <div class="flex text-gray-400 text-xs justify-end">
+                    <!-- <div class="flex text-gray-400 text-xs justify-end">
                       <p>Updated</p>
                       {{ time }}
-                    </div>
+                    </div> -->
                     <hr class="bg-black" />
                     <p class="text-center text-red-500">{{ listError }}</p>
                     <div class="flex justify-between">
@@ -2049,7 +3861,12 @@
                           <div class="flex flex-row justify-between w-full">
                             <div class="flex flex-col">
                               <div
-                                class="flex flex-row text-md items-center space-x-3"
+                                class="
+                                  flex flex-row
+                                  text-md
+                                  items-center
+                                  space-x-3
+                                "
                               >
                                 <input
                                   type="checkbox"
@@ -2070,7 +3887,12 @@
                             <div class="flex flex-row space-x-5">
                               <span
                                 @click="item.quantity++"
-                                class="material-icons select-none cursor-pointer text-red-700"
+                                class="
+                                  material-icons
+                                  select-none
+                                  cursor-pointer
+                                  text-red-700
+                                "
                               >
                                 add
                               </span>
@@ -2079,13 +3901,58 @@
                               </div>
                               <span
                                 @click="item.quantity = minusQty(item.quantity)"
-                                class="material-icons select-none cursor-pointer text-red-700"
+                                class="
+                                  material-icons
+                                  select-none
+                                  cursor-pointer
+                                  text-red-700
+                                "
                               >
                                 remove
                               </span>
-                              <span class="cursor-pointer material-icons">
-                                more_vert
-                              </span>
+                              <button
+                                @click="productOptions(item.id)"
+                                class="focus:outline-none flex"
+                              >
+                                <span class="material-icons"> more_vert </span>
+                              </button>
+                            </div>
+                            <div
+                              v-if="
+                                editCreatedItem1 &&
+                                editCreatedItemFlagId == item.id
+                              "
+                              class="
+                                absolute
+                                p-2
+                                leading-loose
+                                rounded-lg
+                                border-2 border-gray-100
+                                bg-white
+                                right-0
+                                w-30
+                              "
+                            >
+                              <button
+                                @click="editDisItem1"
+                                class="
+                                  flex flex-row
+                                  items-center
+                                  font-normal
+                                  text-base
+                                  leading-none
+                                  text-gray-900
+                                  focus:outline-none
+                                  gap-x-2
+                                "
+                              >
+                                <span
+                                  class="material-icons text-base text-gray-900"
+                                >
+                                  mode
+                                </span>
+                                Edit
+                              </button>
                             </div>
                           </div>
                         </li>
@@ -2116,7 +3983,12 @@
                             add_shopping_list(),
                             (selectedList = [])
                         "
-                        class="cursor-pointer text-blue-700 font-bold select-none"
+                        class="
+                          cursor-pointer
+                          text-blue-700
+                          font-bold
+                          select-none
+                        "
                       >
                         Close
                       </p>
@@ -2128,13 +4000,38 @@
               <!--Edit Shopping List-->
               <div
                 v-if="Editlist"
-                class="fixed z-100 bg-black bg-opacity-75 overflow-y-auto inset-0"
+                class="
+                  fixed
+                  z-100
+                  bg-black bg-opacity-75
+                  overflow-y-auto
+                  inset-0
+                "
               >
                 <div
                   class="flex mt-4 w-full p-3 items-center justify-center py-20"
                 >
                   <div
-                    class="self-center bg-white ring-1 ring-gray-300 py-2 w-full rounded-xl 2xl:w-608 2xl:mt-0 lg:w-608 lg:mt-0 xl:w-608 xl:mt-0 md:w-10/12 md:mt-0 sm:w-11/12 p-5 space-y-3 h-auto"
+                    class="
+                      self-center
+                      bg-white
+                      ring-1 ring-gray-300
+                      py-2
+                      w-full
+                      rounded-xl
+                      2xl:w-608
+                      2xl:mt-0
+                      lg:w-608
+                      lg:mt-0
+                      xl:w-608
+                      xl:mt-0
+                      md:w-10/12
+                      md:mt-0
+                      sm:w-11/12
+                      p-5
+                      space-y-3
+                      h-auto
+                    "
                   >
                     <div class="flex flex-row items-center space-x-2">
                       <input
@@ -2144,13 +4041,24 @@
                         class="focus:outline-none h-10 pl-3 bg-gray-100"
                       />
                       <span
-                        class="cursor-pointer select-none material-icons text-md text-gray-500"
+                        class="
+                          cursor-pointer
+                          select-none
+                          material-icons
+                          text-md text-gray-500
+                        "
                       >
                         mode
                       </span>
                     </div>
                     <div
-                      class="flex flex-row items-center space-x-3 select-none pl-3"
+                      class="
+                        flex flex-row
+                        items-center
+                        space-x-3
+                        select-none
+                        pl-3
+                      "
                     >
                       <span
                         @click="new_item = !new_item"
@@ -2168,34 +4076,65 @@
                         id="s_product"
                         type="text"
                         placeholder="Product"
-                        class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                        class="
+                          rounded-xl
+                          pl-5
+                          w-full
+                          focus:outline-none
+                          h-10
+                          bg-gray-100
+                        "
                       />
                       <div class="flex flex-row space-x-2">
                         <input
                           id="s_brand"
                           type="text"
                           placeholder="Brand"
-                          class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                          class="
+                            rounded-xl
+                            pl-5
+                            w-full
+                            focus:outline-none
+                            h-10
+                            bg-gray-100
+                          "
                         />
                         <input
                           id="s_size"
                           type="text"
                           placeholder="Size"
-                          class="w-40 rounded-xl pl-5 focus:outline-none h-10 bg-gray-100"
+                          class="
+                            w-40
+                            rounded-xl
+                            pl-5
+                            focus:outline-none
+                            h-10
+                            bg-gray-100
+                          "
                         />
                       </div>
                       <div class="flex flex-row space-x-2">
                         <p class="font-bold">Quantity</p>
                         <span
                           @click="quantity++"
-                          class="material-icons select-none cursor-pointer text-red-700"
+                          class="
+                            material-icons
+                            select-none
+                            cursor-pointer
+                            text-red-700
+                          "
                         >
                           add
                         </span>
                         <p id="s_quants">{{ quantity }}</p>
                         <span
                           @click="quantity = minusQty(quantity)"
-                          class="material-icons select-none cursor-pointer text-red-700"
+                          class="
+                            material-icons
+                            select-none
+                            cursor-pointer
+                            text-red-700
+                          "
                         >
                           remove
                         </span>
@@ -2204,7 +4143,15 @@
                         <div class="space-x-3">
                           <button
                             @click="new_item = false"
-                            class="ring-2 rounded-2xl h-6 w-20 font-bold ring-red-buttons focus:outline-none"
+                            class="
+                              ring-2
+                              rounded-2xl
+                              h-6
+                              w-20
+                              font-bold
+                              ring-red-buttons
+                              focus:outline-none
+                            "
                           >
                             Cancel
                           </button>
@@ -2217,7 +4164,17 @@
                                 's_quants'
                               )
                             "
-                            class="ring-2 rounded-2xl h-6 w-20 font-bold text-white ring-red-buttons focus:outline-none bg-red-buttons"
+                            class="
+                              ring-2
+                              rounded-2xl
+                              h-6
+                              w-20
+                              font-bold
+                              text-white
+                              ring-red-buttons
+                              focus:outline-none
+                              bg-red-buttons
+                            "
                           >
                             Add
                           </button>
@@ -2225,8 +4182,10 @@
                       </div>
                     </div>
                     <div class="flex text-gray-400 text-xs justify-end">
-                      <p>Updated</p>
-                      {{ time }}
+                      <p>
+                        Last updated
+                        {{ timestamp(shoppingLists[0].dateModified) }}
+                      </p>
                     </div>
                     <hr class="bg-black" />
                     <p class="text-center text-red-500">{{ listError }}</p>
@@ -2243,7 +4202,12 @@
                           <div class="flex flex-row justify-between w-full">
                             <div class="flex flex-col">
                               <div
-                                class="flex flex-row text-md items-center space-x-3"
+                                class="
+                                  flex flex-row
+                                  text-md
+                                  items-center
+                                  space-x-3
+                                "
                               >
                                 <input
                                   type="checkbox"
@@ -2264,7 +4228,12 @@
                             <div class="flex flex-row space-x-5">
                               <span
                                 @click="item.quantity++"
-                                class="material-icons select-none cursor-pointer text-red-700"
+                                class="
+                                  material-icons
+                                  select-none
+                                  cursor-pointer
+                                  text-red-700
+                                "
                               >
                                 add
                               </span>
@@ -2272,14 +4241,59 @@
                                 <p>{{ item.quantity }}</p>
                               </div>
                               <span
-                                @click="item.quantity =minusQty(item.quantity)"
-                                class="material-icons select-none cursor-pointer text-red-700"
+                                @click="item.quantity = minusQty(item.quantity)"
+                                class="
+                                  material-icons
+                                  select-none
+                                  cursor-pointer
+                                  text-red-700
+                                "
                               >
                                 remove
                               </span>
-                              <span class="cursor-pointer material-icons">
-                                more_vert
-                              </span>
+                              <button
+                                @click="productOptions(item.id)"
+                                class="focus:outline-none flex"
+                              >
+                                <span class="material-icons"> more_vert </span>
+                              </button>
+                            </div>
+                            <div
+                              v-if="
+                                editCreatedItem1 &&
+                                editCreatedItemFlagId == item.id
+                              "
+                              class="
+                                absolute
+                                p-2
+                                leading-loose
+                                rounded-lg
+                                border-2 border-gray-100
+                                bg-white
+                                right-0
+                                w-30
+                              "
+                            >
+                              <button
+                                @click="editDisItem1"
+                                class="
+                                  flex flex-row
+                                  items-center
+                                  font-normal
+                                  text-base
+                                  leading-none
+                                  text-gray-900
+                                  focus:outline-none
+                                  gap-x-2
+                                "
+                              >
+                                <span
+                                  class="material-icons text-base text-gray-900"
+                                >
+                                  mode
+                                </span>
+                                Edit
+                              </button>
                             </div>
                           </div>
                         </li>
@@ -2312,7 +4326,12 @@
                           ),
                             (selectedList = [])
                         "
-                        class="cursor-pointer text-blue-700 font-bold select-none"
+                        class="
+                          cursor-pointer
+                          text-blue-700
+                          font-bold
+                          select-none
+                        "
                       >
                         Close
                       </p>
@@ -2324,13 +4343,37 @@
               <!--Toggle Delete -->
               <div
                 v-if="toggle_delete"
-                class="fixed bg-black z-100 h-max w-screen bg-opacity-75 overflow-y-auto items-center inset-0"
+                class="
+                  fixed
+                  bg-black
+                  z-100
+                  h-max
+                  w-screen
+                  bg-opacity-75
+                  overflow-y-auto
+                  items-center
+                  inset-0
+                "
               >
                 <div
                   class="flex mt-4 w-full p-3 items-center justify-center py-20"
                 >
                   <div
-                    class="bg-white ring-1 ring-gray-300 p-5 w-full rounded-xl 2xl:w-97 lg:w-97 xl:w-97 xl:mr-16 md:w-8/12 sm:w-10/12 shadow-2xl h-auto"
+                    class="
+                      bg-white
+                      ring-1 ring-gray-300
+                      p-5
+                      w-full
+                      rounded-xl
+                      2xl:w-97
+                      lg:w-97
+                      xl:w-97
+                      xl:mr-16
+                      md:w-8/12
+                      sm:w-10/12
+                      shadow-2xl
+                      h-auto
+                    "
                   >
                     <div class="flex flex-row items-center justify-between p-3">
                       <p class="hidden lg:block 2xl:block xl:block"></p>
@@ -2352,20 +4395,47 @@
                       </p>
                     </div>
                     <hr />
-                    <div class=" ">
+                    <div class="">
                       <div
-                        class="flex justify-between mt-4 px-5 space-x-4 items-center"
+                        class="
+                          flex
+                          justify-between
+                          mt-4
+                          px-5
+                          space-x-4
+                          items-center
+                        "
                       >
                         <button
                           @click="toggle_delete = false"
-                          class="px-4 bg-white text-black focus:outline-none w-full h-7 shadow-xl ring-1 ring-gray-300 rounded-2xl"
+                          class="
+                            px-4
+                            bg-white
+                            text-black
+                            focus:outline-none
+                            w-full
+                            h-7
+                            shadow-xl
+                            ring-1 ring-gray-300
+                            rounded-2xl
+                          "
                         >
                           Cancel
                         </button>
 
                         <button
                           @click="deleteListFrom()"
-                          class="px-4 bg-red-buttons text-white focus:outline-none w-full h-7 shadow-xl ring-1 ring-gray-300 rounded-2xl"
+                          class="
+                            px-4
+                            bg-red-buttons
+                            text-white
+                            focus:outline-none
+                            w-full
+                            h-7
+                            shadow-xl
+                            ring-1 ring-gray-300
+                            rounded-2xl
+                          "
                         >
                           Delete
                         </button>
@@ -2399,13 +4469,67 @@
     <div
       v-if="false"
       :TogglePopup="() => TogglePopup('popUpUp1')"
-      class="transition delay-150 mb-1 sm:w-z md:w-z lg:w-z llg:w-z xl:w-z xll:w-z 2xl:w-z 2xxl:w-z md:right-7 lg:right-7 llg:right-7 xl:right-7 xll:right-7 2xl:right-7 2xxl:right-7 mx-2 rounded-xl flex justify-between flex-row shadow-lg bg-black text-white border px-4 pb-4 pt-4 xsm:h-auto ssm:h-auto vsv:h-auto vsvs:h-auto lvs:h-auto sm:h-auto md:h-auto"
+      class="
+        transition
+        delay-150
+        mb-1
+        sm:w-z
+        md:w-z
+        lg:w-z
+        llg:w-z
+        xl:w-z
+        xll:w-z
+        2xl:w-z
+        2xxl:w-z
+        md:right-7
+        lg:right-7
+        llg:right-7
+        xl:right-7
+        xll:right-7
+        2xl:right-7
+        2xxl:right-7
+        mx-2
+        rounded-xl
+        flex
+        justify-between
+        flex-row
+        shadow-lg
+        bg-black
+        text-white
+        border
+        px-4
+        pb-4
+        pt-4
+        xsm:h-auto
+        ssm:h-auto
+        vsv:h-auto
+        vsvs:h-auto
+        lvs:h-auto
+        sm:h-auto
+        md:h-auto
+      "
     >
       <div class="flex items-center">
         <img
           src="https://ptetutorials.com/images/user-profile.png"
           alt="sunil"
-          class="rounded-full h-w w-w xsm:h-8 ssm:h-8 vsv:h-8 vsvs:h-8 lvs:h-8 sm:h-8 xsm:w-8 ssm:w-8 vsv:w-8 vsvs:w-8 lvs:w-8 sm:w-8"
+          class="
+            rounded-full
+            h-w
+            w-w
+            xsm:h-8
+            ssm:h-8
+            vsv:h-8
+            vsvs:h-8
+            lvs:h-8
+            sm:h-8
+            xsm:w-8
+            ssm:w-8
+            vsv:w-8
+            vsvs:w-8
+            lvs:w-8
+            sm:w-8
+          "
         />
         <span class="ml-2 text-sm flex flex-col justify-start">
           <span> Mark Aral sent you an order request.</span>
@@ -2415,7 +4539,21 @@
       <div class="flex items-center">
         <button
           @click="popupTriggers.popUp1 = false"
-          class="focus:outline-none hover:text-red-700 hover:bg-white rounded-full h-6 ml-2 xsm:ml-2 ssm: vsv: vsvs: lvs: sm: md:"
+          class="
+            focus:outline-none
+            hover:text-red-700
+            hover:bg-white
+            rounded-full
+            h-6
+            ml-2
+            xsm:ml-2
+            ssm:
+            vsv:
+            vsvs:
+            lvs:
+            sm:
+            md:
+          "
           type="button"
         >
           <span class="material-icons"> cancel</span>
@@ -2425,7 +4563,43 @@
     <div
       v-if="false"
       :TogglePopup="() => TogglePopup('popUpUp2')"
-      class="mb-1 sm:w-z md:w-z lg:w-z llg:w-z xl:w-z xll:w-z 2xl:w-z 2xxl:w-z md:right-7 lg:right-7 llg:right-7 xl:right-7 xll:right-7 2xl:right-7 2xxl:right-7 mx-2 rounded-xl flex justify-between flex-row shadow-lg bg-black text-white border px-4 pb-4 pt-4 xsm:h-auto ssm:h-auto vsv:h-auto vsvs:h-auto lvs:h-auto sm:h-auto md:h-auto"
+      class="
+        mb-1
+        sm:w-z
+        md:w-z
+        lg:w-z
+        llg:w-z
+        xl:w-z
+        xll:w-z
+        2xl:w-z
+        2xxl:w-z
+        md:right-7
+        lg:right-7
+        llg:right-7
+        xl:right-7
+        xll:right-7
+        2xl:right-7
+        2xxl:right-7
+        mx-2
+        rounded-xl
+        flex
+        justify-between
+        flex-row
+        shadow-lg
+        bg-black
+        text-white
+        border
+        px-4
+        pb-4
+        pt-4
+        xsm:h-auto
+        ssm:h-auto
+        vsv:h-auto
+        vsvs:h-auto
+        lvs:h-auto
+        sm:h-auto
+        md:h-auto
+      "
     >
       <div class="flex items-center">
         <span class="icons material-icons" style="color: #9ca3af"
@@ -2439,7 +4613,13 @@
       <div class="flex items-center">
         <button
           @click="popupTriggers.popUp2 = false"
-          class="focus:outline-none hover:text-red-700 hover:bg-white rounded-full h-6"
+          class="
+            focus:outline-none
+            hover:text-red-700
+            hover:bg-white
+            rounded-full
+            h-6
+          "
           type="button"
         >
           <span class="material-icons"> cancel</span>
@@ -2448,7 +4628,42 @@
     </div>
     <div
       v-if="popUp3"
-      class="sm:w-z md:w-z lg:w-z llg:w-z xl:w-z xll:w-z 2xl:w-z 2xxl:w-z md:right-7 lg:right-7 llg:right-7 xl:right-7 xll:right-7 2xl:right-7 2xxl:right-7 mx-2 rounded-xl flex justify-between flex-row shadow-lg bg-black text-white border px-4 pb-4 pt-4 xsm:h-auto ssm:h-auto vsv:h-auto vsvs:h-auto lvs:h-auto sm:h-auto md:h-auto"
+      class="
+        sm:w-z
+        md:w-z
+        lg:w-z
+        llg:w-z
+        xl:w-z
+        xll:w-z
+        2xl:w-z
+        2xxl:w-z
+        md:right-7
+        lg:right-7
+        llg:right-7
+        xl:right-7
+        xll:right-7
+        2xl:right-7
+        2xxl:right-7
+        mx-2
+        rounded-xl
+        flex
+        justify-between
+        flex-row
+        shadow-lg
+        bg-black
+        text-white
+        border
+        px-4
+        pb-4
+        pt-4
+        xsm:h-auto
+        ssm:h-auto
+        vsv:h-auto
+        vsvs:h-auto
+        lvs:h-auto
+        sm:h-auto
+        md:h-auto
+      "
     >
       <div class="flex items-center">
         <span class="icons material-icons" style="color: #9ca3af"
@@ -2461,7 +4676,13 @@
       <div class="flex items-center">
         <button
           @click="popUp3 = false"
-          class="focus:outline-none hover:text-red-700 hover:bg-white rounded-full h-6"
+          class="
+            focus:outline-none
+            hover:text-red-700
+            hover:bg-white
+            rounded-full
+            h-6
+          "
           type="button"
         >
           <span class="material-icons"> cancel</span>
@@ -2470,7 +4691,42 @@
     </div>
     <div
       v-if="popUpPost"
-      class="sm:w-z md:w-z lg:w-z llg:w-z xl:w-z xll:w-z 2xl:w-z 2xxl:w-z md:right-7 lg:right-7 llg:right-7 xl:right-7 xll:right-7 2xl:right-7 2xxl:right-7 mx-2 rounded-xl flex justify-between flex-row shadow-lg bg-black text-white border px-4 pb-4 pt-4 xsm:h-auto ssm:h-auto vsv:h-auto vsvs:h-auto lvs:h-auto sm:h-auto md:h-auto"
+      class="
+        sm:w-z
+        md:w-z
+        lg:w-z
+        llg:w-z
+        xl:w-z
+        xll:w-z
+        2xl:w-z
+        2xxl:w-z
+        md:right-7
+        lg:right-7
+        llg:right-7
+        xl:right-7
+        xll:right-7
+        2xl:right-7
+        2xxl:right-7
+        mx-2
+        rounded-xl
+        flex
+        justify-between
+        flex-row
+        shadow-lg
+        bg-black
+        text-white
+        border
+        px-4
+        pb-4
+        pt-4
+        xsm:h-auto
+        ssm:h-auto
+        vsv:h-auto
+        vsvs:h-auto
+        lvs:h-auto
+        sm:h-auto
+        md:h-auto
+      "
     >
       <div class="flex items-center">
         <span class="icons material-icons" style="color: #9ca3af"
@@ -2481,7 +4737,13 @@
       <div class="flex items-center">
         <button
           @click="popUpPost = false"
-          class="focus:outline-none hover:text-red-700 hover:bg-white rounded-full h-6"
+          class="
+            focus:outline-none
+            hover:text-red-700
+            hover:bg-white
+            rounded-full
+            h-6
+          "
           type="button"
         >
           <span class="material-icons"> cancel</span>
@@ -2493,7 +4755,43 @@
     <div
       v-if="popupTriggers.timedTrigger"
       :TogglePopup="() => TogglePopup('timedTrigger')"
-      class="md:w-z lg:w-z sm:w-z llg:w-z xl:w-z xll:w-z 2xl:w-z 2xxl:w-z md:right-3 lg:right-3 llg:right-3 xl:right-3 xll:right-3 2xl:right-3 2xxl:right-3 h-u mx-2 rounded-xl flex justify items-center shadow-lg bg-black text-white border px-4 pb-4 pt-4 xsm:h-auto ssm:h-auto vsv:h-auto vsvs:h-auto lvs:h-auto sm:h-auto md:h-auto"
+      class="
+        md:w-z
+        lg:w-z
+        sm:w-z
+        llg:w-z
+        xl:w-z
+        xll:w-z
+        2xl:w-z
+        2xxl:w-z
+        md:right-3
+        lg:right-3
+        llg:right-3
+        xl:right-3
+        xll:right-3
+        2xl:right-3
+        2xxl:right-3
+        h-u
+        mx-2
+        rounded-xl
+        flex
+        justify
+        items-center
+        shadow-lg
+        bg-black
+        text-white
+        border
+        px-4
+        pb-4
+        pt-4
+        xsm:h-auto
+        ssm:h-auto
+        vsv:h-auto
+        vsvs:h-auto
+        lvs:h-auto
+        sm:h-auto
+        md:h-auto
+      "
     >
       <div class="text-sm w-full h-full px-3 rounded pt-4">
         <h1 class="font-semibold text-lg">This website use cookies</h1>
@@ -2508,7 +4806,20 @@
         <div class="flex justify-end relative">
           <button
             @click="setCookie"
-            class="mx-2 mt-2 h-7 px-2 mb-2 bg-gray-100 text-black hover:text-white hover:bg-gray-400 focus:outline-none rounded-full border border-gray-700"
+            class="
+              mx-2
+              mt-2
+              h-7
+              px-2
+              mb-2
+              bg-gray-100
+              text-black
+              hover:text-white
+              hover:bg-gray-400
+              focus:outline-none
+              rounded-full
+              border border-gray-700
+            "
           >
             <span>Accept all cookies</span>
           </button>
@@ -2568,8 +4879,10 @@ export default {
   },
   data() {
     return {
-      share3dot:false,
-      share3dotPostNum:null,
+      editCreatedItem1: false,
+      editCreatedItemFlagId: null,
+      share3dot: false,
+      share3dotPostNum: null,
       ctrProp: 0,
       brandSearchTag: false,
       popUp3: false,
@@ -2792,8 +5105,12 @@ export default {
     },
   },
   methods: {
-    deleteShared(postNum){
-       api.delete("api/sharedPost/" + postNum + "/delete").then(() => {
+    productOptions(id) {
+      this.editCreatedItem1 = !this.editCreatedItem1;
+      this.editCreatedItemFlagId = id;
+    },
+    deleteShared(postNum) {
+      api.delete("api/sharedPost/" + postNum + "/delete").then(() => {
         store.dispatch("getAllShares").then(() => {
           this.sortPosts();
           this.changeFilter();
@@ -3028,18 +5345,15 @@ export default {
         listName: document.getElementById("new_title").value,
         list: this.new_items,
       };
-      console.log("edit list", this.new_items);
-      console.log("edit list", listNumber);
-      console.log("edit list", obj);
 
       this.shopping_list.push(obj);
       api
         .post("api/editList/" + listNumber, obj)
         .then((res) => {
+          console.log("edit", res.data);
           store.dispatch("getUserShoppingList").then(() => {
             this.selectedList = res.data;
             this.showItemList = true;
-            console.log("before", this.selectedList, this.showItemList);
             this.new_items = [];
             this.Editlist = false;
             if (this.listToggleFlag) this.togglePostModal();
@@ -3390,28 +5704,31 @@ export default {
       }
     },
     timestamp(datetime) {
-      var postedDate = new Date(datetime);
+      var postedDate = moment(datetime);
       const today = moment().endOf("day");
       const yesterday = moment().add(-1, "day").endOf("day");
-
-      if (postedDate < today)
-        return moment(datetime).format("[Today at] h:mm a");
-      if (postedDate > yesterday)
+      if (moment(postedDate).isBefore(yesterday))
         return moment(datetime).format("[Yesterday at] h:mm a");
+      if (moment(postedDate).isBefore(today))
+        return moment(datetime).format("[Today at] h:mm a");
       else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
     },
     timestampSched(datetime) {
-      var schedDate = new Date(datetime);
-      const today = moment().endOf("day");
-      const tomorrow = moment().add(1, "day").endOf("day");
-      if (schedDate < today) {
-        return moment(datetime).format("[Today at] h:mm a");
+      var schedDate = moment(datetime);
+      const today = moment();
+      const startOfTomorrow = moment().add(1, "day").startOf("day");
+      const endOfTomorrow = moment().add(1, "day").endOf("day");
+     
+      if (moment(schedDate).isBefore(today)) {
+        return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
       }
-      if (schedDate < tomorrow) {
-        return moment(datetime).format("[Tommorow at] h:mm a");
+      if (moment(schedDate).isAfter(today)) {
+        if (moment(schedDate).isAfter(endOfTomorrow))
+          return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
+        if (moment(schedDate).isBefore(startOfTomorrow))
+          return moment(datetime).format("[Today at] h:mm a");
+        else return moment(datetime).format("[Tommorow at] h:mm a");
       }
-
-      return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
     },
     setDispatches(email) {
       store.dispatch("getUserInfo", email).then(() => {
