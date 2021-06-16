@@ -2,21 +2,79 @@
   <!-- Post Modal-->
   <div
     v-on:click.self="close"
-    class="z-50 bg-black font-nunito bg-opacity-25 fixed inset-0 flex ssm:px-2 vs:px-2 sm:px-2 justify-center items-center"
+    class="
+      z-50
+      bg-black
+      font-nunito
+      bg-opacity-25
+      fixed
+      inset-0
+      flex
+      ssm:px-2
+      vs:px-2
+      sm:px-2
+      justify-center
+      items-center
+    "
     v-if="mainModal"
   >
     <div
-      class="hideIf inline-flex flex-col space-y-2 bg-white shadow rounded-xl h-auto w-550 ssm:w-full vs:w-full sm:w-full"
+      class="
+        hideIf
+        inline-flex
+        flex-col
+        space-y-2
+        bg-white
+        shadow
+        rounded-xl
+        h-auto
+        w-550
+        ssm:w-full
+        vs:w-full
+        sm:w-full
+      "
     >
       <div class="flex flex-col mt-4">
         <!--Create Post section-->
         <h1
-          class="items-center justify-center ml-24 sm:ml-24 ssm:ml-8 ssm:pl-8 vs:ml-6 pb-4 text-gray-900 leading-normal pl-20 text-2xl ssm:text-xl vs:text-xl font-bold text-center"
+          class="
+            items-center
+            justify-center
+            ml-24
+            sm:ml-24
+            ssm:ml-8
+            ssm:pl-8
+            vs:ml-6
+            pb-4
+            text-gray-900
+            leading-normal
+            pl-20
+            text-2xl
+            ssm:text-xl
+            vs:text-xl
+            font-bold
+            text-center
+          "
         >
           Create Post
           <button
             @click.prevent="close"
-            class="pl-14 ml-20 sm:ml-14 ssm:pl-4 ssm:ml-4 vs:pl-4 vs:ml-8 focus:outline-none text-sm ssm:text-xs vs:text-xs mb-1 leading-none text-indigo-900"
+            class="
+              pl-14
+              ml-20
+              sm:ml-14
+              ssm:pl-4
+              ssm:ml-4
+              vs:pl-4
+              vs:ml-8
+              focus:outline-none
+              text-sm
+              ssm:text-xs
+              vs:text-xs
+              mb-1
+              leading-none
+              text-indigo-900
+            "
           >
             Close
           </button>
@@ -25,7 +83,14 @@
 
         <!--Shopping Offer and Order Request Button-->
         <div
-          class="flex flex-row items-center justify-around pb-2 space-x-2 ssm:space-x-1"
+          class="
+            flex flex-row
+            items-center
+            justify-around
+            pb-2
+            space-x-2
+            ssm:space-x-1
+          "
         >
           <div
             @click="isActive_function('btn1')"
@@ -34,7 +99,16 @@
           >
             <button
               @click="toggleOrderRequestbtn"
-              class="text-base ssm:text-sm vs:text-sm font-nunito font-bold focus:outline-none leading-none text-center text-black uppercase"
+              class="
+                text-base
+                ssm:text-sm
+                vs:text-sm
+                font-nunito font-bold
+                focus:outline-none
+                leading-none
+                text-center text-black
+                uppercase
+              "
             >
               Order Request
             </button>
@@ -46,7 +120,16 @@
           >
             <button
               @click="toggleShopOfferbtn"
-              class="text-base ssm:text-sm vs:text-sm font-nunito font-bold focus:outline-none leading-none text-center text-black uppercase"
+              class="
+                text-base
+                ssm:text-sm
+                vs:text-sm
+                font-nunito font-bold
+                focus:outline-none
+                leading-none
+                text-center text-black
+                uppercase
+              "
             >
               Shopping Offer
             </button>
@@ -59,14 +142,39 @@
         <!--User Profile-->
         <div v-if="showCreateShoppingOffer">
           <div
-            class="inline-flex sm:px-7 space-x-2 items-center justify-start p-4 ssm:mt-0 vs:mt-1"
+            class="
+              inline-flex
+              sm:px-7
+              space-x-2
+              items-center
+              justify-start
+              p-4
+              ssm:mt-0
+              vs:mt-1
+            "
           >
             <img
-              class="w-14 h-full vs:w-12 ssm:w-10 border rounded-full border-gray-200"
+              class="
+                w-14
+                h-full
+                vs:w-12
+                ssm:w-10
+                border
+                rounded-full
+                border-gray-200
+              "
               :src="user.profilePicture"
             />
             <p
-              class="text-base ssm:text-sm vs:text-sm lvs:text-base font-bold leading-none text-gray-900"
+              class="
+                text-base
+                ssm:text-sm
+                vs:text-sm
+                lvs:text-base
+                font-bold
+                leading-none
+                text-gray-900
+              "
             >
               {{ user.firstName }} {{ user.lastName }}
             </p>
@@ -76,10 +184,31 @@
           <p class="text-red-500 text-center">{{ postError }}</p>
           <!--Delivery information list-->
           <div
-            class="flex flex-col mt-1 vs:mt-1 ssm:px-2 vs:px-2 justify-center items-center"
+            class="
+              flex flex-col
+              mt-1
+              vs:mt-1
+              ssm:px-2
+              vs:px-2
+              justify-center
+              items-center
+            "
           >
             <div
-              class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
+              class="
+                flex flex-row
+                ssm:flex-col
+                vs:flex-col
+                sm:flex-col
+                vs:space-x-0 vs:space-y-2
+                sm:space-x-0 sm:space-y-2
+                ssm:space-x-0 ssm:space-y-2
+                ssm:pt-2
+                pt-3
+                space-x-4
+                w-full
+                justify-center
+              "
             >
               <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
@@ -93,7 +222,27 @@
                         (dropdown3 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      vs:w-full
+                      w-52
+                      h-11
+                      py-2.5
+                      px-4
+                      items-center
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                   >
                     {{ deliveryArea }}
                   </button>
@@ -108,10 +257,30 @@
                     (this.selectedCity = 'City')
                 "
                 v-if="deliveryAreaModal"
-                class="z-50 bg-black bg-opacity-25 fixed inset-0 flex justify-center items-center ssm:px-2 vs:px-2"
+                class="
+                  z-50
+                  bg-black bg-opacity-25
+                  fixed
+                  inset-0
+                  flex
+                  justify-center
+                  items-center
+                  ssm:px-2
+                  vs:px-2
+                "
               >
                 <div
-                  class="inline-flex flex-col bg-white p-4 space-y-4 shadow rounded-xl h-auto w-80"
+                  class="
+                    inline-flex
+                    flex-col
+                    bg-white
+                    p-4
+                    space-y-4
+                    shadow
+                    rounded-xl
+                    h-auto
+                    w-80
+                  "
                 >
                   <h1 class="font-bold text-center">
                     Select an area of delivery
@@ -123,7 +292,13 @@
                       id="Province"
                       @change="getProvCode()"
                       v-model="selectedProvince"
-                      class="focus:outline-none rounded-xl h-10 pl-2 bg-transparent bg-gray-200"
+                      class="
+                        focus:outline-none
+                        rounded-xl
+                        h-10
+                        pl-2
+                        bg-transparent bg-gray-200
+                      "
                     >
                       <option value="Province" disabled>Choose Province</option>
                       <option
@@ -142,7 +317,13 @@
                       id="City"
                       @change="getCityCode()"
                       v-model="selectedCity"
-                      class="focus:outline-none rounded-xl h-10 pl-2 bg-transparent bg-gray-200"
+                      class="
+                        focus:outline-none
+                        rounded-xl
+                        h-10
+                        pl-2
+                        bg-transparent bg-gray-200
+                      "
                     >
                       <option value="City" disabled>
                         Choose City/Municipality
@@ -161,7 +342,13 @@
                     <span class="ml-2">Barangay: </span>
                     <select
                       v-model="selectedBrgy"
-                      class="focus:outline-none rounded-xl h-10 pl-2 bg-transparent bg-gray-200"
+                      class="
+                        focus:outline-none
+                        rounded-xl
+                        h-10
+                        pl-2
+                        bg-transparent bg-gray-200
+                      "
                     >
                       <option value="Brgy" disabled>Choose Baranggay</option>
                       <option
@@ -176,10 +363,26 @@
                   <div class="justify-center flex">
                     <button
                       @click="addDeliveryArea()"
-                      class="inline-flex items-center justify-center focus:outline-none px-4 vs:py-2 bg-red-700 rounded-full w-full h-6"
+                      class="
+                        inline-flex
+                        items-center
+                        justify-center
+                        focus:outline-none
+                        px-4
+                        vs:py-2
+                        bg-red-700
+                        rounded-full
+                        w-full
+                        h-6
+                      "
                     >
                       <p
-                        class="text-base font-bold leading-normal text-center text-white"
+                        class="
+                          text-base
+                          font-bold
+                          leading-normal
+                          text-center text-white
+                        "
                       >
                         Add
                       </p>
@@ -205,7 +408,27 @@
                     v-on:keyup="myFunctionSP()"
                     placeholder="Shopping Place"
                     title="Shopping Place"
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 px-4 items-center py-2.5 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      vs:w-full
+                      w-52
+                      h-11
+                      px-4
+                      items-center
+                      py-2.5
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                     v-model="shoppingPlace"
                   />
                   <!-- {{shoppingPlace}} -->
@@ -213,14 +436,38 @@
                   <div class="relative md:w-full">
                     <div
                       v-if="dropdown4"
-                      class="absolute md:w-full py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
+                      class="
+                        absolute
+                        md:w-full
+                        py-3
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        right-0
+                        h-35.1
+                        sm:w-full
+                        w-52
+                      "
                     >
                       <div
-                        class="flex flex-col w-full px-2 justify-start items-start"
+                        class="
+                          flex flex-col
+                          w-full
+                          px-2
+                          justify-start
+                          items-start
+                        "
                       >
                         <div
                           id="scroll1"
-                          class="flex px-2 flex-col overflow-y-scroll w-full h-24"
+                          class="
+                            flex
+                            px-2
+                            flex-col
+                            overflow-y-scroll
+                            w-full
+                            h-24
+                          "
                         >
                           <ul id="myUL" class="space-y-1">
                             <li
@@ -245,7 +492,21 @@
             </div>
 
             <div
-              class="flex flex-row sm:px-7 ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
+              class="
+                flex flex-row
+                sm:px-7
+                ssm:flex-col
+                vs:flex-col
+                sm:flex-col
+                vs:space-x-0 vs:space-y-2
+                sm:space-x-0 sm:space-y-2
+                ssm:space-x-0 ssm:space-y-2
+                ssm:pt-2
+                pt-3
+                space-x-4
+                w-full
+                justify-center
+              "
             >
               <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
@@ -253,7 +514,27 @@
                 </span>
                 <input
                   type="datetime-local"
-                  class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                  class="
+                    focus:outline-none
+                    flex
+                    sm:w-full
+                    ssm:w-full
+                    ssm:h-auto
+                    ssm:text-xs
+                    vs:w-full
+                    w-52
+                    h-11
+                    py-2.5
+                    px-4
+                    items-center
+                    bg-gray-100
+                    rounded-xl
+                    text-sm
+                    vs:text-xs
+                    lvs:text-sm
+                    leading-none
+                    text-gray-500
+                  "
                   placeholder="Schedule"
                   v-model="sched"
                 />
@@ -271,7 +552,27 @@
                         (dropdown1 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      vs:w-full
+                      w-52
+                      h-11
+                      py-2.5
+                      px-4
+                      items-center
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                     type="text"
                     id="myInputTM"
                     v-on:keyup="myFunctionTM()"
@@ -283,14 +584,37 @@
                   <div class="relative">
                     <div
                       v-if="dropdown3"
-                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
+                      class="
+                        absolute
+                        py-3
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        right-0
+                        h-35.1
+                        sm:w-full
+                        w-52
+                      "
                     >
                       <div
-                        class="flex flex-col w-full px-2 justify-start items-start"
+                        class="
+                          flex flex-col
+                          w-full
+                          px-2
+                          justify-start
+                          items-start
+                        "
                       >
                         <div
                           id="scroll1"
-                          class="flex px-2 flex-col overflow-y-scroll w-full h-24"
+                          class="
+                            flex
+                            px-2
+                            flex-col
+                            overflow-y-scroll
+                            w-full
+                            h-24
+                          "
                         >
                           <ul id="myUL" class="space-y-1">
                             <li
@@ -315,14 +639,48 @@
             </div>
 
             <div
-              class="flex flex-row sm:px-7 ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 ssm:pt-2 pt-3 space-x-4 w-full justify-center"
+              class="
+                flex flex-row
+                sm:px-7
+                ssm:flex-col
+                vs:flex-col
+                sm:flex-col
+                vs:space-x-0 vs:space-y-2
+                sm:space-x-0 sm:space-y-2
+                ssm:space-x-0 ssm:space-y-2
+                ssm:pt-2
+                pt-3
+                space-x-4
+                w-full
+                justify-center
+              "
             >
               <div class="flex space-x-2 sm:px-7 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
                   shopping_bag
                 </span>
                 <input
-                  class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                  class="
+                    focus:outline-none
+                    flex
+                    sm:w-full
+                    ssm:w-full
+                    ssm:h-auto
+                    ssm:text-xs
+                    vs:w-full
+                    w-52
+                    h-11
+                    py-2.5
+                    px-4
+                    items-center
+                    bg-gray-100
+                    rounded-xl
+                    text-sm
+                    vs:text-xs
+                    lvs:text-sm
+                    leading-none
+                    text-gray-500
+                  "
                   placeholder="Capacity"
                   v-model="capacity"
                 />
@@ -340,30 +698,80 @@
                         (dropdown3 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      vs:w-full
+                      w-52
+                      h-11
+                      py-2.5
+                      px-4
+                      items-center
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                   >
                     {{ payment }}
                   </button>
                   <div class="relative">
                     <div
                       v-if="dropdown2"
-                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 vs:w-full sm:w-full w-52"
+                      class="
+                        absolute
+                        py-3
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        right-0
+                        h-35.1
+                        vs:w-full
+                        sm:w-full
+                        w-52
+                      "
                     >
                       <div
                         v-for="(pm, index) in Payments"
                         :key="index"
-                        class="flex flex-col w-full space-y-3 px-2 justify-start items-start"
+                        class="
+                          flex flex-col
+                          w-full
+                          space-y-3
+                          px-2
+                          justify-start
+                          items-start
+                        "
                       >
                         <button
                           @click="
                             setPayment(index);
                             dropdown2 = !dropdown2;
                           "
-                          class="flex w-full focus:outline-none justify-start items-start px-2"
+                          class="
+                            flex
+                            w-full
+                            focus:outline-none
+                            justify-start
+                            items-start
+                            px-2
+                          "
                         >
                           <p
                             :id="'pm' + index"
-                            class="text-sm tracking-wide leading-none text-gray-900"
+                            class="
+                              text-sm
+                              tracking-wide
+                              leading-none
+                              text-gray-900
+                            "
                           >
                             {{ pm }}
                           </p>
@@ -385,7 +793,20 @@
               name="postMessage"
               rows="3"
               v-model="caption"
-              class="p-4 bg-gray-100 shadow-sm text-sm ssm:text-xs vs:text-xs lvs:text-sm rounded-2xl rounded-md outline-none h-auto w-31.75 vs:w-full"
+              class="
+                p-4
+                bg-gray-100
+                shadow-sm
+                text-sm
+                ssm:text-xs
+                vs:text-xs
+                lvs:text-sm
+                rounded-2xl rounded-md
+                outline-none
+                h-auto
+                w-31.75
+                vs:w-full
+              "
               placeholder="Enter your post message here..."
             ></textarea>
           </div>
@@ -395,10 +816,31 @@
           <div class="justify-center flex mt-3 pb-3 px-2">
             <button
               @click="postOffer"
-              class="inline-flex items-center justify-center focus:outline-none px-4 vs:py-2 bg-red-700 rounded-full w-31.75 ssm:w-full vs:w-full h-10"
+              class="
+                inline-flex
+                items-center
+                justify-center
+                focus:outline-none
+                px-4
+                vs:py-2
+                bg-red-700
+                rounded-full
+                w-31.75
+                ssm:w-full
+                vs:w-full
+                h-10
+              "
             >
               <p
-                class="text-base ssm:text-sm vs:text-sm sm:text-sm font-bold leading-normal text-center text-white"
+                class="
+                  text-base
+                  ssm:text-sm
+                  vs:text-sm
+                  sm:text-sm
+                  font-bold
+                  leading-normal
+                  text-center text-white
+                "
               >
                 Post
               </p>
@@ -413,11 +855,27 @@
         <div v-if="showCreateOrderRequest">
           <div class="inline-flex space-x-2 items-center justify-start p-4">
             <img
-              class="w-14 h-full vs:w-12 ssm:w-10 border rounded-full border-gray-200"
+              class="
+                w-14
+                h-full
+                vs:w-12
+                ssm:w-10
+                border
+                rounded-full
+                border-gray-200
+              "
               :src="user.profilePicture"
             />
             <p
-              class="text-base ssm:text-sm vs:text-sm lvs:text-base font-bold leading-none text-gray-900"
+              class="
+                text-base
+                ssm:text-sm
+                vs:text-sm
+                lvs:text-base
+                font-bold
+                leading-none
+                text-gray-900
+              "
             >
               {{ user.firstName }} {{ user.lastName }}
             </p>
@@ -427,10 +885,28 @@
 
           <!--Delivery Information List-->
           <div
-            class="flex flex-col ssm:px-2 sm:px-2 justify-center items-center vs:px-2"
+            class="
+              flex flex-col
+              ssm:px-2
+              sm:px-2
+              justify-center
+              items-center
+              vs:px-2
+            "
           >
             <div
-              class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
+              class="
+                flex flex-row
+                ssm:flex-col
+                vs:flex-col
+                sm:flex-col
+                vs:space-x-0 vs:space-y-2
+                sm:space-x-0 sm:space-y-2
+                ssm:space-x-0 ssm:space-y-2
+                space-x-4
+                w-full
+                justify-center
+              "
             >
               <div class="flex space-x-2 vs:w-full sm:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
@@ -444,14 +920,46 @@
                         (dropdown3 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex vs:w-full sm:w-full ssm:w-full ssm:h-auto ssm:text-xs ssm:pr-0 vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      vs:w-full
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      ssm:pr-0
+                      vs:w-full
+                      w-52
+                      h-11
+                      py-2.5
+                      px-4
+                      items-center
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                   >
                     {{ deliveryAddress }}
                   </button>
                   <div class="relative">
                     <div
                       v-if="dropdown1"
-                      class="absolute p-2 bg-white rounded-lg shadow-xl right-0 h-40 sm:w-full w-52"
+                      class="
+                        absolute
+                        p-2
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        right-0
+                        h-40
+                        sm:w-full
+                        w-52
+                      "
                     >
                       <div
                         id="scroll1"
@@ -467,14 +975,25 @@
                             style="cursor: pointer"
                           >
                             <p
-                              class="text-sm font-bold tracking-wide leading-none text-gray-900"
+                              class="
+                                text-sm
+                                font-bold
+                                tracking-wide
+                                leading-none
+                                text-gray-900
+                              "
                             >
                               Home Address
                             </p>
                             <div class="flex-1 w-full px-2">
                               <p
                                 id="homeAdd"
-                                class="text-sm tracking-wide leading-none text-gray-900"
+                                class="
+                                  text-sm
+                                  tracking-wide
+                                  leading-none
+                                  text-gray-900
+                                "
                               >
                                 {{ userHomeAddress.province }},
                                 {{ userHomeAddress.cityMunicipality }},
@@ -497,14 +1016,25 @@
                               style="cursor: pointer"
                             >
                               <p
-                                class="text-sm font-bold tracking-wide leading-none text-gray-900"
+                                class="
+                                  text-sm
+                                  font-bold
+                                  tracking-wide
+                                  leading-none
+                                  text-gray-900
+                                "
                               >
                                 Shipping Address {{ index + 1 }}
                               </p>
                               <div class="flex-1 w-full px-2">
                                 <p
                                   :id="'shipAdd' + index"
-                                  class="text-sm tracking-wide leading-none text-gray-900"
+                                  class="
+                                    text-sm
+                                    tracking-wide
+                                    leading-none
+                                    text-gray-900
+                                  "
                                 >
                                   {{ shipAdd.province }},
                                   {{ shipAdd.cityMunicipality }},
@@ -518,7 +1048,14 @@
                       </div>
                       <div
                         @click="addAddress = !addAddress"
-                        class="flex text-base items-center focus:outline-none p-2 space-x-1"
+                        class="
+                          flex
+                          text-base
+                          items-center
+                          focus:outline-none
+                          p-2
+                          space-x-1
+                        "
                         style="cursor: pointer"
                       >
                         <span class="text-red-700 material-icons">
@@ -526,7 +1063,13 @@
                         </span>
                         <div class="flex-1 w-full">
                           <p
-                            class="text-sm font-bold tracking-wide leading-none text-red-700"
+                            class="
+                              text-sm
+                              font-bold
+                              tracking-wide
+                              leading-none
+                              text-red-700
+                            "
                           >
                             Add New Shipping Address
                           </p>
@@ -535,20 +1078,56 @@
                       <div
                         @click.self="openAddModal"
                         v-if="addAddress"
-                        class="z-50 bg-black bg-opacity-25 fixed inset-0 flex justify-center items-center ssm:px-2 vs:px-2"
+                        class="
+                          z-50
+                          bg-black bg-opacity-25
+                          fixed
+                          inset-0
+                          flex
+                          justify-center
+                          items-center
+                          ssm:px-2
+                          vs:px-2
+                        "
                       >
                         <div
-                          class="inline-flex flex-col bg-white p-4 space-y-4 shadow rounded-xl h-auto w-80"
+                          class="
+                            inline-flex
+                            flex-col
+                            bg-white
+                            p-4
+                            space-y-4
+                            shadow
+                            rounded-xl
+                            h-auto
+                            w-80
+                          "
                         >
                           <div
                             class="flex flex-row w-full items-center space-x-2"
                           >
                             <label
-                              class="block text-sm font-bold tracking-wide leading-none text-gray-900"
+                              class="
+                                block
+                                text-sm
+                                font-bold
+                                tracking-wide
+                                leading-none
+                                text-gray-900
+                              "
                               >Title</label
                             >
                             <input
-                              class="appearance-none focus:outline-none border rounded w-full py-1 px-3 text-grey-darker"
+                              class="
+                                appearance-none
+                                focus:outline-none
+                                border
+                                rounded
+                                w-full
+                                py-1
+                                px-3
+                                text-grey-darker
+                              "
                               id="addressTitle"
                               type="text"
                               placeholder="Your shipping address title"
@@ -558,11 +1137,27 @@
                             class="flex flex-row w-full items-center space-x-2"
                           >
                             <label
-                              class="block text-sm font-bold tracking-wide leading-none text-gray-900"
+                              class="
+                                block
+                                text-sm
+                                font-bold
+                                tracking-wide
+                                leading-none
+                                text-gray-900
+                              "
                               >Address</label
                             >
                             <input
-                              class="appearance-none focus:outline-none border rounded w-full py-1 px-3 text-grey-darker"
+                              class="
+                                appearance-none
+                                focus:outline-none
+                                border
+                                rounded
+                                w-full
+                                py-1
+                                px-3
+                                text-grey-darker
+                              "
                               id="addressTitle"
                               type="text"
                               placeholder="Your shipping address"
@@ -570,10 +1165,26 @@
                           </div>
                           <div class="justify-center flex">
                             <button
-                              class="inline-flex items-center justify-center focus:outline-none px-4 vs:py-2 bg-red-700 rounded-full w-full h-6"
+                              class="
+                                inline-flex
+                                items-center
+                                justify-center
+                                focus:outline-none
+                                px-4
+                                vs:py-2
+                                bg-red-700
+                                rounded-full
+                                w-full
+                                h-6
+                              "
                             >
                               <p
-                                class="text-base font-bold leading-normal text-center text-white"
+                                class="
+                                  text-base
+                                  font-bold
+                                  leading-normal
+                                  text-center text-white
+                                "
                               >
                                 Add
                               </p>
@@ -602,7 +1213,27 @@
                     v-on:keyup="myFunction()"
                     placeholder="Shopping Place"
                     title="Shopping Place"
-                    class="focus:outline-none flex sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 px-3 items-center py-2.5 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      vs:w-full
+                      w-52
+                      h-11
+                      px-3
+                      items-center
+                      py-2.5
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                     v-model="shoppingPlaceRequest"
                   />
                   <!-- {{shoppingPlace}} -->
@@ -610,14 +1241,37 @@
                   <div class="relative">
                     <div
                       v-if="dropdown4"
-                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
+                      class="
+                        absolute
+                        py-3
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        right-0
+                        h-35.1
+                        sm:w-full
+                        w-52
+                      "
                     >
                       <div
-                        class="flex flex-col w-full px-2 justify-start items-start"
+                        class="
+                          flex flex-col
+                          w-full
+                          px-2
+                          justify-start
+                          items-start
+                        "
                       >
                         <div
                           id="scroll1"
-                          class="flex px-2 flex-col overflow-y-scroll w-full h-24"
+                          class="
+                            flex
+                            px-2
+                            flex-col
+                            overflow-y-scroll
+                            w-full
+                            h-24
+                          "
                         >
                           <ul id="myUL" class="space-y-1">
                             <li
@@ -642,7 +1296,18 @@
             </div>
 
             <div
-              class="flex flex-row ssm:flex-col vs:flex-col sm:flex-col vs:space-x-0 vs:space-y-2 sm:space-x-0 sm:space-y-2 ssm:space-x-0 ssm:space-y-2 space-x-4 w-full justify-center"
+              class="
+                flex flex-row
+                ssm:flex-col
+                vs:flex-col
+                sm:flex-col
+                vs:space-x-0 vs:space-y-2
+                sm:space-x-0 sm:space-y-2
+                ssm:space-x-0 ssm:space-y-2
+                space-x-4
+                w-full
+                justify-center
+              "
             >
               <div class="flex sm:px-7 space-x-2 sm:w-full vs:w-full">
                 <span class="mt-1.5 rounded-full material-icons text-red-600">
@@ -650,7 +1315,29 @@
                 </span>
                 <input
                   type="datetime-local"
-                  class="focus:outline-none vs:w-full sm:w-full ssm:w-full ssm:h-auto ssm:text-xs flex vs:w-full w-52 h-11 py-2.5 px-4 items-center vs:pr-0 bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                  class="
+                    focus:outline-none
+                    vs:w-full
+                    sm:w-full
+                    ssm:w-full
+                    ssm:h-auto
+                    ssm:text-xs
+                    flex
+                    vs:w-full
+                    w-52
+                    h-11
+                    py-2.5
+                    px-4
+                    items-center
+                    vs:pr-0
+                    bg-gray-100
+                    rounded-xl
+                    text-sm
+                    vs:text-xs
+                    lvs:text-sm
+                    leading-none
+                    text-gray-500
+                  "
                   placeholder="Schedule"
                   v-model="schedRequest"
                 />
@@ -668,30 +1355,80 @@
                         (dropdown3 = false),
                         (dropdown4 = false)
                     "
-                    class="focus:outline-none flex vs:w-full sm:w-full ssm:w-full ssm:h-auto ssm:text-xs vs:w-full w-52 h-11 py-2.5 px-4 items-center bg-gray-100 rounded-xl text-sm vs:text-xs lvs:text-sm leading-none text-gray-500"
+                    class="
+                      focus:outline-none
+                      flex
+                      vs:w-full
+                      sm:w-full
+                      ssm:w-full
+                      ssm:h-auto
+                      ssm:text-xs
+                      vs:w-full
+                      w-52
+                      h-11
+                      py-2.5
+                      px-4
+                      items-center
+                      bg-gray-100
+                      rounded-xl
+                      text-sm
+                      vs:text-xs
+                      lvs:text-sm
+                      leading-none
+                      text-gray-500
+                    "
                   >
                     {{ paymentRequest }}
                   </button>
                   <div class="relative">
                     <div
                       v-if="dropdown8"
-                      class="absolute py-3 bg-white rounded-lg shadow-xl right-0 h-35.1 sm:w-full w-52"
+                      class="
+                        absolute
+                        py-3
+                        bg-white
+                        rounded-lg
+                        shadow-xl
+                        right-0
+                        h-35.1
+                        sm:w-full
+                        w-52
+                      "
                     >
                       <div
                         v-for="(pm, index) in Payments"
                         :key="index"
-                        class="flex flex-col w-full space-y-3 px-2 justify-start items-start"
+                        class="
+                          flex flex-col
+                          w-full
+                          space-y-3
+                          px-2
+                          justify-start
+                          items-start
+                        "
                       >
                         <button
                           @click="
                             setPaymentRequest(index);
                             dropdown8 = !dropdown8;
                           "
-                          class="flex w-full focus:outline-none justify-start items-start px-2"
+                          class="
+                            flex
+                            w-full
+                            focus:outline-none
+                            justify-start
+                            items-start
+                            px-2
+                          "
                         >
                           <p
                             :id="'pmR' + index"
-                            class="text-sm tracking-wide leading-none text-gray-900"
+                            class="
+                              text-sm
+                              tracking-wide
+                              leading-none
+                              text-gray-900
+                            "
                           >
                             {{ pm }}
                           </p>
@@ -709,16 +1446,46 @@
           <!--Select Shopping List button-->
           <div
             v-if="showShopListButton"
-            class="flex justify-center items-center ssm:px-2 mt-3 sm:px-2 vs:px-2"
+            class="
+              flex
+              justify-center
+              items-center
+              ssm:px-2
+              mt-3
+              sm:px-2
+              vs:px-2
+            "
           >
             <button
               @click="hidePrevious"
-              class="focus:outline-none inline-flex items-center justify-center p-4 bg-gray-100 rounded-full w-31.75 ssm:w-full vs:w-full h-14 ssm:h-10 vs:h-12"
+              class="
+                focus:outline-none
+                inline-flex
+                items-center
+                justify-center
+                p-4
+                bg-gray-100
+                rounded-full
+                w-31.75
+                ssm:w-full
+                vs:w-full
+                h-14
+                ssm:h-10
+                vs:h-12
+              "
             >
               <div class="flex space-x-2 items-center">
                 <img class="w-6 h-full rounded-lg" src="img/add.svg" />
                 <p
-                  class="text-base ssm:text-sm vs:text-sm lvs:text-base font-bold leading-none text-gray-900"
+                  class="
+                    text-base
+                    ssm:text-sm
+                    vs:text-sm
+                    lvs:text-base
+                    font-bold
+                    leading-none
+                    text-gray-900
+                  "
                 >
                   Select Shopping List
                 </p>
@@ -733,7 +1500,13 @@
               <div class="flex mt-4 flex-row justify-between items-start">
                 <div class="flex flex-row space-x-2">
                   <p
-                    class="text-base ssm:text-sm font-bold leading-none text-gray-900"
+                    class="
+                      text-base
+                      ssm:text-sm
+                      font-bold
+                      leading-none
+                      text-gray-900
+                    "
                   >
                     {{ selectedList.shoppingListTitle }}
                   </p>
@@ -753,11 +1526,31 @@
                   <div class="relative w-full">
                     <div
                       v-if="listEdit"
-                      class="absolute flex flex-col space-y-2 p-2 leading-loose rounded-lg border-2 border-gray-100 bg-white right-0 w-30"
+                      class="
+                        absolute
+                        flex flex-col
+                        space-y-2
+                        p-2
+                        leading-loose
+                        rounded-lg
+                        border-2 border-gray-100
+                        bg-white
+                        right-0
+                        w-30
+                      "
                     >
                       <button
                         @click="editShopList"
-                        class="flex flex-row items-center font-normal text-base leading-none text-gray-900 focus:outline-none gap-x-2"
+                        class="
+                          flex flex-row
+                          items-center
+                          font-normal
+                          text-base
+                          leading-none
+                          text-gray-900
+                          focus:outline-none
+                          gap-x-2
+                        "
                       >
                         <span class="material-icons text-base text-gray-900">
                           mode
@@ -766,7 +1559,16 @@
                       </button>
                       <button
                         @click="hidePrevious"
-                        class="flex flex-row items-center font-normal text-base leading-none text-gray-900 focus:outline-none gap-x-2"
+                        class="
+                          flex flex-row
+                          items-center
+                          font-normal
+                          text-base
+                          leading-none
+                          text-gray-900
+                          focus:outline-none
+                          gap-x-2
+                        "
                       >
                         <span class="material-icons text-base text-gray-900">
                           autorenew
@@ -779,14 +1581,32 @@
               </div>
               <div
                 id="scroll1"
-                class="flex flex-col justify-start items-start px-4 text-sm w-full overflow-y-auto space-y-4 mt-4 h-22"
+                class="
+                  flex flex-col
+                  justify-start
+                  items-start
+                  px-4
+                  text-sm
+                  w-full
+                  overflow-y-auto
+                  space-y-4
+                  mt-4
+                  h-22
+                "
               >
                 <span
                   v-for="shoppingItems in computedShopItemList"
                   :key="shoppingItems"
                 >
                   <li
-                    class="text-base w-full vs:text-sm ssm:text-sm leading-none text-gray-900"
+                    class="
+                      text-base
+                      w-full
+                      vs:text-sm
+                      ssm:text-sm
+                      leading-none
+                      text-gray-900
+                    "
                     v-if="shoppingItems.status == 1"
                   >
                     {{ shoppingItems.product }} ({{ shoppingItems.size }}) ·
@@ -797,7 +1617,13 @@
               <button
                 @click="showMoreshowLess"
                 v-if="isFew() > 4"
-                class="focus:outline-none flex justify-start items-start text-sm text-gray-500"
+                class="
+                  focus:outline-none
+                  flex
+                  justify-start
+                  items-start
+                  text-sm text-gray-500
+                "
               >
                 {{ showListStatus }}
               </button>
@@ -812,7 +1638,21 @@
               name="postMessage"
               rows="3"
               v-model="captionRequest"
-              class="p-4 bg-gray-100 shadow-sm text-sm ssm:text-xs vs:text-xs lvs:text-sm rounded-2xl rounded-md outline-none h-auto w-31.75 ssm:w-full vs:w-full"
+              class="
+                p-4
+                bg-gray-100
+                shadow-sm
+                text-sm
+                ssm:text-xs
+                vs:text-xs
+                lvs:text-sm
+                rounded-2xl rounded-md
+                outline-none
+                h-auto
+                w-31.75
+                ssm:w-full
+                vs:w-full
+              "
               placeholder="Enter your post message here..."
             ></textarea>
           </div>
@@ -822,10 +1662,31 @@
           <div class="justify-center flex mt-3 pb-3 ssm:px-2 vs:px-2 sm:px-2">
             <button
               @click="postRequest"
-              class="inline-flex items-center justify-center focus:outline-none px-4 py-2 bg-red-700 rounded-full w-31.75 ssm:w-full vs:w-full h-10"
+              class="
+                inline-flex
+                items-center
+                justify-center
+                focus:outline-none
+                px-4
+                py-2
+                bg-red-700
+                rounded-full
+                w-31.75
+                ssm:w-full
+                vs:w-full
+                h-10
+              "
             >
               <p
-                class="text-base ssm:text-sm vs:text-sm sm:text-sm font-bold leading-normal text-center text-white"
+                class="
+                  text-base
+                  ssm:text-sm
+                  vs:text-sm
+                  sm:text-sm
+                  font-bold
+                  leading-normal
+                  text-center text-white
+                "
               >
                 Post
               </p>
@@ -843,25 +1704,67 @@
   <transition name="fadeSlide">
     <div
       v-if="showSelectShopListModal"
-      class="hideIf2 font-nunito fixed z-50 inset-0 flex ssm:px-2 vs:px-2 sm:px-2 justify-center items-center"
+      class="
+        hideIf2
+        font-nunito
+        fixed
+        z-50
+        inset-0
+        flex
+        ssm:px-2
+        vs:px-2
+        sm:px-2
+        justify-center
+        items-center
+      "
     >
       <div
-        class="flex flex-col bg-white shadow rounded-xl h-auto w-550 ssm:w-full vs:w-full sm:w-full"
+        class="
+          flex flex-col
+          bg-white
+          shadow
+          rounded-xl
+          h-auto
+          w-550
+          ssm:w-full
+          vs:w-full
+          sm:w-full
+        "
       >
         <div class="flex justify-between items-center p-4 flex-row">
           <button
             @click="showPreviousModal1"
-            class="focus:outline-none text-sm font-bold leading-none text-right text-indigo-900"
+            class="
+              focus:outline-none
+              text-sm
+              font-bold
+              leading-none
+              text-right text-indigo-900
+            "
           >
             Back
           </button>
           <p
-            class="text-2xl ssm:text-sm se:text-base vs:text-lg font-bold leading-normal text-center text-gray-900"
+            class="
+              text-2xl
+              ssm:text-sm
+              se:text-base
+              vs:text-lg
+              font-bold
+              leading-normal
+              text-center text-gray-900
+            "
           >
             Select Shopping List
           </p>
           <button
-            class="invisible text-sm font-bold leading-none text-right text-indigo-900"
+            class="
+              invisible
+              text-sm
+              font-bold
+              leading-none
+              text-right text-indigo-900
+            "
           >
             Close</button
           ><!--invisible, used only for auto margin header. If design need close button just delete the invisible class-->
@@ -901,11 +1804,29 @@
                 <div class="relative w-full">
                   <div
                     v-if="edit2 == list.shoppingListNumber && edit3"
-                    class="absolute p-2 leading-loose rounded-lg border-2 border-gray-100 bg-white right-0 w-30"
+                    class="
+                      absolute
+                      p-2
+                      leading-loose
+                      rounded-lg
+                      border-2 border-gray-100
+                      bg-white
+                      right-0
+                      w-30
+                    "
                   >
                     <button
                       @click="editShopListAtSelectShopList"
-                      class="flex flex-row items-center font-normal text-base leading-none text-gray-900 focus:outline-none gap-x-2"
+                      class="
+                        flex flex-row
+                        items-center
+                        font-normal
+                        text-base
+                        leading-none
+                        text-gray-900
+                        focus:outline-none
+                        gap-x-2
+                      "
                     >
                       <span class="material-icons text-base text-gray-900">
                         mode
@@ -919,14 +1840,34 @@
           </div>
         </div>
         <div
-          class="flex flex-row w-full justify-around vs:space-x-2 sm:space-x-4 items-center p-4"
+          class="
+            flex flex-row
+            w-full
+            justify-around
+            vs:space-x-2
+            sm:space-x-4
+            items-center
+            p-4
+          "
         >
           <button
             @click="
               createNewShopList();
               ctr = 0;
             "
-            class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2 border-2 rounded-full border-red-700"
+            class="
+              focus:outline-none
+              flex
+              items-center
+              justify-center
+              w-56
+              h-full
+              px-4
+              py-2
+              border-2
+              rounded-full
+              border-red-700
+            "
           >
             <p class="text-base font-bold leading-none text-gray-900">
               Create New
@@ -934,7 +1875,18 @@
           </button>
           <button
             @click="confirmShopList"
-            class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2.5 bg-red-700 rounded-full"
+            class="
+              focus:outline-none
+              flex
+              items-center
+              justify-center
+              w-56
+              h-full
+              px-4
+              py-2.5
+              bg-red-700
+              rounded-full
+            "
           >
             <p class="text-base font-bold leading-none text-white">Confirm</p>
           </button>
@@ -948,25 +1900,66 @@
   <transition name="fadeSlide">
     <div
       v-if="showCreateNewShopListModal"
-      class="z-50 font-nunito fixed inset-0 flex ssm:px-2 vs:px-2 sm:px-2 justify-center items-center"
+      class="
+        z-50
+        font-nunito
+        fixed
+        inset-0
+        flex
+        ssm:px-2
+        vs:px-2
+        sm:px-2
+        justify-center
+        items-center
+      "
     >
       <div
-        class="flex flex-col bg-white shadow rounded-xl h-auto w-550 ssm:w-full vs:w-full sm:w-full"
+        class="
+          flex flex-col
+          bg-white
+          shadow
+          rounded-xl
+          h-auto
+          w-550
+          ssm:w-full
+          vs:w-full
+          sm:w-full
+        "
       >
         <div class="flex justify-between items-center p-4 flex-row">
           <button
             @click="showPreviousModal2"
-            class="focus:outline-none text-sm font-bold leading-none text-right text-indigo-900"
+            class="
+              focus:outline-none
+              text-sm
+              font-bold
+              leading-none
+              text-right text-indigo-900
+            "
           >
             Back
           </button>
           <p
-            class="text-2xl ssm:text-sm se:text-base vs:text-lg font-bold leading-normal text-center text-gray-900"
+            class="
+              text-2xl
+              ssm:text-sm
+              se:text-base
+              vs:text-lg
+              font-bold
+              leading-normal
+              text-center text-gray-900
+            "
           >
             Create New Shopping List
           </p>
           <button
-            class="invisible text-sm font-bold leading-none text-right text-indigo-900"
+            class="
+              invisible
+              text-sm
+              font-bold
+              leading-none
+              text-right text-indigo-900
+            "
           >
             Close</button
           ><!--invisible, used only for auto margin header. If design need close button just delete the invisible class-->
@@ -991,7 +1984,7 @@
             </button>
           </div>
           <div class="flex space-y-2 flex-col w-full overflow-y-auto h-64 px-4">
-            <div class="flex flex-row items-center space-x-3 select-none pl-3">
+            <div v-if="!editItem1" class="flex flex-row items-center space-x-3 select-none pl-3">
               <span
                 @click="new_item = !new_item"
                 class="cursor-pointer material-icons"
@@ -1008,20 +2001,41 @@
                 id="product"
                 type="text"
                 placeholder="Product"
-                class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                class="
+                  rounded-xl
+                  pl-5
+                  w-full
+                  focus:outline-none
+                  h-10
+                  bg-gray-100
+                "
               />
               <div class="flex flex-row space-x-2">
                 <input
                   id="brand"
                   type="text"
                   placeholder="Brand"
-                  class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                  class="
+                    rounded-xl
+                    pl-5
+                    w-full
+                    focus:outline-none
+                    h-10
+                    bg-gray-100
+                  "
                 />
                 <input
                   id="size"
                   type="text"
                   placeholder="Size"
-                  class="w-40 rounded-xl pl-5 focus:outline-none h-10 bg-gray-100"
+                  class="
+                    w-40
+                    rounded-xl
+                    pl-5
+                    focus:outline-none
+                    h-10
+                    bg-gray-100
+                  "
                 />
               </div>
               <div class="flex flex-row space-x-2">
@@ -1044,13 +2058,31 @@
                 <div class="space-x-3">
                   <button
                     @click="new_item = false"
-                    class="ring-2 rounded-2xl h-6 w-20 font-bold ring-red-buttons focus:outline-none"
+                    class="
+                      ring-2
+                      rounded-2xl
+                      h-6
+                      w-20
+                      font-bold
+                      ring-red-buttons
+                      focus:outline-none
+                    "
                   >
                     Cancel
                   </button>
                   <button
                     @click="add_newItem1()"
-                    class="ring-2 rounded-2xl h-6 w-20 font-bold text-white ring-red-buttons focus:outline-none bg-red-buttons"
+                    class="
+                      ring-2
+                      rounded-2xl
+                      h-6
+                      w-20
+                      font-bold
+                      text-white
+                      ring-red-buttons
+                      focus:outline-none
+                      bg-red-buttons
+                    "
                   >
                     Add
                   </button>
@@ -1058,13 +2090,31 @@
               </div>
             </div>
             <div
-              class="flex flex-row w-full justify-between items-center space-x-3"
+              class="
+                flex flex-row
+                w-full
+                justify-between
+                items-center
+                space-x-3
+              "
               v-for="item in new_items"
               :key="item.id"
             >
               <div class="flex flex-row vs:space-x-2 ssm:space-x-1 space-x-4">
                 <div
-                  class="itemButtons bg-white border-2 rounded-none w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 border-gray-900"
+                  class="
+                    itemButtons
+                    bg-white
+                    border-2
+                    rounded-none
+                    w-4
+                    h-4
+                    flex flex-shrink-0
+                    justify-center
+                    items-center
+                    mr-2
+                    border-gray-900
+                  "
                 >
                   <input
                     type="checkbox"
@@ -1074,17 +2124,38 @@
                   />
                   <img
                     src="img/check-mark.svg"
-                    class="fill-current hidden w-3 h-3 text-black mr-3 font-bold pointer-events-none"
+                    class="
+                      fill-current
+                      hidden
+                      w-3
+                      h-3
+                      text-black
+                      mr-3
+                      font-bold
+                      pointer-events-none
+                    "
                   />
                 </div>
                 <div class="flex flex-col space-y-2">
                   <p
-                    class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      leading-none
+                      text-gray-900
+                    "
                   >
                     {{ item.product }} ({{ item.size }})
                   </p>
                   <p
-                    class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      leading-none
+                      text-gray-900
+                    "
                   >
                     {{ item.brand }}
                   </p>
@@ -1100,7 +2171,15 @@
                   </span>
                 </button>
                 <p
-                  class="text-base ssm:text-sm se:text-sm items-center flex leading-none text-gray-900"
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    items-center
+                    flex
+                    leading-none
+                    text-gray-900
+                  "
                 >
                   {{ item.quantity }}
                 </p>
@@ -1112,29 +2191,300 @@
                     remove
                   </span>
                 </button>
-                <button class="focus:outline-none flex">
-                  <span class="material-icons"> more_vert </span>
+                <div class="relative">
+                  <button
+                    @click="productOptions(item)"
+                    class="focus:outline-none flex"
+                  >
+                    <span class="material-icons"> more_vert </span>
+                  </button>
+                  
+                </div>
+                <div
+                    v-if="editCreatedItem1 && editCreatedItemFlagId == item.id"
+                    class="
+                      absolute
+                      p-2
+                      leading-loose
+                      rounded-lg
+                      border-2 border-gray-100
+                      bg-white
+                      right-0
+                      w-30
+                    "
+                  >
+                    <button
+                      @click="editItem(item)"
+                      class="
+                        flex flex-row
+                        items-center
+                        font-normal
+                        text-base
+                        leading-none
+                        text-gray-900
+                        focus:outline-none
+                        gap-x-2
+                      "
+                    >
+                      <span class="material-icons text-base text-gray-900">
+                        mode
+                      </span>
+                      Edit
+                    </button>
+                  </div>
+              </div>
+            </div>
+            <div
+              v-if="editItem1"
+              class="
+                flex flex-col
+                space-y-2
+                h-auto
+                w-full
+                rounded-xl
+                border-2
+                p-4
+                border-gray-200
+                bg-white
+              "
+            >
+              <div
+                class="
+                  flex
+                  bg-gray-100
+                  rounded-xl
+                  w-full
+                  flex-col
+                  space-y-1
+                  h-auto
+                  p-2
+                "
+              >
+                <p class="text-sm leading-3 text-gray-500">Product</p>
+                <input
+                  v-model="editingProduct.product"
+                  class="
+                    bg-gray-100
+                    w-full
+                    h-4
+                    focus:outline-none
+                    text-base
+                    leading-none
+                    text-gray-900
+                  "
+                />
+              </div>
+              <div class="flex flex-row space-x-2">
+                <div
+                  class="
+                    flex
+                    bg-gray-100
+                    rounded-xl
+                    w-full
+                    flex-col
+                    space-y-1
+                    h-auto
+                    p-2
+                  "
+                >
+                  <p class="text-sm leading-3 text-gray-500">Brand</p>
+                  <input
+                    v-model="editingProduct.brand"
+                    class="
+                      bg-gray-100
+                      w-full
+                      h-4
+                      focus:outline-none
+                      text-base
+                      leading-none
+                      text-gray-900
+                    "
+                  />
+                </div>
+                <div
+                  class="
+                    flex
+                    bg-gray-100
+                    rounded-xl
+                    w-full
+                    flex-col
+                    space-y-1
+                    h-auto
+                    p-2
+                  "
+                >
+                  <p class="text-sm leading-3 text-gray-500">Size</p>
+                  <input
+                    v-model="editingProduct.size"
+                    class="
+                      bg-gray-100
+                      w-full
+                      h-4
+                      focus:outline-none
+                      text-base
+                      leading-none
+                      text-gray-900
+                    "
+                  />
+                </div>
+              </div>
+              <div class="flex flex-row items-center pt-2 space-x-4">
+                <p
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    leading-7
+                    text-gray-900
+                  "
+                >
+                  Quantity
+                </p>
+                <div class="flex flex-row space-x-2">
+                  <button
+                    @click="editingProduct.quantity++"
+                    class="focus:outline-none"
+                  >
+                    <span class="material-icons bg-gray-100 text-red-700">
+                      add
+                    </span>
+                  </button>
+                  <p
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      items-center
+                      flex
+                      leading-none
+                      text-gray-900
+                    "
+                  >
+                    {{ editingProduct.quantity }}
+                  </p>
+                  <button
+                    @click="
+                      editingProduct.quantity = minusQty(
+                        editingProduct.quantity
+                      )
+                    "
+                    class="focus:outline-none"
+                  >
+                    <span class="material-icons bg-gray-100 text-red-700">
+                      remove
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="
+                  flex flex-row
+                  justify-end
+                  items-center
+                  ssm:space-x-1
+                  space-x-2
+                "
+              >
+                <button
+                  @click="editItem1 = !editItem1"
+                  class="
+                    focus:outline-none
+                    inline-flex
+                    px-4
+                    py-2
+                    border-2
+                    rounded-full
+                    border-red-700
+                  "
+                >
+                  <p
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      font-bold
+                      leading-none
+                      text-gray-900
+                    "
+                  >
+                    Cancel
+                  </p>
+                </button>
+                <button
+                  @click="saveEditingItem(true)"
+                  class="
+                    focus:outline-none
+                    inline-flex
+                    px-4
+                    py-2.5
+                    bg-red-700
+                    rounded-full
+                  "
+                >
+                  <p
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      font-bold
+                      leading-none
+                      text-white
+                    "
+                  >
+                    Save
+                  </p>
                 </button>
               </div>
             </div>
           </div>
 
-          <div class="flex px-4 justify-end items-center">
+          <!-- <div class="flex px-4 justify-end items-center">
             <p class="text-xs leading-none text-gray-500">Updated 7:13 PM</p>
-          </div>
+          </div> -->
         </div>
         <div
-          class="flex flex-row w-full justify-around vs:space-x-2 sm:space-x-4 items-center p-4"
+          class="
+            flex flex-row
+            w-full
+            justify-around
+            vs:space-x-2
+            sm:space-x-4
+            items-center
+            p-4
+          "
         >
           <button
             @click="showPreviousModal2"
-            class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2 border-2 rounded-full border-red-700"
+            class="
+              focus:outline-none
+              flex
+              items-center
+              justify-center
+              w-56
+              h-full
+              px-4
+              py-2
+              border-2
+              rounded-full
+              border-red-700
+            "
           >
             <p class="text-base font-bold leading-none text-gray-900">Cancel</p>
           </button>
           <button
             @click="saveList"
-            class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2.5 bg-red-700 rounded-full"
+            class="
+              focus:outline-none
+              flex
+              items-center
+              justify-center
+              w-56
+              h-full
+              px-4
+              py-2.5
+              bg-red-700
+              rounded-full
+            "
           >
             <p class="text-base font-bold leading-none text-white">Save</p>
           </button>
@@ -1148,25 +2498,68 @@
   <transition name="fadeSlide">
     <div
       v-if="showEditShopListModal"
-      class="z-50 font-nunito fixed inset-0 vs:px-2 ssm:px-2 vs:px-2 sm:px-2 flex justify-center items-center"
+      class="
+        z-50
+        font-nunito
+        fixed
+        inset-0
+        vs:px-2
+        ssm:px-2
+        vs:px-2
+        sm:px-2
+        flex
+        justify-center
+        items-center
+      "
     >
       <div
-        class="flex flex-col bg-white shadow rounded-xl h-auto w-550 ssm:w-full px-4 vs:w-full sm:w-full"
+        class="
+          flex flex-col
+          bg-white
+          shadow
+          rounded-xl
+          h-auto
+          w-550
+          ssm:w-full
+          px-4
+          vs:w-full
+          sm:w-full
+        "
       >
         <div class="flex justify-between items-center py-4 flex-row">
           <button
             @click="showPreviousModal3"
-            class="focus:outline-none text-sm font-bold leading-none text-right text-indigo-900"
+            class="
+              focus:outline-none
+              text-sm
+              font-bold
+              leading-none
+              text-right text-indigo-900
+            "
           >
             Back
           </button>
           <p
-            class="text-2xl ssm:text-sm se:text-base vs:text-lg font-bold leading-normal text-center text-gray-900"
+            class="
+              text-2xl
+              ssm:text-sm
+              se:text-base
+              vs:text-lg
+              font-bold
+              leading-normal
+              text-center text-gray-900
+            "
           >
             Edit Shopping List
           </p>
           <button
-            class="invisible text-sm font-bold leading-none text-right text-indigo-900"
+            class="
+              invisible
+              text-sm
+              font-bold
+              leading-none
+              text-right text-indigo-900
+            "
           >
             Close</button
           ><!--invisible, used only for auto margin header. If design need close button just delete the invisible class-->
@@ -1190,7 +2583,7 @@
               </span>
             </button>
           </div>
-          <div class="flex flex-row items-center space-x-3 select-none pl-3">
+          <div v-if="!editItem1" class="flex flex-row items-center space-x-3 select-none pl-3">
             <span
               @click="new_item = !new_item"
               class="cursor-pointer material-icons"
@@ -1214,7 +2607,14 @@
                 id="brand1"
                 type="text"
                 placeholder="Brand"
-                class="rounded-xl pl-5 w-full focus:outline-none h-10 bg-gray-100"
+                class="
+                  rounded-xl
+                  pl-5
+                  w-full
+                  focus:outline-none
+                  h-10
+                  bg-gray-100
+                "
               />
               <input
                 id="size1"
@@ -1243,23 +2643,253 @@
               <div class="space-x-3">
                 <button
                   @click="new_item = false"
-                  class="ring-2 rounded-2xl h-6 w-20 font-bold ring-red-buttons focus:outline-none"
+                  class="
+                    ring-2
+                    rounded-2xl
+                    h-6
+                    w-20
+                    font-bold
+                    ring-red-buttons
+                    focus:outline-none
+                  "
                 >
                   Cancel
                 </button>
                 <button
                   @click="add_newItem()"
-                  class="ring-2 rounded-2xl h-6 w-20 font-bold text-white ring-red-buttons focus:outline-none bg-red-buttons"
+                  class="
+                    ring-2
+                    rounded-2xl
+                    h-6
+                    w-20
+                    font-bold
+                    text-white
+                    ring-red-buttons
+                    focus:outline-none
+                    bg-red-buttons
+                  "
                 >
                   Add
                 </button>
               </div>
             </div>
           </div>
+          <div
+            v-if="editItem1"
+            class="
+              flex flex-col
+              space-y-2
+              h-auto
+              w-full
+              rounded-xl
+              border-2
+              p-4
+              border-gray-200
+              bg-white
+            "
+          >
+            <div
+              class="
+                flex
+                bg-gray-100
+                rounded-xl
+                w-full
+                flex-col
+                space-y-1
+                h-auto
+                p-2
+              "
+            >
+              <p class="text-sm leading-3 text-gray-500">Product</p>
+              <input
+                v-model="editingProduct.product"
+                class="
+                  bg-gray-100
+                  w-full
+                  h-4
+                  focus:outline-none
+                  text-base
+                  leading-none
+                  text-gray-900
+                "
+              />
+            </div>
+            <div class="flex flex-row space-x-2">
+              <div
+                class="
+                  flex
+                  bg-gray-100
+                  rounded-xl
+                  w-full
+                  flex-col
+                  space-y-1
+                  h-auto
+                  p-2
+                "
+              >
+                <p class="text-sm leading-3 text-gray-500">Brand</p>
+                <input
+                  v-model="editingProduct.brand"
+                  class="
+                    bg-gray-100
+                    w-full
+                    h-4
+                    focus:outline-none
+                    text-base
+                    leading-none
+                    text-gray-900
+                  "
+                />
+              </div>
+              <div
+                class="
+                  flex
+                  bg-gray-100
+                  rounded-xl
+                  w-full
+                  flex-col
+                  space-y-1
+                  h-auto
+                  p-2
+                "
+              >
+                <p class="text-sm leading-3 text-gray-500">Size</p>
+                <input
+                  v-model="editingProduct.size"
+                  class="
+                    bg-gray-100
+                    w-full
+                    h-4
+                    focus:outline-none
+                    text-base
+                    leading-none
+                    text-gray-900
+                  "
+                />
+              </div>
+            </div>
+            <div class="flex flex-row items-center pt-2 space-x-4">
+              <p
+                class="text-base ssm:text-sm se:text-sm leading-7 text-gray-900"
+              >
+                Quantity
+              </p>
+              <div class="flex flex-row space-x-2">
+                <button
+                  @click="editingProduct.quantity++"
+                  class="focus:outline-none"
+                >
+                  <span class="material-icons bg-gray-100 text-red-700">
+                    add
+                  </span>
+                </button>
+                <p
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    items-center
+                    flex
+                    leading-none
+                    text-gray-900
+                  "
+                >
+                  {{ editingProduct.quantity }}
+                </p>
+                <button
+                  @click="
+                    editingProduct.quantity = minusQty(editingProduct.quantity)
+                  "
+                  class="focus:outline-none"
+                >
+                  <span class="material-icons bg-gray-100 text-red-700">
+                    remove
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="
+                flex flex-row
+                justify-end
+                items-center
+                ssm:space-x-1
+                space-x-2
+              "
+            >
+              <button
+                @click="editItem1 = !editItem1"
+                class="
+                  focus:outline-none
+                  inline-flex
+                  px-4
+                  py-2
+                  border-2
+                  rounded-full
+                  border-red-700
+                "
+              >
+                <p
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    font-bold
+                    leading-none
+                    text-gray-900
+                  "
+                >
+                  Cancel
+                </p>
+              </button>
+              <button
+                @click="saveEditingItem(false)"
+                class="
+                  focus:outline-none
+                  inline-flex
+                  px-4
+                  py-2.5
+                  bg-red-700
+                  rounded-full
+                "
+              >
+                <p
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    font-bold
+                    leading-none
+                    text-white
+                  "
+                >
+                  Save
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex px-4 justify-end items-center">
+          <p class="text-xs leading-none text-gray-500">
+            Last updated {{ timestamp(selectedList.dateModified) }}
+          </p>
         </div>
         <div
           id="scroll1"
-          class="flex flex-col py-1 px-2 vs:px-2 ssm:px-1 overflow-y-auto h-40 vs:h-36 ssm:space-y-1 vs:space-y-2 space-y-4 w-full"
+          class="
+            flex flex-col
+            py-1
+            px-2
+            vs:px-2
+            ssm:px-1
+            overflow-y-auto
+            h-40
+            vs:h-36
+            ssm:space-y-1
+            vs:space-y-2
+            space-y-4
+            w-full
+          "
         >
           <div
             class="flex flex-row w-full justify-between items-center space-x-3"
@@ -1268,7 +2898,19 @@
           >
             <div class="flex flex-row vs:space-x-2 ssm:space-x-1 space-x-4">
               <div
-                class="itemButtons bg-white border-2 rounded-none w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 border-gray-900"
+                class="
+                  itemButtons
+                  bg-white
+                  border-2
+                  rounded-none
+                  w-4
+                  h-4
+                  flex flex-shrink-0
+                  justify-center
+                  items-center
+                  mr-2
+                  border-gray-900
+                "
               >
                 <input
                   type="checkbox"
@@ -1278,17 +2920,38 @@
                 />
                 <img
                   src="img/check-mark.svg"
-                  class="fill-current hidden w-3 h-3 text-black mr-3 font-bold pointer-events-none"
+                  class="
+                    fill-current
+                    hidden
+                    w-3
+                    h-3
+                    text-black
+                    mr-3
+                    font-bold
+                    pointer-events-none
+                  "
                 />
               </div>
               <div class="flex flex-col space-y-2">
                 <p
-                  class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    leading-none
+                    text-gray-900
+                  "
                 >
                   {{ item.product }} ({{ item.size }})
                 </p>
                 <p
-                  class="text-base ssm:text-sm se:text-sm leading-none text-gray-900"
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    leading-none
+                    text-gray-900
+                  "
                 >
                   {{ item.brand }}
                 </p>
@@ -1301,7 +2964,15 @@
                 </span>
               </button>
               <p
-                class="text-base ssm:text-sm se:text-sm items-center flex leading-none text-gray-900"
+                class="
+                  text-base
+                  ssm:text-sm
+                  se:text-sm
+                  items-center
+                  flex
+                  leading-none
+                  text-gray-900
+                "
               >
                 {{ item.quantity }}
               </p>
@@ -1313,31 +2984,114 @@
                   remove
                 </span>
               </button>
-              <button class="focus:outline-none flex">
-                <span class="material-icons"> more_vert </span>
-              </button>
+              <div class="relative">
+                <button
+                  @click="productOptions(item)"
+                  class="focus:outline-none flex"
+                >
+                  <span class="material-icons"> more_vert </span>
+                </button>
+                <div
+                  v-if="editCreatedItem1 && editCreatedItemFlagId == item.id"
+                  class="
+                    absolute
+                    p-2
+                    leading-loose
+                    rounded-lg
+                    border-2 border-gray-100
+                    bg-white
+                    right-0
+                    w-30
+                  "
+                >
+                  <button
+                    @click="editItem(item)"
+                    class="
+                      flex flex-row
+                      items-center
+                      font-normal
+                      text-base
+                      leading-none
+                      text-gray-900
+                      focus:outline-none
+                      gap-x-2
+                    "
+                  >
+                    <span class="material-icons text-base text-gray-900">
+                      mode
+                    </span>
+                    Edit
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="flex flex-row w-full justify-around vs:space-x-2 ssm:space-x-1 sm:space-x-4 items-center py-4"
+          class="
+            flex flex-row
+            w-full
+            justify-around
+            vs:space-x-2
+            ssm:space-x-1
+            sm:space-x-4
+            items-center
+            py-4
+          "
         >
           <button
             @click="showPreviousModal3"
-            class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2 border-2 rounded-full border-red-700"
+            class="
+              focus:outline-none
+              flex
+              items-center
+              justify-center
+              w-56
+              h-full
+              px-4
+              py-2
+              border-2
+              rounded-full
+              border-red-700
+            "
           >
             <p
-              class="text-base ssm:text-sm se:text-sm font-bold leading-none text-gray-900"
+              class="
+                text-base
+                ssm:text-sm
+                se:text-sm
+                font-bold
+                leading-none
+                text-gray-900
+              "
             >
               Cancel
             </p>
           </button>
           <button
             @click="editShoppingList"
-            class="focus:outline-none flex items-center justify-center w-56 h-full px-4 py-2.5 bg-red-700 rounded-full"
+            class="
+              focus:outline-none
+              flex
+              items-center
+              justify-center
+              w-56
+              h-full
+              px-4
+              py-2.5
+              bg-red-700
+              rounded-full
+            "
           >
             <p
-              class="text-base ssm:text-sm se:text-sm font-bold leading-none text-white"
+              class="
+                text-base
+                ssm:text-sm
+                se:text-sm
+                font-bold
+                leading-none
+                text-white
+              "
             >
               Save Changes
             </p>
@@ -1354,6 +3108,7 @@ import store from "../store/index";
 // import VueSimpleAlert from "vue-simple-alert";
 import $ from "jquery";
 import api from "../api";
+import moment from "moment";
 export default {
   props: ["activeList", "showList"],
   data() {
@@ -1488,7 +3243,10 @@ export default {
       mainModal: true,
       errorOffer: null,
       errorOrder: null,
-
+      editCreatedItem1: false,
+      editCreatedItemFlagId: null,
+      editingProduct: null,
+      editItem1: false,
       //end
     };
   },
@@ -1496,6 +3254,48 @@ export default {
     console.log("fter", this.selectedList, this.showList);
   },
   methods: {
+    timestamp(datetime) {
+      var postedDate = moment(datetime);
+      const today = moment().endOf("day");
+      const yesterday = moment().add(-1, "day").endOf("day");
+      if (moment(postedDate).isBefore(yesterday))
+        return moment(datetime).format("[Yesterday at] h:mm a");
+      if (moment(postedDate).isBefore(today))
+        return moment(datetime).format("[Today at] h:mm a");
+      else return moment(datetime).format("MMM DD, YYYY [at] h:mm a");
+    },
+    saveEditingItem(isNewItem) {
+      var i;
+      if (isNewItem) {
+        for (i = 0; i < this.new_items.length; i++) {
+          if (this.new_items[i].id == this.editingProduct.id) {
+            this.new_items[i] = this.editingProduct;
+          }
+        }
+      } else {
+        for (i = 0; i < this.selectedList.shoppingListContent.length; i++) {
+          if (
+            this.selectedList.shoppingListContent[i].id ==
+            this.editingProduct.id
+          ) {
+            this.selectedList.shoppingListContent[i] = this.editingProduct;
+          }
+        }
+      }
+
+      this.editItem1 = !this.editItem1;
+    },
+    editItem(item) {
+      console.log(item);
+      this.editItem1 = !this.editItem1;
+      this.editingProduct = JSON.parse(JSON.stringify(item));
+      this.editCreatedItem1 = !this.editCreatedItem1;
+    },
+    productOptions(item) {
+      console.log("product");
+      this.editCreatedItem1 = !this.editCreatedItem1;
+      this.editCreatedItemFlagId = item.id;
+    },
     saveList() {
       for (var i = 0; i < this.new_items.length; i++) {
         if (!document.getElementById("check" + this.new_items[i].id).checked) {
@@ -1503,7 +3303,7 @@ export default {
           this.new_items[i].status = 0;
         }
       }
-      console.log(document.getElementById("createTitle").value,'title')
+      console.log(document.getElementById("createTitle").value, "title");
       let obj = {
         listName: document.getElementById("createTitle").value,
         list: this.new_items,
@@ -1516,13 +3316,12 @@ export default {
           store.dispatch("getUserShoppingList").then(() => {
             this.selectedList = res.data;
             this.new_items = [];
-            this.showPreviousModal2()
+            this.showPreviousModal2();
           });
         })
         .catch(() => {
           //if encountered error means the user will not add a new shopping list
           this.new_items = [];
-          
         });
     },
     postOffer() {
