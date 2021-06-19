@@ -17,7 +17,7 @@ class shoppingListController extends Controller
         # code...
         // $data = DB::select('SELECT * FROM tbl_shoppingList WHERE email = \''.Auth::user()->email.'\'');
         // return $data[0];
-        $data = DB::table('tbl_shoppingList')->where('email', '=', Auth::user()->email)->get();
+        $data = DB::table('tbl_shoppingList')->where('email', '=', Auth::user()->email)->orderBy('dateModified', 'desc')->get();
         for ($i = 0; $i < $data->count(); $i++) {
             $data[$i]->shoppingListContent = json_decode($data[$i]->shoppingListContent);
         }
@@ -38,7 +38,8 @@ class shoppingListController extends Controller
         }
         $data = shoppingList::where('shoppingListNumber', $listNum)->first();
         if (($data->shoppingListTitle == $request->listName) && ($data->shoppingListContent == json_encode($request->list))) {
-            return response()->json(["success" => "no changes"], 201);
+            $data->shoppingListContent = json_decode($data->shoppingListContent);
+            return response()->json($data, 201);
         } else {
             if (DB::table('tbl_shoppingList')->where('email', '=', Auth::user()->email)->where('shoppingListNumber', $listNum)->update(["shoppingListContent" => json_encode($request->list), 'shoppingListTitle' => $request->listName, "dateModified" => Carbon::now('Asia/Manila')])) {
                 $selectedList = shoppingList::where('shoppingListNumber', $listNum)->first();

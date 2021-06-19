@@ -721,6 +721,7 @@
                               lg:right-0
                               md:right-5
                               xl:right-0
+                              2xl:right-0
                               h-min
                               w-40
                             "
@@ -842,6 +843,7 @@
                               lg:right-0
                               md:right-5
                               xl:right-0
+                              2xl:right-0
                               h-min
                               w-40
                             "
@@ -3653,6 +3655,7 @@
                       </span>
                     </div>
                     <div
+                      v-if="!editItem1"
                       class="
                         flex flex-row
                         items-center
@@ -3842,6 +3845,212 @@
                         </div>
                       </div>
                     </div>
+                    <div
+                      v-if="editItem1"
+                      class="
+                        flex flex-col
+                        space-y-2
+                        h-auto
+                        w-full
+                        rounded-xl
+                        border-2
+                        p-4
+                        border-gray-200
+                        bg-white
+                      "
+                    >
+                      <div
+                        class="
+                          flex
+                          bg-gray-100
+                          rounded-xl
+                          w-full
+                          flex-col
+                          space-y-1
+                          h-auto
+                          p-2
+                        "
+                      >
+                        <p class="text-sm leading-3 text-gray-500">Product</p>
+                        <input
+                          v-model="editingProduct.product"
+                          class="
+                            bg-gray-100
+                            w-full
+                            h-4
+                            focus:outline-none
+                            text-base
+                            leading-none
+                            text-gray-900
+                          "
+                        />
+                      </div>
+                      <div class="flex flex-row space-x-2">
+                        <div
+                          class="
+                            flex
+                            bg-gray-100
+                            rounded-xl
+                            w-full
+                            flex-col
+                            space-y-1
+                            h-auto
+                            p-2
+                          "
+                        >
+                          <p class="text-sm leading-3 text-gray-500">Brand</p>
+                          <input
+                            v-model="editingProduct.brand"
+                            class="
+                              bg-gray-100
+                              w-full
+                              h-4
+                              focus:outline-none
+                              text-base
+                              leading-none
+                              text-gray-900
+                            "
+                          />
+                        </div>
+                        <div
+                          class="
+                            flex
+                            bg-gray-100
+                            rounded-xl
+                            w-full
+                            flex-col
+                            space-y-1
+                            h-auto
+                            p-2
+                          "
+                        >
+                          <p class="text-sm leading-3 text-gray-500">Size</p>
+                          <input
+                            v-model="editingProduct.size"
+                            class="
+                              bg-gray-100
+                              w-full
+                              h-4
+                              focus:outline-none
+                              text-base
+                              leading-none
+                              text-gray-900
+                            "
+                          />
+                        </div>
+                      </div>
+                      <div class="flex flex-row items-center pt-2 space-x-4">
+                        <p
+                          class="
+                            text-base
+                            ssm:text-sm
+                            se:text-sm
+                            leading-7
+                            text-gray-900
+                          "
+                        >
+                          Quantity
+                        </p>
+                        <div class="flex flex-row space-x-2">
+                          <button
+                            @click="editingProduct.quantity++"
+                            class="focus:outline-none"
+                          >
+                            <span
+                              class="material-icons bg-gray-100 text-red-700"
+                            >
+                              add
+                            </span>
+                          </button>
+                          <p
+                            class="
+                              text-base
+                              ssm:text-sm
+                              se:text-sm
+                              items-center
+                              flex
+                              leading-none
+                              text-gray-900
+                            "
+                          >
+                            {{ editingProduct.quantity }}
+                          </p>
+                          <button
+                            @click="
+                              editingProduct.quantity = minusQty(
+                                editingProduct.quantity
+                              )
+                            "
+                            class="focus:outline-none"
+                          >
+                            <span
+                              class="material-icons bg-gray-100 text-red-700"
+                            >
+                              remove
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="
+                          flex flex-row
+                          justify-end
+                          items-center
+                          ssm:space-x-1
+                          space-x-2
+                        "
+                      >
+                        <button
+                          @click="editItem1 = !editItem1"
+                          class="
+                            focus:outline-none
+                            inline-flex
+                            px-4
+                            py-2
+                            border-2
+                            rounded-full
+                            border-red-700
+                          "
+                        >
+                          <p
+                            class="
+                              text-base
+                              ssm:text-sm
+                              se:text-sm
+                              font-bold
+                              leading-none
+                              text-gray-900
+                            "
+                          >
+                            Cancel
+                          </p>
+                        </button>
+                        <button
+                          @click="saveEditingItem()"
+                          class="
+                            focus:outline-none
+                            inline-flex
+                            px-4
+                            py-2.5
+                            bg-red-700
+                            rounded-full
+                          "
+                        >
+                          <p
+                            class="
+                              text-base
+                              ssm:text-sm
+                              se:text-sm
+                              font-bold
+                              leading-none
+                              text-white
+                            "
+                          >
+                            Save
+                          </p>
+                        </button>
+                      </div>
+                    </div>
                     <!-- <div class="flex text-gray-400 text-xs justify-end">
                       <p>Updated</p>
                       {{ time }}
@@ -3910,49 +4119,56 @@
                               >
                                 remove
                               </span>
-                              <button
-                                @click="productOptions(item.id)"
-                                class="focus:outline-none flex"
-                              >
-                                <span class="material-icons"> more_vert </span>
-                              </button>
-                            </div>
-                            <div
-                              v-if="
-                                editCreatedItem1 &&
-                                editCreatedItemFlagId == item.id
-                              "
-                              class="
-                                absolute
-                                p-2
-                                leading-loose
-                                rounded-lg
-                                border-2 border-gray-100
-                                bg-white
-                                right-0
-                                w-30
-                              "
-                            >
-                              <button
-                                @click="editDisItem1"
-                                class="
-                                  flex flex-row
-                                  items-center
-                                  font-normal
-                                  text-base
-                                  leading-none
-                                  text-gray-900
-                                  focus:outline-none
-                                  gap-x-2
-                                "
-                              >
-                                <span
-                                  class="material-icons text-base text-gray-900"
+                              <div class="relative">
+                                <button
+                                  @click="productOptions(item)"
+                                  class="focus:outline-none flex"
                                 >
-                                  mode
-                                </span>
-                                Edit
-                              </button>
+                                  <span class="material-icons">
+                                    more_vert
+                                  </span>
+                                </button>
+                                <div
+                                  v-if="
+                                    editCreatedItem1 &&
+                                    editCreatedItemFlagId == item.id
+                                  "
+                                  class="
+                                    absolute
+                                    p-2
+                                    leading-loose
+                                    rounded-lg
+                                    border-2 border-gray-100
+                                    bg-white
+                                    right-0
+                                    w-30
+                                  "
+                                >
+                                  <button
+                                    @click="editItem(item)"
+                                    class="
+                                      flex flex-row
+                                      items-center
+                                      font-normal
+                                      text-base
+                                      leading-none
+                                      text-gray-900
+                                      focus:outline-none
+                                      gap-x-2
+                                    "
+                                  >
+                                    <span
+                                      class="
+                                        material-icons
+                                        text-base text-gray-900
+                                      "
+                                    >
+                                      mode
+                                    </span>
+                                    Edit
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </li>
@@ -3968,7 +4184,6 @@
                         </span>
                         <span
                           @click="
-                            addlist = false;
                             listToggleFlag = true;
                             add_shopping_list();
                           "
@@ -3979,9 +4194,8 @@
                       </div>
                       <p
                         @click="
-                          (addlist = false),
-                            add_shopping_list(),
-                            (selectedList = [])
+                          add_shopping_list();
+                          selectedList = [];
                         "
                         class="
                           cursor-pointer
@@ -4052,6 +4266,7 @@
                       </span>
                     </div>
                     <div
+                      v-if="!editItem1"
                       class="
                         flex flex-row
                         items-center
@@ -4181,6 +4396,212 @@
                         </div>
                       </div>
                     </div>
+                    <div
+                      v-if="editItem1"
+                      class="
+                        flex flex-col
+                        space-y-2
+                        h-auto
+                        w-full
+                        rounded-xl
+                        border-2
+                        p-4
+                        border-gray-200
+                        bg-white
+                      "
+                    >
+                      <div
+                        class="
+                          flex
+                          bg-gray-100
+                          rounded-xl
+                          w-full
+                          flex-col
+                          space-y-1
+                          h-auto
+                          p-2
+                        "
+                      >
+                        <p class="text-sm leading-3 text-gray-500">Product</p>
+                        <input
+                          v-model="editingProduct.product"
+                          class="
+                            bg-gray-100
+                            w-full
+                            h-4
+                            focus:outline-none
+                            text-base
+                            leading-none
+                            text-gray-900
+                          "
+                        />
+                      </div>
+                      <div class="flex flex-row space-x-2">
+                        <div
+                          class="
+                            flex
+                            bg-gray-100
+                            rounded-xl
+                            w-full
+                            flex-col
+                            space-y-1
+                            h-auto
+                            p-2
+                          "
+                        >
+                          <p class="text-sm leading-3 text-gray-500">Brand</p>
+                          <input
+                            v-model="editingProduct.brand"
+                            class="
+                              bg-gray-100
+                              w-full
+                              h-4
+                              focus:outline-none
+                              text-base
+                              leading-none
+                              text-gray-900
+                            "
+                          />
+                        </div>
+                        <div
+                          class="
+                            flex
+                            bg-gray-100
+                            rounded-xl
+                            w-full
+                            flex-col
+                            space-y-1
+                            h-auto
+                            p-2
+                          "
+                        >
+                          <p class="text-sm leading-3 text-gray-500">Size</p>
+                          <input
+                            v-model="editingProduct.size"
+                            class="
+                              bg-gray-100
+                              w-full
+                              h-4
+                              focus:outline-none
+                              text-base
+                              leading-none
+                              text-gray-900
+                            "
+                          />
+                        </div>
+                      </div>
+                      <div class="flex flex-row items-center pt-2 space-x-4">
+                        <p
+                          class="
+                            text-base
+                            ssm:text-sm
+                            se:text-sm
+                            leading-7
+                            text-gray-900
+                          "
+                        >
+                          Quantity
+                        </p>
+                        <div class="flex flex-row space-x-2">
+                          <button
+                            @click="editingProduct.quantity++"
+                            class="focus:outline-none"
+                          >
+                            <span
+                              class="material-icons bg-gray-100 text-red-700"
+                            >
+                              add
+                            </span>
+                          </button>
+                          <p
+                            class="
+                              text-base
+                              ssm:text-sm
+                              se:text-sm
+                              items-center
+                              flex
+                              leading-none
+                              text-gray-900
+                            "
+                          >
+                            {{ editingProduct.quantity }}
+                          </p>
+                          <button
+                            @click="
+                              editingProduct.quantity = minusQty(
+                                editingProduct.quantity
+                              )
+                            "
+                            class="focus:outline-none"
+                          >
+                            <span
+                              class="material-icons bg-gray-100 text-red-700"
+                            >
+                              remove
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="
+                          flex flex-row
+                          justify-end
+                          items-center
+                          ssm:space-x-1
+                          space-x-2
+                        "
+                      >
+                        <button
+                          @click="editItem1 = !editItem1"
+                          class="
+                            focus:outline-none
+                            inline-flex
+                            px-4
+                            py-2
+                            border-2
+                            rounded-full
+                            border-red-700
+                          "
+                        >
+                          <p
+                            class="
+                              text-base
+                              ssm:text-sm
+                              se:text-sm
+                              font-bold
+                              leading-none
+                              text-gray-900
+                            "
+                          >
+                            Cancel
+                          </p>
+                        </button>
+                        <button
+                          @click="saveEditingItem()"
+                          class="
+                            focus:outline-none
+                            inline-flex
+                            px-4
+                            py-2.5
+                            bg-red-700
+                            rounded-full
+                          "
+                        >
+                          <p
+                            class="
+                              text-base
+                              ssm:text-sm
+                              se:text-sm
+                              font-bold
+                              leading-none
+                              text-white
+                            "
+                          >
+                            Save
+                          </p>
+                        </button>
+                      </div>
+                    </div>
                     <div class="flex text-gray-400 text-xs justify-end">
                       <p>
                         Last updated
@@ -4251,54 +4672,62 @@
                               >
                                 remove
                               </span>
-                              <button
-                                @click="productOptions(item.id)"
-                                class="focus:outline-none flex"
-                              >
-                                <span class="material-icons"> more_vert </span>
-                              </button>
-                            </div>
-                            <div
-                              v-if="
-                                editCreatedItem1 &&
-                                editCreatedItemFlagId == item.id
-                              "
-                              class="
-                                absolute
-                                p-2
-                                leading-loose
-                                rounded-lg
-                                border-2 border-gray-100
-                                bg-white
-                                right-0
-                                w-30
-                              "
-                            >
-                              <button
-                                @click="editDisItem1"
-                                class="
-                                  flex flex-row
-                                  items-center
-                                  font-normal
-                                  text-base
-                                  leading-none
-                                  text-gray-900
-                                  focus:outline-none
-                                  gap-x-2
-                                "
-                              >
-                                <span
-                                  class="material-icons text-base text-gray-900"
+                              <div class="relative">
+                                <button
+                                  @click="productOptions(item)"
+                                  class="focus:outline-none flex relative"
                                 >
-                                  mode
-                                </span>
-                                Edit
-                              </button>
+                                  <span class="material-icons">
+                                    more_vert
+                                  </span>
+                                </button>
+                                <div
+                                  v-if="
+                                    editCreatedItem1 &&
+                                    editCreatedItemFlagId == item.id
+                                  "
+                                  class="
+                                    absolute
+                                    p-2
+                                    leading-loose
+                                    rounded-lg
+                                    border-2 border-gray-100
+                                    bg-white
+                                    right-0
+                                    w-30
+                                  "
+                                >
+                                  <button
+                                    @click="editItem(item)"
+                                    class="
+                                      flex flex-row
+                                      items-center
+                                      font-normal
+                                      text-base
+                                      leading-none
+                                      text-gray-900
+                                      focus:outline-none
+                                      gap-x-2
+                                    "
+                                  >
+                                    <span
+                                      class="
+                                        material-icons
+                                        text-base text-gray-900
+                                      "
+                                    >
+                                      mode
+                                    </span>
+                                    Edit
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </li>
                       </ul>
                     </div>
+
                     <div class="flex flex-row items-center justify-between">
                       <div class="space-x-3 text-gray-500">
                         <span
@@ -4311,7 +4740,7 @@
                           @click="
                             (listToggleFlag = true),
                               updateShoppinglist(
-                                shoppingLists[0].shoppingListNumber
+                                shoppingLists[0].shoppingListNumber,true
                               )
                           "
                           class="material-icons cursor-pointer select-none"
@@ -4322,9 +4751,8 @@
                       <p
                         @click="
                           updateShoppinglist(
-                            shoppingLists[0].shoppingListNumber
-                          ),
-                            (selectedList = [])
+                            shoppingLists[0].shoppingListNumber,false
+                          );
                         "
                         class="
                           cursor-pointer
@@ -4870,7 +5298,6 @@ export default {
       } else {
         popupTriggers.value.timedTrigger = false;
       }
-      console.log("cookie", popupTriggers.value.timedTrigger);
     }, 3500);
     return {
       popupTriggers,
@@ -4879,6 +5306,8 @@ export default {
   },
   data() {
     return {
+      editingProduct: null,
+      editItem1: false,
       editCreatedItem1: false,
       editCreatedItemFlagId: null,
       share3dot: false,
@@ -5105,9 +5534,22 @@ export default {
     },
   },
   methods: {
-    productOptions(id) {
+    saveEditingItem() {
+      for (var i = 0; i < this.new_items.length; i++) {
+        if (this.new_items[i].id == this.editingProduct.id) {
+          this.new_items[i] = this.editingProduct;
+        }
+      }
+      this.editItem1 = !this.editItem1;
+    },
+    editItem(item) {
+      this.editItem1 = !this.editItem1;
+      this.editingProduct = JSON.parse(JSON.stringify(item));
       this.editCreatedItem1 = !this.editCreatedItem1;
-      this.editCreatedItemFlagId = id;
+    },
+    productOptions(item) {
+      this.editCreatedItem1 = !this.editCreatedItem1;
+      this.editCreatedItemFlagId = item.id;
     },
     deleteShared(postNum) {
       api.delete("api/sharedPost/" + postNum + "/delete").then(() => {
@@ -5122,9 +5564,6 @@ export default {
       var temp2 = temp.filter((x) => {
         return x.postNumber === postNumber;
       });
-
-      console.log("temp2", temp2[0]);
-
       if (temp2[0].postIdentity == "request_post") {
         var link =
           "https://pasabuy-client.herokuapp.com/OrderRequestSinglePage?post=" +
@@ -5162,13 +5601,12 @@ export default {
     brand() {
       let vm = this;
       this.debounceSearchBrand(vm);
-      console.log("brandssssssssssssss", this.brands);
     },
     debounceSearchBrand: _.debounce((vm) => {
       var data = document.getElementById("brand").value;
       var brand = data.replace(" ", "%20");
       var returnBrands = [];
-      console.log(brand);
+      
       var link =
         "https://api.edamam.com/api/food-database/v2/parser?ingr=" +
         brand +
@@ -5178,9 +5616,7 @@ export default {
         .get(link)
         .then((res) => {
           //then set the result to array
-          console.log("search res: ", res.data);
           for (var i = 0; i < res.data.hints.length; i++) {
-            console.log("brands: ", res.data.hints[i].food.brand);
             returnBrands.push(res.data.hints[i].food.label);
           }
           var temp = returnBrands;
@@ -5188,7 +5624,6 @@ export default {
           $.each(temp, function (i, el) {
             if ($.inArray(el, returnBrands) === -1) returnBrands.push(el);
           });
-          console.log("returnint this", returnBrands);
           vm.brands = returnBrands;
         })
         .catch(() => {
@@ -5206,7 +5641,6 @@ export default {
     },
     deleteList() {
       this.new_items = [];
-      console.log(this.new_items);
     },
     minusQty(q) {
       q--;
@@ -5303,7 +5737,6 @@ export default {
         this.new_items.push(datax);
         this.new_item = false;
         this.list_number++;
-        console.log(this.new_items);
       } else {
         alert("Empty Field");
         return false;
@@ -5322,7 +5755,7 @@ export default {
       }
       //alert(index);
     },
-    updateShoppinglist(listNumber) {
+    updateShoppinglist(listNumber,isPosttAdd) {
       // let new_time = new Date();
       // let timex = new_time.toLocaleTimeString();
       // let datex = new_time.toDateString();
@@ -5350,10 +5783,14 @@ export default {
       api
         .post("api/editList/" + listNumber, obj)
         .then((res) => {
-          console.log("edit", res.data);
           store.dispatch("getUserShoppingList").then(() => {
-            this.selectedList = res.data;
-            this.showItemList = true;
+            if(isPosttAdd){
+              this.selectedList = res.data;
+              this.showItemList = true;
+            }else{
+              this.selectedList =null;
+              this.showItemList = false;
+            }
             this.new_items = [];
             this.Editlist = false;
             if (this.listToggleFlag) this.togglePostModal();
@@ -5370,7 +5807,6 @@ export default {
         });
     },
     deleteListFrom() {
-      console.log("delete");
       this.toggle_delete = false;
       api
         .delete("api/deleteList/" + this.shoppingLists[0].shoppingListNumber)
@@ -5426,7 +5862,6 @@ export default {
         listName: document.getElementById("new_title").value,
         list: this.new_items,
       };
-      console.log(this.new_items);
       this.shopping_list.push(obj);
       api
         .post("api/createList", obj)
@@ -5434,17 +5869,24 @@ export default {
           store.dispatch("getUserShoppingList").then(() => {
             this.selectedList = res.data;
             this.showItemList = true;
-            console.log("before", this.selectedList, this.showItemList);
             this.new_items = [];
             this.addlist = false;
             if (this.listToggleFlag) this.togglePostModal();
             this.listToggleFlag = false;
           });
         })
-        .catch(() => {
+        .catch((error) => {
           //if encountered error means the user will not add a new shopping list
-          this.new_items = [];
-          this.addlist = false;
+          if (obj.listName != "" || obj.list.length > 0) {
+            if (error.response.data.list == null) error.response.data.list = "";
+            if (error.response.data.listName == null)
+              error.response.data.listName = "";
+            this.listError =
+              error.response.data.list + error.response.data.listName;
+          } else {
+            this.new_items = [];
+            this.addlist = false;
+          }
         });
     },
 
@@ -5522,20 +5964,17 @@ export default {
       var temp2 = temp.filter((x) => {
         return x.transactionNumber === transactNum;
       });
-      console.log("yrmp2", temp2);
       if (temp2.length <= 0) {
         temp = JSON.parse(JSON.stringify(this.confirmedDeliveries));
         temp2 = temp.filter((x) => {
           return x.transactionNumber === transactNum;
         });
-        console.log("in deliveries", temp2);
         this.$router.push({
           name: "singlePostDelivery",
           query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
         });
         return;
       }
-      console.log("in orders", temp2);
 
       this.$router.push({
         name: "singlePostOrder",
@@ -5718,7 +6157,7 @@ export default {
       const today = moment();
       const startOfTomorrow = moment().add(1, "day").startOf("day");
       const endOfTomorrow = moment().add(1, "day").endOf("day");
-     
+
       if (moment(schedDate).isBefore(today)) {
         return moment(datetime).format("[From] MMM DD, YYYY [at] h:mm a");
       }
@@ -5763,7 +6202,6 @@ export default {
       var allPosts = this.posts.concat(this.allShares);
       this.sortedAllPosts = this.selectionSort(allPosts);
       this.filteringPosts = this.sortedAllPosts;
-      console.log("mark: ", this.posts);
     },
     deletePost(postNum) {
       api.delete("api/post/" + postNum + "/delete").then(() => {
@@ -5950,6 +6388,16 @@ export default {
     },
   },
   mounted() {
+    if(this.$route.query.modal != null){
+        this.postModalVisible = atob(this.$route.query.modal);
+        var temp = this.shoppingLists.filter((x)=>{
+          return x.shoppingListNumber == atob(this.$route.query.list)
+        })
+        this.selectedList = temp[0];
+        this.showItemList = true
+        console.log(this.selectedList,'selected')
+    }
+ 
     this.sortPosts();
     this.changeFilter();
   },

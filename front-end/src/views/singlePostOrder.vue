@@ -240,7 +240,7 @@ export default {
           store.dispatch("getUserFollow", email).then(() => {
             this.$router.push({
               name: "Profile",
-              query: { ID: this.toEncrypt(email) },
+              query: { ID: this.toEncrypt(email), component: this.toEncrypt('shoppingReviews')},
             });
           });
         });
