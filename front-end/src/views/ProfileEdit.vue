@@ -271,6 +271,11 @@ export default {
     };
   },
   mounted() {
+    if(this.$route.query.component != null){
+      if(atob(this.$route.query.component) === 'shoppingReviews'){
+        this.toggle3()
+      }
+    }
     this.userID = atob(this.$route.query.ID);
     var status = this.followers.filter((x) => {
       return (
