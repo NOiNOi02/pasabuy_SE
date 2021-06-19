@@ -721,6 +721,7 @@
                               lg:right-0
                               md:right-5
                               xl:right-0
+                              2xl:right-0
                               h-min
                               w-40
                             "
@@ -842,6 +843,7 @@
                               lg:right-0
                               md:right-5
                               xl:right-0
+                              2xl:right-0
                               h-min
                               w-40
                             "
@@ -3653,7 +3655,7 @@
                       </span>
                     </div>
                     <div
-                    v-if="!editItem1"
+                      v-if="!editItem1"
                       class="
                         flex flex-row
                         items-center
@@ -4264,7 +4266,7 @@
                       </span>
                     </div>
                     <div
-                    v-if="!editItem1"
+                      v-if="!editItem1"
                       class="
                         flex flex-row
                         items-center
@@ -4738,7 +4740,7 @@
                           @click="
                             (listToggleFlag = true),
                               updateShoppinglist(
-                                shoppingLists[0].shoppingListNumber
+                                shoppingLists[0].shoppingListNumber,true
                               )
                           "
                           class="material-icons cursor-pointer select-none"
@@ -4749,9 +4751,8 @@
                       <p
                         @click="
                           updateShoppinglist(
-                            shoppingLists[0].shoppingListNumber
-                          ),
-                            (selectedList = [])
+                            shoppingLists[0].shoppingListNumber,false
+                          );
                         "
                         class="
                           cursor-pointer
@@ -5297,7 +5298,6 @@ export default {
       } else {
         popupTriggers.value.timedTrigger = false;
       }
-      console.log("cookie", popupTriggers.value.timedTrigger);
     }, 3500);
     return {
       popupTriggers,
@@ -5543,13 +5543,11 @@ export default {
       this.editItem1 = !this.editItem1;
     },
     editItem(item) {
-      console.log(item);
       this.editItem1 = !this.editItem1;
       this.editingProduct = JSON.parse(JSON.stringify(item));
       this.editCreatedItem1 = !this.editCreatedItem1;
     },
     productOptions(item) {
-      console.log("product");
       this.editCreatedItem1 = !this.editCreatedItem1;
       this.editCreatedItemFlagId = item.id;
     },
@@ -5566,9 +5564,6 @@ export default {
       var temp2 = temp.filter((x) => {
         return x.postNumber === postNumber;
       });
-
-      console.log("temp2", temp2[0]);
-
       if (temp2[0].postIdentity == "request_post") {
         var link =
           "http://localhost:8080/OrderRequestSinglePage?post=" +
@@ -5606,13 +5601,12 @@ export default {
     brand() {
       let vm = this;
       this.debounceSearchBrand(vm);
-      console.log("brandssssssssssssss", this.brands);
     },
     debounceSearchBrand: _.debounce((vm) => {
       var data = document.getElementById("brand").value;
       var brand = data.replace(" ", "%20");
       var returnBrands = [];
-      console.log(brand);
+      
       var link =
         "https://api.edamam.com/api/food-database/v2/parser?ingr=" +
         brand +
@@ -5622,9 +5616,7 @@ export default {
         .get(link)
         .then((res) => {
           //then set the result to array
-          console.log("search res: ", res.data);
           for (var i = 0; i < res.data.hints.length; i++) {
-            console.log("brands: ", res.data.hints[i].food.brand);
             returnBrands.push(res.data.hints[i].food.label);
           }
           var temp = returnBrands;
@@ -5632,7 +5624,6 @@ export default {
           $.each(temp, function (i, el) {
             if ($.inArray(el, returnBrands) === -1) returnBrands.push(el);
           });
-          console.log("returnint this", returnBrands);
           vm.brands = returnBrands;
         })
         .catch(() => {
@@ -5650,7 +5641,6 @@ export default {
     },
     deleteList() {
       this.new_items = [];
-      console.log(this.new_items);
     },
     minusQty(q) {
       q--;
@@ -5747,7 +5737,6 @@ export default {
         this.new_items.push(datax);
         this.new_item = false;
         this.list_number++;
-        console.log(this.new_items);
       } else {
         alert("Empty Field");
         return false;
@@ -5766,7 +5755,7 @@ export default {
       }
       //alert(index);
     },
-    updateShoppinglist(listNumber) {
+    updateShoppinglist(listNumber,isPosttAdd) {
       // let new_time = new Date();
       // let timex = new_time.toLocaleTimeString();
       // let datex = new_time.toDateString();
@@ -5794,10 +5783,14 @@ export default {
       api
         .post("api/editList/" + listNumber, obj)
         .then((res) => {
-          console.log("edit", res.data);
           store.dispatch("getUserShoppingList").then(() => {
-            this.selectedList = res.data;
-            this.showItemList = true;
+            if(isPosttAdd){
+              this.selectedList = res.data;
+              this.showItemList = true;
+            }else{
+              this.selectedList =null;
+              this.showItemList = false;
+            }
             this.new_items = [];
             this.Editlist = false;
             if (this.listToggleFlag) this.togglePostModal();
@@ -5814,7 +5807,6 @@ export default {
         });
     },
     deleteListFrom() {
-      console.log("delete");
       this.toggle_delete = false;
       api
         .delete("api/deleteList/" + this.shoppingLists[0].shoppingListNumber)
@@ -5870,7 +5862,6 @@ export default {
         listName: document.getElementById("new_title").value,
         list: this.new_items,
       };
-      console.log(this.new_items);
       this.shopping_list.push(obj);
       api
         .post("api/createList", obj)
@@ -5878,7 +5869,6 @@ export default {
           store.dispatch("getUserShoppingList").then(() => {
             this.selectedList = res.data;
             this.showItemList = true;
-            console.log("before", this.selectedList, this.showItemList);
             this.new_items = [];
             this.addlist = false;
             if (this.listToggleFlag) this.togglePostModal();
@@ -5887,16 +5877,15 @@ export default {
         })
         .catch((error) => {
           //if encountered error means the user will not add a new shopping list
-          console.log('object', obj)
-          if (obj.listName != "" || obj.list.length>0) {
+          if (obj.listName != "" || obj.list.length > 0) {
             if (error.response.data.list == null) error.response.data.list = "";
             if (error.response.data.listName == null)
               error.response.data.listName = "";
             this.listError =
               error.response.data.list + error.response.data.listName;
-          }else{
+          } else {
             this.new_items = [];
-            this.addlist = false; 
+            this.addlist = false;
           }
         });
     },
@@ -5975,20 +5964,17 @@ export default {
       var temp2 = temp.filter((x) => {
         return x.transactionNumber === transactNum;
       });
-      console.log("yrmp2", temp2);
       if (temp2.length <= 0) {
         temp = JSON.parse(JSON.stringify(this.confirmedDeliveries));
         temp2 = temp.filter((x) => {
           return x.transactionNumber === transactNum;
         });
-        console.log("in deliveries", temp2);
         this.$router.push({
           name: "singlePostDelivery",
           query: { transaction: this.toEncrypt(JSON.stringify(temp2)) },
         });
         return;
       }
-      console.log("in orders", temp2);
 
       this.$router.push({
         name: "singlePostOrder",
@@ -6216,7 +6202,6 @@ export default {
       var allPosts = this.posts.concat(this.allShares);
       this.sortedAllPosts = this.selectionSort(allPosts);
       this.filteringPosts = this.sortedAllPosts;
-      console.log("mark: ", this.posts);
     },
     deletePost(postNum) {
       api.delete("api/post/" + postNum + "/delete").then(() => {

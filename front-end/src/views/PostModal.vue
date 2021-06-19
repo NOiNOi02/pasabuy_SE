@@ -2089,152 +2089,8 @@
                 </div>
               </div>
             </div>
-            <div
-              class="
-                flex flex-row
-                w-full
-                justify-between
-                items-center
-                space-x-3
-              "
-              v-for="item in new_items"
-              :key="item.id"
-            >
-              <div class="flex flex-row vs:space-x-2 ssm:space-x-1 space-x-4">
-                <div
-                  class="
-                    itemButtons
-                    bg-white
-                    border-2
-                    rounded-none
-                    w-4
-                    h-4
-                    flex flex-shrink-0
-                    justify-center
-                    items-center
-                    mr-2
-                    border-gray-900
-                  "
-                >
-                  <input
-                    type="checkbox"
-                    class="opacity-0"
-                    :checked="item.status === 1"
-                    :id="'check' + item.id"
-                  />
-                  <img
-                    src="img/check-mark.svg"
-                    class="
-                      fill-current
-                      hidden
-                      w-3
-                      h-3
-                      text-black
-                      mr-3
-                      font-bold
-                      pointer-events-none
-                    "
-                  />
-                </div>
-                <div class="flex flex-col space-y-2">
-                  <p
-                    class="
-                      text-base
-                      ssm:text-sm
-                      se:text-sm
-                      leading-none
-                      text-gray-900
-                    "
-                  >
-                    {{ item.product }} ({{ item.size }})
-                  </p>
-                  <p
-                    class="
-                      text-base
-                      ssm:text-sm
-                      se:text-sm
-                      leading-none
-                      text-gray-900
-                    "
-                  >
-                    {{ item.brand }}
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-row space-x-2 items-center">
-                <button
-                  class="focus:outline-none flex"
-                  @click="item.quantity++"
-                >
-                  <span class="material-icons bg-gray-100 text-red-700">
-                    add
-                  </span>
-                </button>
-                <p
-                  class="
-                    text-base
-                    ssm:text-sm
-                    se:text-sm
-                    items-center
-                    flex
-                    leading-none
-                    text-gray-900
-                  "
-                >
-                  {{ item.quantity }}
-                </p>
-                <button
-                  class="focus:outline-none flex"
-                  @click="item.quantity = minusQty(item.quantity)"
-                >
-                  <span class="material-icons bg-gray-100 text-red-700">
-                    remove
-                  </span>
-                </button>
-                <div class="relative">
-                  <button
-                    @click="productOptions(item)"
-                    class="focus:outline-none flex"
-                  >
-                    <span class="material-icons"> more_vert </span>
-                  </button>
-                  
-                </div>
-                <div
-                    v-if="editCreatedItem1 && editCreatedItemFlagId == item.id"
-                    class="
-                      absolute
-                      p-2
-                      leading-loose
-                      rounded-lg
-                      border-2 border-gray-100
-                      bg-white
-                      right-0
-                      w-30
-                    "
-                  >
-                    <button
-                      @click="editItem(item)"
-                      class="
-                        flex flex-row
-                        items-center
-                        font-normal
-                        text-base
-                        leading-none
-                        text-gray-900
-                        focus:outline-none
-                        gap-x-2
-                      "
-                    >
-                      <span class="material-icons text-base text-gray-900">
-                        mode
-                      </span>
-                      Edit
-                    </button>
-                  </div>
-              </div>
-            </div>
-            <div
+            <hr class="w-full" />
+                 <div
               v-if="editItem1"
               class="
                 flex flex-col
@@ -2436,6 +2292,170 @@
                 </button>
               </div>
             </div>
+            <div
+              class="
+                flex flex-row
+                w-full
+                justify-between
+                items-center
+                space-x-3
+              "
+              v-for="item in new_items"
+              :key="item.id"
+            >
+              <div class="flex flex-row vs:space-x-2 ssm:space-x-1 space-x-4">
+                <div
+                  class="
+                    itemButtons
+                    bg-white
+                    border-2
+                    rounded-none
+                    w-4
+                    h-4
+                    flex flex-shrink-0
+                    justify-center
+                    items-center
+                    mr-2
+                    border-gray-900
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    class="opacity-0"
+                    :checked="item.status === 1"
+                    :id="'check' + item.id"
+                  />
+                  <img
+                    src="img/check-mark.svg"
+                    class="
+                      fill-current
+                      hidden
+                      w-3
+                      h-3
+                      text-black
+                      mr-3
+                      font-bold
+                      pointer-events-none
+                    "
+                  />
+                </div>
+                <div class="flex flex-col space-y-2">
+                  <p
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      leading-none
+                      text-gray-900
+                    "
+                  >
+                    {{ item.product }} ({{ item.size }})
+                  </p>
+                  <p
+                    class="
+                      text-base
+                      ssm:text-sm
+                      se:text-sm
+                      leading-none
+                      text-gray-900
+                    "
+                  >
+                    {{ item.brand }}
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-row space-x-2 items-center">
+                <button
+                  class="focus:outline-none flex"
+                  @click="item.quantity++"
+                >
+                  <span class="material-icons bg-gray-100 text-red-700">
+                    add
+                  </span>
+                </button>
+                <p
+                  class="
+                    text-base
+                    ssm:text-sm
+                    se:text-sm
+                    items-center
+                    flex
+                    leading-none
+                    text-gray-900
+                  "
+                >
+                  {{ item.quantity }}
+                </p>
+                <button
+                  class="focus:outline-none flex"
+                  @click="item.quantity = minusQty(item.quantity)"
+                >
+                  <span class="material-icons bg-gray-100 text-red-700">
+                    remove
+                  </span>
+                </button>
+                <div class="relative">
+                  <button
+                    @click="productOptions(item)"
+                    class="focus:outline-none flex"
+                  >
+                    <span class="material-icons"> more_vert </span>
+                  </button>
+                     <div
+                    v-if="editCreatedItem1 && editCreatedItemFlagId == item.id"
+                    class="
+                      absolute
+                      p-2
+                      leading-loose
+                      rounded-lg
+                      border-2 border-gray-100
+                      bg-white
+                      right-0
+                      w-30
+                    "
+                  >
+                    <button
+                      @click="editItem(item)"
+                      class="
+                        flex flex-row
+                        items-center
+                        font-normal
+                        text-base
+                        leading-none
+                        text-gray-900
+                        focus:outline-none
+                        gap-x-2
+                      "
+                    >
+                      <span class="material-icons text-base text-gray-900">
+                        mode
+                      </span>
+                      Edit
+                    </button>
+                    <button
+                      @click="deleteItem(item)"
+                      class="
+                        flex flex-row
+                        items-center
+                        font-normal
+                        text-base
+                        leading-none
+                        text-gray-900
+                        focus:outline-none
+                        gap-x-2
+                      "
+                    >
+                      <span class="material-icons text-base text-gray-900">
+                        delete
+                      </span>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+       
           </div>
 
           <!-- <div class="flex px-4 justify-end items-center">
@@ -2510,6 +2530,7 @@
         flex
         justify-center
         items-center
+        bg-black bg-opacity-25
       "
     >
       <div
@@ -3022,6 +3043,24 @@
                     </span>
                     Edit
                   </button>
+                  <button
+                      @click="deleteItem(item)"
+                      class="
+                        flex flex-row
+                        items-center
+                        font-normal
+                        text-base
+                        leading-none
+                        text-gray-900
+                        focus:outline-none
+                        gap-x-2
+                      "
+                    >
+                      <span class="material-icons text-base text-gray-900">
+                        delete
+                      </span>
+                      Delete
+                    </button>
                 </div>
               </div>
             </div>
@@ -3254,6 +3293,13 @@ export default {
     console.log("fter", this.selectedList, this.showList);
   },
   methods: {
+    deleteItem(item){
+      for(var i =0; i<this.new_items.length;i++){
+        if(this.new_items[i].id === item.id){
+          this.new_items.splice(i,1)
+        }
+      }
+    },
     timestamp(datetime) {
       var postedDate = moment(datetime);
       const today = moment().endOf("day");
