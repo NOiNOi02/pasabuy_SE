@@ -39,10 +39,10 @@
           <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
         </div>
       </router-link>
-      <router-link :class="{ disabled:true }" to="/shopping-list" class="flex flex-row gap-x-2 text-black"
+      <router-link  to="/shopping-list" class="flex flex-row gap-x-2 text-black"
         ><span class="material-icons text-gray-500">list</span>Shopping
         Lists  <span class="pl-5 text-gray-400" v-if="!ifUserVerified(user.email)">Get Verified</span>
-          <span class="pl-5 text-gray-400" v-else>Under Maintenance</span></router-link
+         </router-link
       >
        
       <router-link

@@ -17,7 +17,7 @@ class shoppingListController extends Controller
         # code...
         // $data = DB::select('SELECT * FROM tbl_shoppingList WHERE email = \''.Auth::user()->email.'\'');
         // return $data[0];
-        $data = DB::table('tbl_shoppingList')->where('email', '=', Auth::user()->email)->get();
+        $data = DB::table('tbl_shoppingList')->where('email', '=', Auth::user()->email)->orderBy('dateModified', 'desc')->get();
         for ($i = 0; $i < $data->count(); $i++) {
             $data[$i]->shoppingListContent = json_decode($data[$i]->shoppingListContent);
         }

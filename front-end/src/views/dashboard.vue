@@ -6388,6 +6388,16 @@ export default {
     },
   },
   mounted() {
+    if(this.$route.query.modal != null){
+        this.postModalVisible = atob(this.$route.query.modal);
+        var temp = this.shoppingLists.filter((x)=>{
+          return x.shoppingListNumber == atob(this.$route.query.list)
+        })
+        this.selectedList = temp[0];
+        this.showItemList = true
+        console.log(this.selectedList,'selected')
+    }
+ 
     this.sortPosts();
     this.changeFilter();
   },
